@@ -1,0 +1,94 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Tic Tac Toe Game</title>
+  <meta name="author" content="Jarik Marwede">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="scripts/script.js"></script>
+  <div class="container">
+    <div class="row">
+      <div class="col" id="main-container">
+        <div class="row">
+          <div class="col-sm-3">
+            <h5 class="text-right">Player wins:</h5>
+            <h6 class="text-right" id="player-win-count">0</h6>
+          </div>
+          <div class="col-sm-3">
+            <h5 class="text-left">Computer wins:</h5>
+            <h6 class="text-left" id="computer-win-count">0<h6>
+          </div>
+          <div class="col-sm-6">
+            <button class="btn btn-danger btn-lg float-right" id="reset-btn">Reset</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mx-auto" id="playing-board">
+            <div class="row">
+              <div class="col game-cell pointer text-center" id="cell-0">&nbsp;</div>
+              <div class="col game-cell pointer text-center" id="cell-1">&nbsp;</div>
+              <div class="col game-cell pointer text-center" id="cell-2">&nbsp;</div>
+            </div>
+            <div class="row">
+              <div class="col game-cell pointer text-center" id="cell-3">&nbsp;</div>
+              <div class="col game-cell pointer text-center" id="cell-4">&nbsp;</div>
+              <div class="col game-cell pointer text-center" id="cell-5">&nbsp;</div>
+            </div>
+            <div class="row">
+              <div class="col game-cell pointer text-center" id="cell-6">&nbsp;</div>
+              <div class="col game-cell pointer text-center" id="cell-7">&nbsp;</div>
+              <div class="col game-cell pointer text-center" id="cell-8">&nbsp;</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="symbol-modal">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h4 class="modal-title">Do you want to play as <i class="far fa-circle"></i> or as <i class="fas fa-times"></i> ?</h4>
+        </div>
+
+        <div class="modal-body">
+          <div class="row">
+            <div class="col">
+              <button class="btn btn-outline-dark btn-block symbol-choice-btn" id="symbol-o-btn" data-dismiss="modal"><i class="far fa-circle"></i></button>
+            </div>
+            <div class="col">
+              <button class="btn btn-outline-dark btn-block symbol-choice-btn" id="symbol-x-btn" data-dismiss="modal"><i class="fas fa-times"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="modal fade" id="winner-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title text-center" id="winner-sentence"></h4>
+        </div>
+        <div class="modal-body">
+          <button class="btn btn-outline-dark btn-block" data-dismiss="modal">Start next game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
