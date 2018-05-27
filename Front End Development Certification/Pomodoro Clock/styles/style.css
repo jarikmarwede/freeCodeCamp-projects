@@ -1,0 +1,45 @@
+.bg-primary {
+  background-color: #728e25 !important;
+}
+
+body {
+  padding: 5rem;
+  background-color: #36440f;
+}
+h5 {
+  color: #fff;
+}
+.pointer {
+  cursor: pointer;
+}
+#minus-session, #session-length, #plus-session, #minus-break, #break-length, #plus-break {
+  margin: 0.5rem;
+  display: inline;
+}
+#progress-bar-container {
+  margin: 3rem;
+  height: 20rem;
+  width: 20rem;
+  border: 0.3rem solid #92b23a;
+  background-color: #92b23a;
+  box-shadow: 2px 5px 10px #000;
+}
+#progress-bar {
+  height: 20rem;
+  width: 0%;
+}
+.progress-labels {
+  position: absolute;
+  display: block;
+  width: 100%;
+  font-size: 3rem;
+}
+.progress-label::-moz-selection {
+  color: #fff;
+}
+.progress-label::selection {
+  color: #fff;
+}
+#reset-btn {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
