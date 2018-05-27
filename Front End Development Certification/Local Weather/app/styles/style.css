@@ -1,0 +1,25 @@
+body {
+  background: #008ecc;
+}
+#info-container {
+  background: #00638e;
+  margin: 2rem;
+  padding: 5rem;
+}
+#more-info-btn {
+  background-color: #008ecc;
+}
+#switch-unit-btn {
+  background-color: #008ecc;
+}
+.info-text {
+  color: #fff;
+  font-family: "Lucida Console", monospace;
+}
+.main-info {
+  font-size: 1.5em;
+  margin: 2rem;
+}
+.extra-info {
+  margin: 1.5rem;
+}
