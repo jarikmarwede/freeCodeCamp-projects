@@ -1,0 +1,36 @@
+/* Bootstrap override */
+.btn {
+  border-radius: 1px;
+}
+.btn-outline-primary {
+  border-color: #1ed5ed;
+}
+
+body {
+  background-color: #588cb7;
+}
+#container {
+  width: 50rem;
+}
+#calculator {
+  margin: 10rem;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 5px 5px 18px #000;
+}
+#calculator-output {
+  background-color: #d4dadb;
+  padding: 1rem;
+  border: 0.2rem solid #e5e5e5;
+  box-shadow: 2px 2px 18px #000 inset;
+}
+#calculator-buttons {
+  margin-top: 1rem;
+}
+.calculator-button-row {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.calculator-button {
+  width: 100%;
+}
