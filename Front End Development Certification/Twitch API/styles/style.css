@@ -1,0 +1,59 @@
+body {
+  background-color: #280838;
+}
+.btn-primary {
+  background-color: #89229b;
+  border-color: #9625aa;
+}
+.btn-primary:active {
+  box-shadow: 0 0 0 0px #731f82 !important;
+  background-color: #9e2ab2 !important;
+  border-color: transparent !important;
+}
+.btn-primary:focus {
+  box-shadow: 0 0 0 1px #b63bcc;
+}
+.btn-primary:hover {
+  border-color: #731f82;
+  background-color: #731f82;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.active {
+  background-color: #6f207c !important;
+  border-color: #6f207c !important;
+}
+.active:focus {
+  box-shadow: 0 0 0 1px #6f207c !important;
+}
+#content {
+  background-color: #481363;
+  padding: 4rem;
+}
+.twitch-channel {
+  margin: 2rem;
+}
+.offline {
+  background-color: #7e1d99;
+}
+.online {
+  background-color: #9b21bc;
+}
+.channel-logo {
+  margin: 1rem;
+  height: 7rem;
+  width: 7rem;
+}
+.channel-name {
+  margin: 2rem;
+  color: #fff;
+  display: inline;
+}
+.channel-link:link, .channel-link:visited, .channel-link:hover, .channel-link:active {
+  color: #fff;
+  
+}
+.stream-status {
+  margin: 2rem;
+  color: #fff;
+  display: inline;
+}
