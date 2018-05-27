@@ -1,0 +1,44 @@
+body {
+  background-color: #45b1c6;
+}
+.quote-container {
+  background-color: #2c41a3;
+  margin: 10rem;
+}
+#quote-text {
+  color: #2c99a3;
+  font-size: 1.25rem;
+  padding-top: 4rem;
+  margin-left: 4rem;
+  margin-right: 4rem;
+}
+#quote-author {
+  margin-left: 4rem;
+  margin-right: 4rem;
+  color: #2c99a3;
+  
+}
+#quote-source {
+  color: #2c99a3;
+  margin-left: 4rem;
+  margin-right: 4rem;
+  font-size: 0.75rem;
+}
+#new-quote-btn {
+  color: #2c99a3;
+  border-color: #2c99a3;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+#new-quote-btn:hover {
+  color: #FFF;
+}
+#twitter-btn {
+  color: #2c99a3;
+  border-color: #2c99a3;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+#twitter-btn:hover {
+  color: #FFF;
+}
