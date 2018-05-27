@@ -1,0 +1,57 @@
+body {
+  margin: 2rem;
+  background-color: #ddaa61;
+}
+.pointer {
+  cursor: pointer;
+}
+#main-container {
+  height: 35rem;
+  width: 35rem;
+  background-color: #7c5012;
+  box-shadow: 5px 5px 20px #000;
+}
+#settings-container {
+  padding: 1rem;
+  height: 10rem;
+  width: 50%;
+  background-color: #8c7d69;
+}
+#start-btn {
+  margin-top: 1rem;
+}
+#strict-mode-label {
+  margin: 0.5rem;
+}
+#green-btn {
+  background-color: #1d8424;
+  width: 80%;
+  height: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 2px 2px 5px #000;
+}
+#red-btn {
+  background-color: #8e2b22;
+  width: 80%;
+  height: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 2px 2px 5px #000;
+}
+#yellow-btn {
+  background-color: #adab34;
+  width: 80%;
+  height: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 2px 2px 5px #000;
+}
+#blue-btn {
+  background-color: #2777a3;
+  width: 80%;
+  height: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+  box-shadow: 2px 2px 5px #000;
+}

@@ -1,0 +1,100 @@
+<doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>Simon Game</title>
+  <meta name="author" content="Jarik Marwede">
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+  <link rel="stylesheet" href="styles/style.css">
+</head>
+
+<body>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script src="scripts/script.js"></script>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="mx-auto" id="main-container">
+          <div class="row">
+            <div class="col">
+              <div class="mx-auto pointer" id="green-btn">
+              </div>
+            </div>
+            <div class="col">
+              <div class="mx-auto pointer" id="red-btn">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mx-auto" id="settings-container">
+                <div class="row">
+                  <div class="col">
+                    <h6 class="text-right">Count:</h6>
+                  </div>
+                  <div class="col">
+                    <h6 class="text-left" id="count">0</h6>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <button class="btn btn-primary btn-block" id="start-btn">Start</button>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col">
+                    <div class="form-check">
+                      <label class="form-check-label" id="strict-mode-label"><input type="checkbox" class="form-check-input" id="strict-mode" value="">Strict mode</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <div class="mx-auto pointer" id="yellow-btn">
+              </div>
+            </div>
+            <div class="col">
+              <div class="mx-auto pointer" id="blue-btn">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal" id="win-modal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">You Win!</h4>
+          <button type="button" class="close new-game-btn" data-dismiss="modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <button class="btn btn-primary btn-block new-game-btn" data-dismiss="modal">New Game</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <audio id="green-sound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound1.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="red-sound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound2.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="yellow-sound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound3.mp3" type="audio/mpeg">
+  </audio>
+  <audio id="blue-sound">
+    <source src="https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" type="audio/mpeg">
+  </audio>
+</body>
+</html>
