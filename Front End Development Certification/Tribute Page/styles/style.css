@@ -1,0 +1,16 @@
+#main-heading {
+  margin: 1.25rem;
+}
+#sub-main-heading {
+  margin-bottom: 4rem;
+}
+.main-list-item {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+#footer-text {
+  margin: 2rem;
+}
+img {
+  margin: 0.5rem;
+}
