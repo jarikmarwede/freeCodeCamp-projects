@@ -1,5 +1,5 @@
 # freeCodeCamp-projects
-All of the [freeCodeCamp](https://www.freecodecamp.org/jarikmarwede) projects I built for the [Front End Development Certification](https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end) and the Back End Development Certification.
+All of the [freeCodeCamp](https://www.freecodecamp.org/portfolio/jarikmarwede) projects I built for the [Front End Development Certification](https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end) and the Back End Development Certification.
 
 The Front End projects can also be found on [CodePen](https://codepen.io/jarikmarwede) and the Back End pojects on [Glitch](https://glitch.com/@jarik-marwede).
 
