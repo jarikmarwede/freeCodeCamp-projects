@@ -1,0 +1,78 @@
+body {
+  background-color: #59587a;
+}
+form * {
+  margin: 0.5rem;
+}
+.navbar * {
+  margin: 0.5rem;
+}
+.navbar-brand {
+  margin-left: 2rem;
+  color: black;
+}
+.default-btn {
+  background-color: #6a698c;
+  border-color: #6a698c;
+  color: #ffffff;
+}
+.default-btn:link {
+  color: #ffffff;
+}
+.default-btn:hover,
+.default-btn:focus,
+.default-btn:active,
+.default-btn.active {
+  background-color: #5f5e7d;
+  border-color: #54536f;
+}
+.default-btn.disabled:hover,
+.default-btn.disabled:focus,
+.default-btn.disabled:active,
+.default-btn.disabled.active,
+.default-btn[disabled]:hover,
+.default-btn[disabled]:focus,
+.default-btn[disabled]:active,
+.default-btn[disabled].active,
+fieldset[disabled] .default-btn:hover,
+fieldset[disabled] .default-btn:focus,
+fieldset[disabled] .default-btn:active,
+fieldset[disabled] .default-btn.active {
+  background-color: #6a698c;
+  border-color: #6a698c;
+}
+#signup-btn {
+  background-color: #433f70;
+}
+.jumbotron {
+  margin: 5rem;
+  padding: 10rem;
+}
+.poll-link {
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+}
+.poll-link:link {
+  text-decoration: none;
+  color: black;
+}
+.poll-btn {
+  color: black;
+  background-color: #e0e0e0;
+  border: solid transparent;
+}
+.poll-btn:hover {
+  background-color: #d1d1d1;
+}
+.poll-btn:active {
+  background-color: #c1c1c1;
+}
+.poll-btn:focus {
+  border: solid #939393;
+}
+.hidden {
+  display: none;
+}

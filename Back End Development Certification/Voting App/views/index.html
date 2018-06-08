@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Voting app</title>
+    <meta name="description" content="A voting app built during a web development course on freeCodeCamp.org">
+    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+  </head>
+  
+  <body>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+    <script src="/navbar.js"></script>
+    <script src="/home.js"></script>
+    
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-sm bg-light">
+        <a class="navbar-brand black-link" href="/">Voting App</a>
+        <form id="login-form" class="form-inline ml-auto" action="/login" method="post">
+          <input type="text" placeholder="username" class="form-control" name="username" pattern="^[a-zA-Z0-9_]*$" required>
+          <input type="password" placeholder="password" class="form-control" name="password" pattern=".{8}.*" required>
+          <button class="btn default-btn" type="submit" id="login-btn">Login</button>
+          <a class="btn default-btn" href="/signup" id="signup-btn">Sign Up</a>
+        </form>
+        <ul id="logged-in-list" class="navbar-nav ml-auto">
+          <li class="nav-link">
+            <a class="btn default-btn" href="/dashboard">Dashboard</a>
+          </li>
+          <li class="nav-link">
+            <button class="btn default-btn" id="logout-btn">Logout</button>
+          </li>
+        </ul>
+      </nav>
+      
+      <div class="container-fluid">
+        <div class="jumbotron jumbotron-fluid shadow-lg">
+          <div>
+            <h2 class="text-center my-4">Latest polls</h2>
+          </div>
+          <div id="poll-list">
+            <h1 class="text-center">Loading polls...</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
