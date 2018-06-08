@@ -1,1 +1,1 @@
-This application is currently deployed at: https://glitch.com/edit/#!/image-search-abstraction-layer3423432423
+This application is currently deployed at: https://jm-image-search-abstraction-layer.glitch.me/
