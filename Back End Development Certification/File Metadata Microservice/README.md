@@ -1,1 +1,1 @@
-This application is currently deployed at: https://glitch.com/edit/#!/jm-file-metadata-microservice
+This application is currently deployed at: https://jm-file-metadata-microservice.glitch.me/
