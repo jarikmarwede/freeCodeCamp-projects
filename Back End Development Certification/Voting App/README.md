@@ -1,1 +1,1 @@
-This application is currently deployed at: https://glitch.com/edit/#!/jm-voting-app
+This application is currently deployed at: https://jm-voting-app.glitch.me/
