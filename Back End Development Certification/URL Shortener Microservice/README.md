@@ -1,1 +1,1 @@
-This application is currently deployed at: https://glitch.com/edit/#!/url-shortener-microservice342154353
+This application is currently deployed at: https://jm-url-shortener-microservice.glitch.me
