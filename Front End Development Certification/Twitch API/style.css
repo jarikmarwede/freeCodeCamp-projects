@@ -18,6 +18,7 @@ body {
   background-color: #731f82;
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
+
 .active {
   background-color: #6f207c !important;
   border-color: #6f207c !important;
@@ -30,7 +31,8 @@ body {
   padding: 4rem;
 }
 .twitch-channel {
-  margin: 2rem;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 .offline {
   background-color: #7e1d99;
@@ -40,20 +42,26 @@ body {
 }
 .channel-logo {
   margin: 1rem;
-  height: 7rem;
-  width: 7rem;
 }
 .channel-name {
-  margin: 2rem;
-  color: #fff;
-  display: inline;
+  font-size: 2rem;
+  padding-top: 50%;
+  color: white;
 }
 .channel-link:link, .channel-link:visited, .channel-link:hover, .channel-link:active {
-  color: #fff;
-  
+  color: white;
 }
 .stream-status {
-  margin: 2rem;
-  color: #fff;
-  display: inline;
+  color: white;
+}
+
+@media only screen and (max-width: 500px) {
+  .channel-name {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .stream-status {
+    padding-top: 25%;
+  }
 }
