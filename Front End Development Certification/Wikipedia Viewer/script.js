@@ -18,7 +18,7 @@ function showSearchResults(json) {
     addSearchResult(title, snippet, url);
   }
   if (pageLimit < 50) {
-    $("#search-results-container").append("<button class=\"btn btn-primary btn-block\" id=\"load-more-btn\">Load more</buttonb>")
+    $("#search-results-container").append("<button class=\"btn btn-primary btn-block\" id=\"load-more-btn\">Load more</button>")
   $("#load-more-btn").on("click", function() {
     if (pageLimit <= 40) {
       pageLimit += 10;
@@ -29,7 +29,13 @@ function showSearchResults(json) {
 }
 
 function addSearchResult(title, snippet, url) {
-  html = "<a class=\"search-result-url\" href=\"" + url + "\" target=\"_blank\"><div class=\"search-result\"><h3 class=\search-title\">" + title + "</h3><p class=\"search-snippet\">" + snippet + "</p></div></a>"
+  html = 
+    '<div class="search-result"> \
+      <a class="search-result-link" href="' + url +  'target="_blank"> \
+        <h3>' + title + '</h3> \
+        <p>' + snippet + '</p> \
+      </a> \
+    </div>'
   $("#search-results-container").append(html);
 }
 
