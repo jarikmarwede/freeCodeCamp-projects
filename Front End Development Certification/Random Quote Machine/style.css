@@ -3,14 +3,15 @@ body {
 }
 .quote-container {
   background-color: #2c41a3;
-  margin: 10rem;
+  margin-top: 10rem;
+  margin-bottom: 10rem;
 }
 #quote-text {
+  font-size: 1.125rem;
   color: #2c99a3;
-  font-size: 1.25rem;
   padding-top: 4rem;
-  margin-left: 4rem;
-  margin-right: 4rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
 }
 #quote-author {
   margin-left: 4rem;
@@ -41,4 +42,20 @@ body {
 }
 #twitter-btn:hover {
   color: #FFF;
+}
+@media only screen and (min-width: 768px) {
+  .quote-container {
+    margin: 10rem;
+  }
+  #quote-text {
+    font-size: 1.25rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .quote-container {
+    margin-left: 20rem;
+    margin-right: 20rem;
+  }
 }
