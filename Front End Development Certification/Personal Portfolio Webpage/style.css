@@ -1,6 +1,6 @@
 body {
   background-color: #d2e0e0;
-  position: relative;
+  
 }
 .navbar {
   background-color: #95b7b7;
@@ -12,12 +12,9 @@ body {
   padding-top: 4rem;
 }
 #introduction-text {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   padding-left: 2rem;
   padding-right: 2rem;
-}
-#introduction-img {
-  margin: 2rem;
 }
 #portfolio {
   background-color: #5d8989;
@@ -34,7 +31,8 @@ body {
   padding-top: 4rem;
 }
 .contact-btn {
-  margin: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
   padding: 1rem;
   padding-left: 2rem;
   padding-right: 2rem;
@@ -43,4 +41,12 @@ body {
   background-color: #c3d5d5;
   padding: 1rem;
   margin-top: 0.5rem;
+}
+@media only screen and (min-width: 992px) {
+  #introduction-text {
+    font-size: 1.5rem;
+  }
+  .contact-btn {
+    margin: 1.25rem;
+  }
 }
