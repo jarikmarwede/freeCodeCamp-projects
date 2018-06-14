@@ -44,46 +44,46 @@ function showError(error) {
 }
 
 function switchTempUnit() {
-  if ($("#switch-unit-btn").text() == "Switch to Fahrenheit") {
+  if ($("#switch-unit-btn").text() == "°F") {
     // change temperature
     $("#temperature").text(function(i, origText) {
       var oldTemp = Number(origText.split(" ")[1].split("°")[0]);
-      var newTemp = oldTemp * 1.8 + 32;
+      var newTemp = Math.round(oldTemp * 1.8 + 32);
       $("#temperature").text("Temperature: " + newTemp + "°F");
     })
     // change temperature max
     $("#temperature-max").text(function(i, origText) {
       var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = oldTemp * 1.8 + 32;
+      var newTemp = Math.round(oldTemp * 1.8 + 32);
       $("#temperature-max").text("Temperature max: " + newTemp + "°F");
     })
     // change temperature min
     $("#temperature-min").text(function(i, origText) {
       var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = oldTemp * 1.8 + 32;
+      var newTemp = Math.round(oldTemp * 1.8 + 32);
       $("#temperature-min").text("Temperature min: " + newTemp + "°F");
     })
-    $("#switch-unit-btn").text("Switch to Celsius");
+    $("#switch-unit-btn").text("°C");
   } else {
     // change temperature
     $("#temperature").text(function(i, origText) {
       var oldTemp = Number(origText.split(" ")[1].split("°")[0]);
-      var newTemp = (oldTemp - 32) / 1.8;
+      var newTemp = Math.round((oldTemp - 32) / 1.8);
       $("#temperature").text("Temperature: " + newTemp + "°C");
     })
     // change temperature max
     $("#temperature-max").text(function(i, origText) {
       var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = (oldTemp - 32) / 1.8;
+      var newTemp = Math.round((oldTemp - 32) / 1.8);
       $("#temperature-max").text("Temperature max: " + newTemp + "°C");
     })
     // change temperature min
     $("#temperature-min").text(function(i, origText) {
       var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = (oldTemp - 32) / 1.8;
+      var newTemp = Math.round((oldTemp - 32) / 1.8);
       $("#temperature-min").text("Temperature min: " + newTemp + "°C");
     })
-    $("#switch-unit-btn").text("Switch to Fahrenheit");
+    $("#switch-unit-btn").text("°F");
   }
 }
 
@@ -92,10 +92,10 @@ $(document).ready(function() {
   getLocation();
   $("#more-info-btn").on("click", function() {
     $(".extra-info").toggle();
-    if ($("#more-info-btn").text() == "Hide additional info") {
-      $("#more-info-btn").text("Show additional info");
+    if ($("#more-info-btn").text() == "Show less") {
+      $("#more-info-btn").text("Show more");
     } else {
-      $("#more-info-btn").text("Hide additional info");
+      $("#more-info-btn").text("Show less");
     }
   })
   $("#switch-unit-btn").on("click", function() {switchTempUnit();})

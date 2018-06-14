@@ -1,0 +1,46 @@
+body {
+  background: #008ecc;
+}
+#info-container {
+  background: #00638e;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  padding: 1rem;
+}
+#more-info-btn {
+  background-color: #008ecc;
+}
+#switch-unit-btn {
+  background-color: #008ecc;
+}
+.info-text {
+  color: #fff;
+  font-family: "Lucida Console", monospace;
+}
+.main-info {
+  margin: 1rem;
+}
+.extra-info {
+  font-size: 0.75rem;
+  margin: 1rem;
+}
+#weather-icon {
+  color: white;
+}
+
+@media only screen and (min-width: 768px) {
+  .main-info {
+    font-size: 1.5rem;
+    margin: 2rem;
+  }
+  .extra-info {
+    font-size: 1rem;
+    margin: 1.5rem;
+  }
+}
+@media only screen and (min-width: 1200px) {
+  #info-container {
+    margin-right: 20rem;
+    margin-left: 20rem;
+  }
+}
