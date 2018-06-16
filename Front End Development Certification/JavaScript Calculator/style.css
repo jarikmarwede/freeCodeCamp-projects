@@ -10,10 +10,10 @@ body {
   background-color: #588cb7;
 }
 #container {
-  width: 50rem;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
 }
 #calculator {
-  margin: 10rem;
   padding: 2rem;
   background-color: #fff;
   box-shadow: 5px 5px 18px #000;
@@ -31,6 +31,17 @@ body {
   padding-top: 1rem;
   padding-bottom: 1rem;
 }
+.button-col {
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+}
 .calculator-button {
   width: 100%;
+  margin-left: 0rem;
+  margin-right: 0rem;
+}
+@media only screen and (min-width: 900px) {
+  #container {
+    width: 50%;
+  }
 }
