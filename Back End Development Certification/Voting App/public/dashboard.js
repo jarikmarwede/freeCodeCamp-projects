@@ -16,8 +16,8 @@ function loadPollsOf(username) {
     for (let i = pollsArray.length - 1; i >= 0; i--) {
       let pollName = pollsArray[i]["poll-name"];
       
-      if (i < 10) {
-        newHTML += 
+      if (i > pollsArray.length - 11) {
+        newHTML = newHTML +
           "<div class=\"poll-btn\"> \
             <div class=\"row\"> \
               <div class=\"col-10\"> \
@@ -46,15 +46,15 @@ function loadPollsOf(username) {
             </div> \
           </div>";
       } else {
-        newHTML += 
+        newHTML = newHTML +
           "<div class=\"poll-btn hidden\"> \
             <div class=\"row\"> \
-              <div class=\"col-11\"> \
+              <div class=\"col-10\"> \
                 <a class=\"poll-link\" href=\"/poll/" + pollName +  "\"> \
                   <h6 class=\"poll-name\">" + pollName + "</h6> \
                 </a> \
               </div> \
-              <div class=\"col-1 my-auto\"> \
+              <div class=\"col-2 my-auto\"> \
                 <a class=\"btn default-btn\" href=\"/poll/" + pollName + "/changepoll\">Edit</a> \
                 <button class=\"btn btn-danger delete-modal-btn\">Delete</button> \
               </div> \
@@ -73,7 +73,7 @@ function loadPollsOf(username) {
                 </div> \
               </div> \
             </div> \
-          </div>";
+          </div>";;
       }
     }
     if (newHTML == "") {
@@ -90,7 +90,22 @@ function loadPollsOf(username) {
       deletePoll(pollName);
       $(this).closest(".modal").modal("hide");
     });
+    if (pollsArray.length > 10) {
+      $("#load-more-btn").show();
+    }
   });
+}
+
+function showMorePolls() {
+  const polls = $("#created-polls").children();
+  const visiblePollAmount = $("#created-polls").children(":not(.hidden)").length;
+  const startIndex = visiblePollAmount;
+  const endIndex = visiblePollAmount + 10;
+  
+  polls.slice(startIndex, endIndex).removeClass("hidden");
+  if ($("#created-polls").children(".hidden").length === 0) {
+    $("#load-more-btn").hide();
+  }
 }
 
 function deletePoll(pollName) {
@@ -101,7 +116,12 @@ function deletePoll(pollName) {
 }
 
 $(document).ready(function() {
+  $("#load-more-btn").hide();
   const username = getCookie("username");
   
   loadPollsOf(username);
+  
+  $("#load-more-btn").on("click", function() {
+    showMorePolls();
+  });
 });
