@@ -1,0 +1,33 @@
+body {
+  padding:0.2vmax;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  color: #1c6b2c;
+}
+p {
+  font-size: 1.5rem;
+}
+a {
+  color: #1c6b2c;
+}
+.project-card {
+    padding: 2vmax;
+    margin: 2vmax;
+    border: 1px solid #1c6b2c;
+    border-radius: 5px;
+    box-shadow: 4px 4px 6px 2px #16703b;
+    display: flex;
+    align-items: center;
+}
+.project-name {
+  flex-grow: 1;
+}
+.btn {
+  color: white;
+  text-decoration: none;
+  background-color: #1c6b2c;
+  border-radius: 4px;
+  padding: 0 1vmax 0 1vmax;
+  margin: 0 1vmax 0 1vmax;
+}
