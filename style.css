@@ -1,19 +1,47 @@
 body {
-  padding:0.2vmax;
+  padding: 0 2vmax;
 }
 h1, h2, h3, h4, h5, h6 {
-  text-align: center;
   color: #1c6b2c;
 }
-p {
-  font-size: 1.5rem;
+h1, h2 {
+  text-align: center;
 }
 a {
   color: #1c6b2c;
 }
+header {
+  background-color: #767776;
+  padding: 1vmax;
+}
+header a, h1 {
+  color: white;
+  text-decoration: none;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+nav a {
+  padding: 1rem;
+  font-size: 1rem;
+}
+nav a:hover {
+  background-color: #515452;
+}
+#introduction {
+  font-size: 1.3rem;
+}
+.certification {
+  margin: 3rem 0;
+}
+.description {
+  text-align: center;
+}
 .project-card {
     padding: 1vmax;
-    margin: 2vmax;
+    margin: 2vmax 0;
     border: 1px solid #1c6b2c;
     border-radius: 5px;
     box-shadow: 4px 4px 6px 2px #16703b;
@@ -27,7 +55,18 @@ a {
   color: white;
   text-decoration: none;
   background-color: #1c6b2c;
+  border: 2px solid #1c6b2c;
   border-radius: 4px;
   padding: 0 1vmax 0 1vmax;
   margin: 0 1vmax 0 1vmax;
+}
+.btn:hover {
+  color: #1c6b2c;
+  background-color: white;
+}
+
+@media only screen and (min-width: 600px) {
+  header a {
+    font-size: 1.5rem;
+  }
 }

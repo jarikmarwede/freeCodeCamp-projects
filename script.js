@@ -29,7 +29,7 @@ function loadFrontEndProjects() {
     let name = FRONT_END_PROJECTS[i].name;
     let link = FRONT_END_PROJECTS[i].link;
     let sourcecode = FRONT_END_PROJECTS[i].src;
-    html = "<div class='project-card'><p class='project-name'>" + name + "</p><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
+    html = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
     $("#front-end-projects").append(html);
   }
 }
@@ -39,7 +39,7 @@ function loadBackEndProjects() {
     let name = BACK_END_PROJECTS[i].name;
     let link = BACK_END_PROJECTS[i].link;
     let sourcecode = BACK_END_PROJECTS[i].src;
-    html = "<div class='project-card'><p class='project-name'>" + name + "</p><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
+    html = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
     $("#back-end-projects").append(html);
   }
 }
