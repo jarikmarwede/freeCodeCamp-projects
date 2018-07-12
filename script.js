@@ -10,14 +10,37 @@ const FRONT_END_PROJECTS = [
   {name: "Twitch API", link: "./Front End Development Certification/Twitch API/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Twitch%20API"},
   {name: "Wikipedia Viewer", link: "./Front End Development Certification/Wikipedia Viewer/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Wikipedia%20Viewer"}
 ]
+const BACK_END_PROJECTS = [
+  {name: "File Metadata Microservice", link: "https://jm-file-metadata-microservice.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/File%20Metadata%20Microservice"},
+  {name: "Image Search Abstraction Layer", link: "https://jm-image-search-abstraction-layer.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Image%20Search%20Abstraction%20Layer"},
+  {name: "Request Header Parser Microservice", link: "https://jm-request-header-parser-microservice.glitch.me/api/whoami", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Request%20Header%20Parser%20Microservice"},
+  {name: "Timestamp Microservice", link: "https://jm-timestamp-microservice.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Timestamp%20Microservice"},
+  {name: "URL Shortener Microservice", link: "https://jm-url-shortener-microservice.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/URL%20Shortener%20Microservice"},
+  {name: "Voting App", link: "https://jm-voting-app.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Voting%20App"}
+]
 
 function loadProjects() {
+  loadFrontEndProjects();
+  loadBackEndProjects();
+}
+
+function loadFrontEndProjects() {
   for (let i = 0; i < FRONT_END_PROJECTS.length; i++) {
     let name = FRONT_END_PROJECTS[i].name;
     let link = FRONT_END_PROJECTS[i].link;
     let sourcecode = FRONT_END_PROJECTS[i].src;
     html = "<div class='project-card'><p class='project-name'>" + name + "</p><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
     $("#front-end-projects").append(html);
+  }
+}
+
+function loadBackEndProjects() {
+  for (let i = 0; i < BACK_END_PROJECTS.length; i++) {
+    let name = BACK_END_PROJECTS[i].name;
+    let link = BACK_END_PROJECTS[i].link;
+    let sourcecode = BACK_END_PROJECTS[i].src;
+    html = "<div class='project-card'><p class='project-name'>" + name + "</p><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
+    $("#back-end-projects").append(html);
   }
 }
 
