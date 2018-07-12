@@ -1,7 +1,7 @@
 # freeCodeCamp-projects
 All of the [freeCodeCamp](https://www.freecodecamp.org/jarikmarwede) projects I built for the [Front End Development Certification](https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end) and the Back End Development Certification.
 
-The Front End projects can also be found on [CodePen](https://codepen.io/jarikmarwede) and the Back End projects on [Glitch](https://glitch.com/@jarik-marwede).
+Go to https://jarikmarwede.github.io/freeCodeCamp-projects/ to check them out.
 
 The original projects are the ones that were committed first.
 Go to the [commit page](https://github.com/jarikmarwede/freeCodeCamp-projects/commits/master) to check them out.
