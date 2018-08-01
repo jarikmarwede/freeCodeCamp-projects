@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <title>Survey Form</title>
+  <meta name="author" content="Jarik Marwede">
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="main-container">
+    <h1 id="title">Survey Form</h1>
+    <p id="description">This is a short description of the survey</p>
+    <form id="survey-form">
+      <label for="name" id="name-label">Name</label>
+      <input type="text" id="name" placeholder="Enter your name" required>
+      <label for="email" id="email-label">Email</label>
+      <input type="email" id="email" placeholder="Enter your email" required>
+      <label for="number" id="number-label">Age</label>
+      <input type="number" id="number" min=0 max=150 placeholder="Enter your age">
+      <select name="" id="dropdown">
+        <option value="1">Option 1</option>
+        <option value="2">Option 2</option>
+        <option value="3">Option 3</option>
+      </select>
+      <div id="radiobuttons">
+        <input type="radio" name="radiobutton" value="1"> Option 1<br>
+        <input type="radio" name="radiobutton" value="2"> Option 2<br>
+        <input type="radio" name="radiobutton" value="3"> Option 3<br>
+      </div>
+      <div id="checkboxes">
+        <input type="checkbox" value="1"> Option 1<br>
+        <input type="checkbox" value="2"> Option 2<br>
+        <input type="checkbox" value="3"> Option 3<br>
+      </div>
+      <textarea name="" id="comment" cols="30" rows="10" placeholder="Additional comments"></textarea>
+      <button id="submit">Submit Form</button>
+    </form>
+  </div>
+</body>
+</html>

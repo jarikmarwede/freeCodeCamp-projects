@@ -1,0 +1,68 @@
+input[type="text"], input[type="email"], input[type="number"], select, textarea {
+  border: 1px solid #bfb43b;
+  padding: 0.5rem;
+}
+textarea {
+  resize: none;
+}
+
+body {
+  background-color: #ebf466;
+  margin: 2rem;
+}
+#main-container {
+  padding: 1rem;
+  background-color: white;
+}
+#main-container > * {
+  margin: 3rem;
+  text-align: center;
+}
+#title {
+  text-align: center;
+}
+#description {
+  font-size: 1.2rem;
+  text-align: center;
+}
+#survey-form {
+  display: flex;
+  flex-flow: column nowrap;
+}
+#survey-form > * {
+  margin: 0.5rem 0;
+}
+#number {
+  margin: 0.5rem auto;
+}
+#dropdown {
+  margin: 2rem 0;
+}
+#radiobuttons {
+  margin: 1rem auto;
+}
+#radiobuttons > * {
+  margin: 0.3rem 0;
+}
+#checkboxes {
+  margin: 1rem auto;
+}
+#checkboxes > * {
+  margin: 0.3rem 0;
+  border-color: #fcea2a;
+}
+#submit {
+  padding: 0.5rem;
+  background-color: #fcea2a;
+  border: none;
+  cursor: pointer;
+}
+#submit:hover {
+  background-color: #f4e42c;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    margin: 2rem 25vw 2rem 25vw;
+  }
+}
