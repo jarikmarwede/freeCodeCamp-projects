@@ -18,29 +18,28 @@ const BACK_END_PROJECTS = [
   {name: "URL Shortener Microservice", link: "https://jm-url-shortener-microservice.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/URL%20Shortener%20Microservice"},
   {name: "Voting App", link: "https://jm-voting-app.glitch.me", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Voting%20App"}
 ]
+const RESPONSIVE_WEB_DESIGN_PROJECTS = [
+  {name: "Survey Form", link: "./Responsive Web Design Certification/Survey Form/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Survey%20Form"}
+]
+const CERTIFICATIONS = [
+  {projects: FRONT_END_PROJECTS, container_id: "#front-end-projects"},
+  {projects: BACK_END_PROJECTS, container_id: "#back-end-projects"},
+  {projects: RESPONSIVE_WEB_DESIGN_PROJECTS, container_id: "#responsive-web-design-projects"}
+]
 
 function loadProjects() {
-  loadFrontEndProjects();
-  loadBackEndProjects();
-}
+  for (let certificationIndex = 0; certificationIndex < CERTIFICATIONS.length; certificationIndex++) {
+    let certification = CERTIFICATIONS[certificationIndex];
+    let currentProjects = certification.projects;
 
-function loadFrontEndProjects() {
-  for (let i = 0; i < FRONT_END_PROJECTS.length; i++) {
-    let name = FRONT_END_PROJECTS[i].name;
-    let link = FRONT_END_PROJECTS[i].link;
-    let sourcecode = FRONT_END_PROJECTS[i].src;
-    html = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
-    $("#front-end-projects").append(html);
-  }
-}
+    for (let i = 0; i < currentProjects.length; i++) {
+      let name = currentProjects[i].name;
+      let link = currentProjects[i].link;
+      let sourcecode = currentProjects[i].src;
+      projectHtml = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
 
-function loadBackEndProjects() {
-  for (let i = 0; i < BACK_END_PROJECTS.length; i++) {
-    let name = BACK_END_PROJECTS[i].name;
-    let link = BACK_END_PROJECTS[i].link;
-    let sourcecode = BACK_END_PROJECTS[i].src;
-    html = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
-    $("#back-end-projects").append(html);
+      $(certification.container_id).append(projectHtml);
+    }
   }
 }
 
