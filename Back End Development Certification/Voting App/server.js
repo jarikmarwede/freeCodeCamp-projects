@@ -1,7 +1,14 @@
 const crypto = require("crypto");
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
+
 const DATABASE_PATH = process.env.DATABASE_PATH;
+const ALPHANUMERIC_REGEXP = /^[\w]*$/;
+const USERNAME_REGEXP = ALPHANUMERIC_REGEXP;
+const EMAIL_REGEXP = /^.+@.+\.{1}.+$/i;
+const PASSWORD_REGEXP = /^.{8}.*$/i;
+const POLL_NAME_REGEXP = ALPHANUMERIC_REGEXP;
+const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
 
 async function isLoggedIn(sessionId, username) {
   if (sessionId && username) {
@@ -10,7 +17,7 @@ async function isLoggedIn(sessionId, username) {
     const collection = db.collection("user-data");
     const userData = await collection.find({"username": username}).toArray();
 
-    if (userData && userData[0]["session"] === sessionId) {
+    if (userData.length && userData[0]["session"] === sessionId) {
       client.close();
       return true;
     } else {
@@ -24,7 +31,7 @@ async function isLoggedIn(sessionId, username) {
 
 async function doesOwnPoll(username, pollName) {
   const poll = await getPoll(pollName);
-  
+
   if (poll && poll["creator"] === username) {
     return true;
   } else {
@@ -33,7 +40,7 @@ async function doesOwnPoll(username, pollName) {
 }
 
 async function getSessionId(username, password) {
-  if (username && password.search(/^.{8}.*$/i) != -1) {
+  if (username && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const collection = db.collection("user-data");
@@ -44,7 +51,9 @@ async function getSessionId(username, password) {
       client.close();
       return null;
     } else {
-      if (userData[0]["password"] !== password) {
+      const hash = crypto.createHash("sha256");
+      hash.update(password);
+      if (userData[0]["password"] !== hash.digest("hex")) {
         console.log("Wrong password");
         client.close();
         return null;
@@ -61,19 +70,22 @@ async function getSessionId(username, password) {
 }
 
 async function signup(username, email, password) {
-  if (username.search(/^[a-zA-Z0-9_]*$/) != -1 && email.search(/^.+@.+\.{1}.+$/i) != -1 && password.search(/^.{8}.*$/i) != -1) {
+  if (USERNAME_REGEXP.test(username) && EMAIL_REGEXP.test(email) && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const userCollection = db.collection("user-data");
     const usernameSearch = await userCollection.find({"username": username}).toArray();
     const emailSearch = await userCollection.find({"email": email}).toArray();
-    
-    if (usernameSearch || emailSearch) {
+
+    if (usernameSearch.length > 0 || emailSearch.length > 0) {
+      console.log(usernameSearch);
       console.log("Username or Email already exists!");
       client.close();
       return false;
     } else {
-      userCollection.insert({"username": username, "email": email, "password": password});
+      const hash = crypto.createHash('sha256');
+      hash.update(password);
+      userCollection.insert({"username": username, "email": email, "password": hash.digest("hex")});
       client.close()
       return true;
     }
@@ -84,9 +96,9 @@ async function signup(username, email, password) {
 }
 
 async function createNewPoll(pollName, answers, username) {
-  if (pollName.search(/^[a-zA-Z0-9_]*$/) != -1 && answers.length >= 2 && username) {
+  if (POLL_NAME_REGEXP.test(pollName) && answers.length >= 2 && username) {
     for (let answer of answers) {
-      if (answer.search(/^[a-zA-Z0-9_]*$/) == -1) {
+      if (ANSWER_REGEXP.test(answer) == -1) {
         console.log("Invalid answers");
         return false;
       }
@@ -95,7 +107,7 @@ async function createNewPoll(pollName, answers, username) {
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
     const findPoll = await pollsCollection.find({"poll-name": pollName}).toArray();
-    
+
     if (findPoll.length == 0) {
       let answerJSON = {};
       for (let answer of answers) {
@@ -121,7 +133,7 @@ async function getPoll(pollName) {
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
     const pollSearch = await pollsCollection.find({"poll-name": pollName}).project({_id: 0}).toArray();
-    
+
     client.close();
     if (pollSearch) {
       return pollSearch[0]
@@ -165,7 +177,11 @@ async function voteFor(pollName, answer) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
-    pollsCollection.updateOne({"poll-name": pollName}, {$inc: {[`answers.${answer}`]: 1}});
+    const poll = await pollsCollection.find({"poll-name": pollName}).toArray();
+
+    if (poll[0].answers.hasOwnProperty(answer)) {
+      pollsCollection.updateOne({"poll-name": pollName}, {$inc: {[`answers.${answer}`]: 1}});
+    }
     client.close();
   }
 }
@@ -173,7 +189,7 @@ async function voteFor(pollName, answer) {
 async function changePollAnswers(pollName, answers, username) {
   if (pollName && answers && username) {
     for (let answer of answers) {
-      if (answer.search(/^[a-zA-Z0-9_]*$/) == -1) {
+      if (ANSWER_REGEXP.test(answer) === false) {
         console.log("Invalid answers");
         return false;
       }
