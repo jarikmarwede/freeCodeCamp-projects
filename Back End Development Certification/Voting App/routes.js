@@ -18,7 +18,7 @@ app.post("/login", async function(req, res) {
   const username = req.body.username;
   const password = req.body.password;
   const sessionId = await server.getSessionId(username, password);
-  
+
   if (sessionId) {
     res.cookie("session", sessionId);
     res.cookie("username", username);
@@ -37,9 +37,9 @@ app.post("/signup", async function(req, res) {
   const email = req.body.email;
   const password = req.body.password;
   const success = await server.signup(username, email, password);
-  
+
   if (success) {
-    res.redirect("/login");
+    res.redirect("/");
   } else {
     res.redirect("back");
   }
@@ -49,7 +49,7 @@ app.get("/dashboard", async function(req, res) {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const loggedIn = await server.isLoggedIn(sessionId, username);
-  
+
   if (loggedIn) {
     res.sendFile(__dirname + "/views/dashboard.html");
   } else {
@@ -61,7 +61,7 @@ app.get("/newpoll", async function(req, res) {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const loggedIn = await server.isLoggedIn(sessionId, username);
-  
+
   if (loggedIn) {
     res.sendFile(__dirname + "/views/newpoll.html");
   } else {
@@ -80,7 +80,7 @@ app.post("/newpoll", async function(req, res) {
     }
   }
   const loggedIn = await server.isLoggedIn(sessionId, username);
-  
+
   if (loggedIn) {
     const success = await server.createNewPoll(pollName, answers, username);
     if (success) {
@@ -101,7 +101,7 @@ app.post("/poll/:poll", async function(req, res) {
   const pollName = req.params.poll;
   const answer = req.body.answer;
   await server.voteFor(pollName, answer);
-  
+
   res.redirect("back");
 });
 
@@ -111,7 +111,7 @@ app.get("/poll/:poll/changepoll", function(req, res) {
   const sessionId = req.cookies.session;
   const loggedIn = server.isLoggedIn(sessionId, username);
   const ownsPoll = server.doesOwnPoll(username, pollName);
-  
+
   if (loggedIn && ownsPoll) {
     res.sendFile(__dirname + "/views/changepoll.html");
   } else {
@@ -131,10 +131,10 @@ app.post("/poll/:poll/changepoll", async function(req, res) {
   const sessionId = req.cookies.session;
   const loggedIn = server.isLoggedIn(sessionId, username);
   const ownsPoll = server.doesOwnPoll(username, pollName);
-  
+
   if (loggedIn && ownsPoll) {
     const success = await server.changePollAnswers(pollName, answers, username);
-    
+
     if (success) {
       res.redirect("/poll/" + pollName);
     } else {
@@ -148,14 +148,14 @@ app.post("/poll/:poll/changepoll", async function(req, res) {
 // API
 app.get("/api/getpolls", async function(req, res) {
   const polls = await server.getPolls();
-  
+
   res.send(polls);
 });
 
 app.get("/api/getpoll/:poll", async function(req, res) {
   const pollName = req.params.poll;
   const poll = await server.getPoll(pollName);
-  
+
   if (poll) {
     res.status(200);
     res.send(poll);
@@ -170,7 +170,7 @@ app.get("/api/getpollsof/:creator", async function(req, res) {
   const sessionId = req.cookies.session;
   const creator = req.params.creator;
   const loggedIn = await server.isLoggedIn(sessionId, username);
-  
+
   if (loggedIn) {
     const polls = await server.getPolls({"creator": creator});
     res.send(polls);
@@ -186,7 +186,7 @@ app.get("/api/deletepoll/:poll", async function(req, res) {
   const username = req.cookies.username;
   const loggedIn = await server.isLoggedIn(sessionId, username);
   const ownsPoll = await server.doesOwnPoll(username, pollName);
-  
+
   if (loggedIn && ownsPoll) {
     await server.deletePoll(pollName);
     res.status(200);
