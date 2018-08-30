@@ -1,20 +1,35 @@
+button {
+  background-color: #008ecc;
+  border-color: transparent;
+  border-radius: 5px;
+  border-width: 2px;
+  color: white;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.7rem;
+}
+button:hover {
+  background-color: #007cb2;
+}
+button::-moz-focus-inner {
+  border: 0;
+}
+button:focus {
+  border: 2px solid rgba(0, 0, 0, 0.4);
+}
+
 body {
   background: #008ecc;
 }
-#info-container {
+.info-container {
   background: #00638e;
-  margin-top: 2rem;
   margin-bottom: 2rem;
+  margin-top: 2rem;
   padding: 1rem;
-}
-#more-info-btn {
-  background-color: #008ecc;
-}
-#switch-unit-btn {
-  background-color: #008ecc;
+  text-align: center;
 }
 .info-text {
-  color: #fff;
+  color: white;
   font-family: "Lucida Console", monospace;
 }
 .main-info {
@@ -23,9 +38,6 @@ body {
 .extra-info {
   font-size: 0.75rem;
   margin: 1rem;
-}
-#weather-icon {
-  color: white;
 }
 
 @media only screen and (min-width: 768px) {
@@ -39,8 +51,8 @@ body {
   }
 }
 @media only screen and (min-width: 1200px) {
-  #info-container {
-    margin-right: 20rem;
+  .info-container {
     margin-left: 20rem;
+    margin-right: 20rem;
   }
 }

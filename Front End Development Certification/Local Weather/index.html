@@ -4,41 +4,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  
+
   <title>Local Weather</title>
   <meta name="author" content="Jarik Marwede">
-  
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
   <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+
   <script src="script.js"></script>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col-md-12">
-        <div class="text-center" id="info-container">
-          <p class="info-text main-info" id="location"></p>
-          <p class="info-text main-info" id="weather-text"></p>
-          <img id="weather-icon" src="" alt=""></img>
-          <p class="info-text main-info" id="temperature"></p>
-          <p class="info-text extra-info" id="weather-description"></p>
-          <p class="info-text extra-info" id="humidity"></p>
-          <p class="info-text extra-info" id="pressure"></p>
-          <p class="info-text extra-info" id="temperature-max"></p>
-          <p class="info-text extra-info" id="temperature-min"></p>
-          <p class="info-text extra-info" id="wind-degrees"></p>
-          <p class="info-text extra-info" id="wind-speed"></p>
-          <div class="btn-group btn-group-justified">
-             <button type="button" class="btn btn-primary" id="more-info-btn">Show more</button>
-             <button type="button" class="btn btn-primary" id="switch-unit-btn">°F</button>
-          </div>
-        </div>
-      </div>
+
+  <div class="info-container">
+    <p class="info-text main-info" id="location"></p>
+    <p class="info-text main-info" id="weather-text"></p>
+    <img class="info-text" id="weather-icon" />
+    <p class="info-text main-info" id="temperature"></p>
+    <p class="info-text extra-info" id="weather-description"></p>
+    <p class="info-text extra-info" id="humidity"></p>
+    <p class="info-text extra-info" id="pressure"></p>
+    <p class="info-text extra-info" id="temperature-max"></p>
+    <p class="info-text extra-info" id="temperature-min"></p>
+    <p class="info-text extra-info" id="wind-degrees"></p>
+    <p class="info-text extra-info" id="wind-speed"></p>
+    <div class="btn-group btn-group-justified">
+       <button type="button" id="more-info-btn">Show more</button>
+       <button type="button" id="switch-unit-btn">°F</button>
     </div>
   </div>
 </body>
-<html>
+</html>
