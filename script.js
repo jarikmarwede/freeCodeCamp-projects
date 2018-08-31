@@ -26,6 +26,10 @@ const CERTIFICATIONS = [
   {projects: BACK_END_PROJECTS, container_id: "#back-end-projects"},
   {projects: RESPONSIVE_WEB_DESIGN_PROJECTS, container_id: "#responsive-web-design-projects"}
 ]
+Object.freeze(FRONT_END_PROJECTS);
+Object.freeze(BACK_END_PROJECTS);
+Object.freeze(RESPONSIVE_WEB_DESIGN_PROJECTS);
+Object.freeze(CERTIFICATIONS);
 
 function loadProjects() {
   for (let certificationIndex = 0; certificationIndex < CERTIFICATIONS.length; certificationIndex++) {
