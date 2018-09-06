@@ -1,34 +1,27 @@
 function loadChannels() {
   const channels = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas"];
+
   for (let i = 0; i < channels.length; i++) {
     $.getJSON("https://wind-bow.glitch.me/twitch-api/channels/" + channels[i], function(channelJSON,) {
       $.getJSON("https://wind-bow.glitch.me/twitch-api/streams/" + channelJSON.display_name, function(streamJSON) {
         if (streamJSON.stream === null) {
           $("#twitch-channels").append(
-            '<div class="row twitch-channel offline"> \
-              <div class="col-3"> \
-                <img class="img-fluid img-thumbnail rounded-circle channel-logo" src="' + channelJSON.logo + '"></img> \
-              </div> \
-              <div class="col-3"> \
-                <p class="channel-name text-center"> \
-                  <a class="channel-link" href="' + channelJSON.url + 'target="_blank">' + channelJSON.display_name + '</a> \
-                </p> \
-              </div> \
+            '<div class="twitch-channel main-channel-row offline"> \
+              <img class="channel-logo" src="' + channelJSON.logo + '" /> \
+              <p class="channel-name"> \
+                <a class="channel-link" href="' + channelJSON.url + '">' + channelJSON.display_name + '</a> \
+              </p> \
             </div>');
         } else {
           $("#twitch-channels").append(
-            '<div class="row twitch-channel online"> \
-              <div class="col-3"> \
-                <img class="img-fluid img-thumbnail rounded-circle channel-logo" src="' + channelJSON.logo + '"></img> \
-              </div> \
-              <div class="col-3"> \
-                <p class="channel-name text-center"> \
-                  <a class="channel-link" href="' + channelJSON.url + 'target="_blank">' + channelJSON.display_name + '</a> \
+            '<div class="twitch-channel online"> \
+              <div class="main-channel-row"> \
+                <img class="channel-logo" src="' + channelJSON.logo + '" /> \
+                <p class="channel-name"> \
+                  <a class="channel-link" href="' + channelJSON.url + '">' + channelJSON.display_name + '</a> \
                 </p> \
               </div> \
-              <div class="col-lg-6"> \
-                <p class="stream-status">' + channelJSON.game + ': ' + channelJSON.status + '</p> \
-              </div> \
+              <p class="stream-status">' + channelJSON.game + ': ' + channelJSON.status + '</p> \
             </div>');
         }
       })
@@ -57,6 +50,6 @@ $(document).ready(function() {
     $(".online").hide();
     $(".offline").show();
   })
-  
+
   loadChannels();
 })

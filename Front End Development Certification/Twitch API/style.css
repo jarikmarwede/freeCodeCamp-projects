@@ -1,38 +1,63 @@
+a {
+  text-decoration: none;
+}
+p {
+  font-family: fantasy;
+}
+button {
+  background-color: #89229b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.3rem;
+  padding: 0.8rem 1.5rem;
+}
+button:active {
+  background-color: #9e2ab2;
+  border-color: transparent;
+  box-shadow: 0 0 0 0 #731f82;
+}
+button:focus {
+  box-shadow: 0 0 0 1px #b63bcc;
+}
+button:hover {
+  background-color: #731f82;
+  border-color: #731f82;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
 body {
   background-color: #280838;
 }
-.btn-primary {
-  background-color: #89229b;
-  border-color: #9625aa;
-}
-.btn-primary:active {
-  box-shadow: 0 0 0 0px #731f82 !important;
-  background-color: #9e2ab2 !important;
-  border-color: transparent !important;
-}
-.btn-primary:focus {
-  box-shadow: 0 0 0 1px #b63bcc;
-}
-.btn-primary:hover {
-  border-color: #731f82;
-  background-color: #731f82;
-  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
-}
 
+.category-btns {
+  display: flex;
+  justify-content: center;
+}
+.group-btn-left {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.group-btn-right {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
 .active {
-  background-color: #6f207c !important;
-  border-color: #6f207c !important;
+  background-color: #6f207c;
+  border-color: #6f207c;
 }
-.active:focus {
-  box-shadow: 0 0 0 1px #6f207c !important;
-}
-#content {
+.main-container {
   background-color: #481363;
   padding: 4rem;
 }
 .twitch-channel {
   margin-bottom: 1rem;
   margin-top: 1rem;
+  padding: 1rem;
+}
+.main-channel-row {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
 }
 .offline {
   background-color: #7e1d99;
@@ -41,18 +66,20 @@ body {
   background-color: #9b21bc;
 }
 .channel-logo {
+  border-radius: 100%;
+  height: 6rem;
   margin: 1rem;
 }
 .channel-name {
-  font-size: 2rem;
-  padding-top: 50%;
   color: white;
+  font-size: 2rem;
 }
 .channel-link:link, .channel-link:visited, .channel-link:hover, .channel-link:active {
   color: white;
 }
 .stream-status {
   color: white;
+  margin-left: 1rem;
 }
 
 @media only screen and (max-width: 500px) {
@@ -61,7 +88,13 @@ body {
   }
 }
 @media only screen and (min-width: 992px) {
-  .stream-status {
-    padding-top: 25%;
+  .main-container {
+    margin: 0 25%;
+  }
+  .main-channel-row {
+    flex-flow: row;
+  }
+  .channel-name {
+    margin-left: 2rem;
   }
 }
