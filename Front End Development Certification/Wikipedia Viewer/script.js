@@ -9,7 +9,7 @@ function showSearchResults(json) {
   $("#search-results-container").empty();
   var pages = json.query.search;
   var totalhits = json.query.searchinfo.totalhits;
-  $("#search-results-container").append("<h4 class=\"text-center\">Total matches: " + totalhits + "</h4>");
+  $("#search-results-container").append("<p class=\"total-matches\">Total matches: " + totalhits + "</p>");
   for (var i = 0; i < pages.length; i++) {
     var page = pages[i]
     var url = "https://en.wikipedia.org/?curid=" + page.pageid
@@ -18,7 +18,7 @@ function showSearchResults(json) {
     addSearchResult(title, snippet, url);
   }
   if (pageLimit < 50) {
-    $("#search-results-container").append("<button class=\"btn btn-primary btn-block\" id=\"load-more-btn\">Load more</button>")
+    $("#search-results-container").append("<button class=\"load-more-btn\" id=\"load-more-btn\">Load more</button>")
   $("#load-more-btn").on("click", function() {
     if (pageLimit <= 40) {
       pageLimit += 10;
@@ -29,11 +29,11 @@ function showSearchResults(json) {
 }
 
 function addSearchResult(title, snippet, url) {
-  html = 
+  html =
     '<div class="search-result"> \
-      <a class="search-result-link" href="' + url +  'target="_blank"> \
-        <h3>' + title + '</h3> \
-        <p>' + snippet + '</p> \
+      <a class="search-result-link" href="' + url +  '"> \
+        <h3 class="search-result-title">' + title + '</h3> \
+        <p class="search-result-snippet">' + snippet + '...</p> \
       </a> \
     </div>'
   $("#search-results-container").append(html);
