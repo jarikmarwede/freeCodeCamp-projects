@@ -1,47 +1,49 @@
 body {
   background-color: #ddaa61;
 }
-.pointer {
-  cursor: pointer;
-}
-#main-container {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.main-container {
   background-color: #7c5012;
   box-shadow: 5px 5px 20px #000;
+  margin: 2rem;
 }
-#settings-container {
-  padding: 1rem;
-  width: 50%;
+.settings-container {
   background-color: #8c7d69;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  width: 50%;
 }
-#start-btn {
-  margin-top: 1rem;
+.settings-container > * {
+  margin: 0.5rem 0;
 }
-#strict-mode-label {
-  margin: 0.5rem;
+.checkbox-part {
+  cursor: pointer;
+}
+.game-btn-wrapper {
+  display: flex;
 }
 .game-btn {
-  width: 80%;
-  height: 5rem;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
   box-shadow: 2px 2px 5px #000;
+  cursor: pointer;
+  height: 5rem;
+  margin: 2rem;
+  width: 100%;
 }
-#green-btn {
+.green-btn {
   background-color: #1d8424;
 }
-#red-btn {
+.red-btn {
   background-color: #8e2b22;
 }
-#yellow-btn {
+.yellow-btn {
   background-color: #adab34;
 }
-#blue-btn {
+.blue-btn {
   background-color: #2777a3;
 }
+
 @media only screen and (min-width: 992px) {
-  #main-container {
-    width: 50%;
+  .main-container {
+    margin: 2rem 25%;
   }
 }
