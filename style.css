@@ -5,6 +5,7 @@ body {
   text-align: center;
 }
 .title-link {
+  color: white;
   text-decoration: none;
 }
 h2 {
@@ -18,7 +19,7 @@ a {
   color: #1c6b2c;
 }
 header {
-  background-color: #969696;
+  background-color: #1c6b2c;
   padding-top: 1vmax;
 }
 nav {
