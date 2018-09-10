@@ -22,9 +22,9 @@ const RESPONSIVE_WEB_DESIGN_PROJECTS = [
   {name: "Survey Form", link: "./Responsive Web Design Certification/Survey Form/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Survey%20Form"}
 ]
 const CERTIFICATIONS = [
-  {projects: FRONT_END_PROJECTS, container_id: "#front-end-projects"},
-  {projects: BACK_END_PROJECTS, container_id: "#back-end-projects"},
-  {projects: RESPONSIVE_WEB_DESIGN_PROJECTS, container_id: "#responsive-web-design-projects"}
+  {projects: FRONT_END_PROJECTS, container_id: "front-end-projects"},
+  {projects: BACK_END_PROJECTS, container_id: "back-end-projects"},
+  {projects: RESPONSIVE_WEB_DESIGN_PROJECTS, container_id: "responsive-web-design-projects"}
 ]
 Object.freeze(FRONT_END_PROJECTS);
 Object.freeze(BACK_END_PROJECTS);
@@ -37,16 +37,17 @@ function loadProjects() {
     let currentProjects = certification.projects;
 
     for (let i = 0; i < currentProjects.length; i++) {
-      let name = currentProjects[i].name;
-      let link = currentProjects[i].link;
-      let sourcecode = currentProjects[i].src;
+      const name = currentProjects[i].name;
+      const link = currentProjects[i].link;
+      const sourcecode = currentProjects[i].src;
       projectHtml = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><div class='project-btns'><a class='btn' href='" + link + "'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div></div>";
 
-      $(certification.container_id).append(projectHtml);
+      const container = document.getElementById(certification.container_id);
+      container.innerHTML += projectHtml;
     }
   }
 }
 
-$(document).ready(function() {
+window.addEventListener("DOMContentLoaded", function() {
   loadProjects();
-});
+}, false);
