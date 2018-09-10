@@ -3,18 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>freeCodeCamp-Projects</title>
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-
-    <script
-			  src="https://code.jquery.com/jquery-3.3.1.min.js"
-			  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-        crossorigin="anonymous"></script>
-    <script src="script.js" type="text/javascript"></script>
   </head>
   <body>
     <header>
-      <h1><a href="#">freeCodeCamp-Projects</a></h1>
+      <h1 class="title"><a class="title-link" href="#">freeCodeCamp-Projects</a></h1>
       <nav>
         <a href="#front-end-certification">Front End Development Certification</a>
         <a href="#back-end-certification">Back End Development Certification</a>
@@ -22,14 +17,14 @@
       </nav>
     </header>
     <main>
-      <div id="introduction">
+      <div class="introduction">
         <p>Here are all of the <a href="https://www.freecodecamp.org/jarikmarwede" target="_blank">freeCodeCamp</a> projects I built for the <a href="https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end" target="_blank">Front End Development Certification</a> and the Back End Development Certification.</p>
         <p>The Front End projects can also be found on <a href="https://codepen.io/collection/Doeyvj/" target="_blank">CodePen</a> and the Back End projects on <a href="https://glitch.com/@jarikmarwede" target="_blank">Glitch</a>.</p>
         <p>The original projects are the ones that were commited first. Go to the <a href="https://github.com/jarikmarwede/freeCodeCamp-projects/commits/master">commit page</a> to check them out.</p>
       </div>
       <div class="certification" id="front-end-certification">
         <h2>Front End Certification</h2>
-        <p class="description">The projects for <a href="https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end" target="_blank">this certification</a> are hosted on Github Pages</p>
+        <p class="description">The projects for <a href="https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end">this certification</a> are hosted on Github Pages</p>
         <div id="front-end-projects"></div>
       </div>
       <div class="certification" id="back-end-certification">
@@ -39,9 +34,12 @@
       </div>
       <div class="certification" id="responsive-web-design-certification">
         <h2>Responsive Web Design Certification</h2>
-        <p class="description">The projects forthis certification are hosted on Github Pages</p>
+        <p class="description">The projects for this certification are hosted on Github Pages</p>
         <div id="responsive-web-design-projects"></div>
       </div>
     </main>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="script.js" type="text/javascript"></script>
   </body>
 </html>

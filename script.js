@@ -40,7 +40,7 @@ function loadProjects() {
       let name = currentProjects[i].name;
       let link = currentProjects[i].link;
       let sourcecode = currentProjects[i].src;
-      projectHtml = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><a class='btn' href='" + link + "' target='_blank'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div>";
+      projectHtml = "<div class='project-card'><h3 class='project-name'>" + name + "</h3><div class='project-btns'><a class='btn' href='" + link + "'><p><i class='fas fa-desktop'></i> View</p></a><a class='btn' href='" + sourcecode + "' target='_blank'><p><i class='fas fa-code'></i> Source</p></a></div></div>";
 
       $(certification.container_id).append(projectHtml);
     }

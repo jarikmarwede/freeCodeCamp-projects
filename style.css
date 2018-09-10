@@ -1,37 +1,49 @@
 body {
-  padding: 0 2vmax;
+  margin: 0;
 }
-h1, h2, h3, h4, h5, h6 {
-  color: #1c6b2c;
-}
-h1, h2 {
+.title {
   text-align: center;
+}
+.title-link {
+  text-decoration: none;
+}
+h2 {
+  color: #1c6b2c;
+  text-align: center;
+}
+h3 {
+  color: #1c6b2c;
 }
 a {
   color: #1c6b2c;
 }
 header {
-  background-color: #767776;
-  padding: 1vmax;
-}
-header a, h1 {
-  color: white;
-  text-decoration: none;
+  background-color: #969696;
+  padding-top: 1vmax;
 }
 nav {
   display: flex;
-  flex-wrap: wrap;
+  flex-flow: column nowrap;
   justify-content: space-around;
+  padding: 0;
 }
 nav a {
-  padding: 1rem;
+  color: white;
   font-size: 1rem;
+  padding: 1rem;
+  text-align: center;
+  text-decoration: none;
 }
 nav a:hover {
   background-color: #515452;
+  background-color: rgba(0, 0, 0, 0.3);
 }
-#introduction {
+main {
+  padding: 0 2vmax;
+}
+.introduction {
   font-size: 1.3rem;
+  margin: 2rem 1rem;
 }
 .certification {
   margin: 3rem 0;
@@ -40,33 +52,46 @@ nav a:hover {
   text-align: center;
 }
 .project-card {
-    padding: 1vmax;
-    margin: 2vmax 0;
-    border: 1px solid #1c6b2c;
-    border-radius: 5px;
-    box-shadow: 4px 4px 6px 2px #16703b;
-    display: flex;
-    align-items: center;
+  align-items: center;
+  border: 1px solid #1c6b2c;
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px 2px #16703b;
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 2vmax 0;
+  padding: 1vmax;
 }
 .project-name {
   flex-grow: 1;
 }
+.project-btns {
+  display: flex;
+  flex-flow: row nowrap;
+}
 .btn {
-  color: white;
-  text-decoration: none;
   background-color: #1c6b2c;
   border: 2px solid #1c6b2c;
   border-radius: 4px;
-  padding: 0 1vmax 0 1vmax;
+  color: white;
   margin: 0 1vmax 0 1vmax;
+  padding: 0 1vmax 0 1vmax;
+  text-decoration: none;
 }
 .btn:hover {
-  color: #1c6b2c;
   background-color: white;
+  color: #1c6b2c;
 }
 
-@media only screen and (min-width: 600px) {
+@media only screen and (min-width: 576px) {
   header a {
     font-size: 1.5rem;
+  }
+  .project-card {
+    flex-flow: row wrap;
+  }
+}
+@media only screen and (min-width: 992px) {
+  main {
+    padding: 0 25%;
   }
 }
