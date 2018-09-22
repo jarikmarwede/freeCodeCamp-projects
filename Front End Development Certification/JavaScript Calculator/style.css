@@ -1,47 +1,54 @@
-/* Bootstrap override */
-.btn {
+button {
+  background-color: white;
+  border: 1px solid #1ed5ed;
   border-radius: 1px;
+  cursor: pointer;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
 }
-.btn-outline-primary {
-  border-color: #1ed5ed;
+button:hover {
+  background-color: #1ed5ed;
+  color: white;
 }
-
 body {
   background-color: #588cb7;
 }
-#container {
-  margin-top: 5rem;
-  margin-bottom: 5rem;
-}
-#calculator {
-  padding: 2rem;
+
+.main-container {
   background-color: #fff;
   box-shadow: 5px 5px 18px #000;
+  margin: 5rem 1rem;
+  padding: 2rem;
 }
-#calculator-output {
+.calculator-output {
   background-color: #d4dadb;
-  padding: 1rem;
   border: 0.2rem solid #e5e5e5;
   box-shadow: 2px 2px 18px #000 inset;
+  font-family: monospace;
+  font-size: 1.2rem;
+  padding: 1rem;
+  text-align: right;
 }
-#calculator-buttons {
+.calculator-buttons {
   margin-top: 1rem;
 }
 .calculator-button-row {
-  padding-top: 1rem;
-  padding-bottom: 1rem;
+  display: flex;
+  margin: 1.5rem 0;
 }
-.button-col {
-  padding-right: 0.5rem;
-  padding-left: 0.5rem;
+.danger-btn {
+  border: 1px solid #dc3545;
+}
+.danger-btn:hover {
+  background-color: #dc3545;
+  color: white;
 }
 .calculator-button {
+  margin: 0 0.5rem;
   width: 100%;
-  margin-left: 0rem;
-  margin-right: 0rem;
 }
 @media only screen and (min-width: 900px) {
-  #container {
-    width: 50%;
+  .main-container {
+    margin: 5rem 25%;
   }
 }
