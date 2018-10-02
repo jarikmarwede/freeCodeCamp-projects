@@ -1,19 +1,25 @@
-var multer = require("multer");
-var upload = multer({ dest: 'uploads/' })
-var express = require('express');
-var app = express();
+const multer = require("multer");
+const upload = multer({ dest: 'uploads/' })
+const express = require('express');
+const app = express();
 
 app.use(express.static('public'));
 
-app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/index.html');
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + '/views/index.html');
 });
 
-app.post("/upload", upload.single("file"), function(req, res, next) {
-  console.log(req.file.size);
-  res.send({"size": req.file.size});
+app.post("/upload", upload.single("upfile"), (req, res, next) => {
+  if (req.file) {
+    res.send({
+      "filename": req.file.originalname,
+      "size": req.file.size
+    });
+  } else {
+    res.send({});
+  }
 });
 
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+const listener = app.listen(process.env.PORT, () => {
+  console.log('The app is listening on port ' + listener.address().port);
 });
