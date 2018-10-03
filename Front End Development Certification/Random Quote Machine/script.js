@@ -28,7 +28,7 @@ function updateQuote(json) {
 
 $(document).ready(function() {
   getNewQuote();
-  $("#new-quote-btn").on("click", function() {
+  $("#random-btn").on("click", function() {
     getNewQuote();
   });
 });
