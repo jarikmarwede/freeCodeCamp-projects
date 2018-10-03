@@ -1,0 +1,26 @@
+{
+  "name": "jm-image-search-abstraction-layer",
+  "version": "0.1.0",
+  "description": "This is an Image Search Abstraction Layer built during a web development course on freeCodeCamp.org",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.1.6",
+    "rapidapi-connect": "^0.0.6",
+    "unirest": "^0.5.1"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/jarikmarwede/freeCodeCamp-projects"
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
