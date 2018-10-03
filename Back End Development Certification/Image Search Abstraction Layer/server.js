@@ -1,40 +1,39 @@
-var unirest = require("unirest");
-var express = require('express');
-var app = express();
-var mongodb = require("mongodb");
-var MongoClient = mongodb.MongoClient;
-var databasePath = process.env.DATABASE_PATH;
+const unirest = require("unirest");
+const express = require('express');
+const app = express();
+const mongodb = require("mongodb");
+const MongoClient = mongodb.MongoClient;
+const databasePath = process.env.DATABASE_PATH;
 const RapidAPI = new require('rapidapi-connect');
 const rapid = new RapidAPI(process.env.RAPID_API, '/connect/auth/' + process.env.RAPID_API);
 
 app.use(express.static('public'));
 
-app.get("/", function (request, response) {
+app.get("/", (request, response) => {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/api/imagesearch/*?", function(req, res) {
-  var searchString = req.params[0];
-  var offset = req.query.offset;
+app.get("/api/imagesearch/*?", (req, res) => {
+  const searchString = req.params[0];
+  const offset = req.query.offset;
   if (offset == undefined) {offset = 1};
-  var APICallString = "https://contextualwebsearch-websearch-v1.p.mashape.com/api/Search/ImageSearchAPI?count=" + offset * 10 + "&q=" + searchString + "&autocorrect=false";
+  const APICallString = "https://contextualwebsearch-websearch-v1.p.mashape.com/api/Search/ImageSearchAPI?count=" + offset * 10 + "&q=" + searchString + "&autocorrect=false";
   unirest.get(APICallString).header("X-Mashape-Key", process.env.X_MASHAPE_KEY).header("X-Mashape-Host", "contextualwebsearch-websearch-v1.p.mashape.com").end(function (result) {
-    var images = result.body.value.slice(offset * 10 - 10, offset * 10);
+    const images = result.body.value.slice(offset * 10 - 10, offset * 10);
     res.send(images);
   });
-  MongoClient.connect(databasePath, async function(err, client) {
+  MongoClient.connect(databasePath, async (err, client) => {
     if (err) {
       console.log("Error connecting to database: " + err);
     } else {
-      var db = client.db("image-search-abstraction-layer");
-      var recentSearchesCollection = db.collection("latest-image-searches");
-      var date = new Date();
+      const db = client.db("image-search-abstraction-layer");
+      const recentSearchesCollection = db.collection("latest-image-searches");
+      const date = new Date();
       recentSearchesCollection.insert({"term": searchString, "when": date.toISOString()});
-      
-      var recentSearches = await recentSearchesCollection.find({}).toArray();
+
+      let recentSearches = await recentSearchesCollection.find({}).toArray();
       if (recentSearches.length > 10) {
         recentSearches = recentSearches.slice(1, 11);
-        console.log(recentSearches);
         recentSearchesCollection.remove();
         recentSearchesCollection.insert(recentSearches);
       }
@@ -43,21 +42,21 @@ app.get("/api/imagesearch/*?", function(req, res) {
   });
 });
 
-app.get("/api/latest/imagesearch/", function(req, res) {
+app.get("/api/latest/imagesearch/", (req, res) => {
   MongoClient.connect(databasePath, async function(err, client) {
     if (err) {
       console.log("Error connecting to database: " + err);
     } else {
-      var db = client.db("image-search-abstraction-layer");
-      var recentSearchesCollection = db.collection("latest-image-searches");
-      var recentSearches = await recentSearchesCollection.find({}).project({"_id": 0}).toArray();
-      
+      const db = client.db("image-search-abstraction-layer");
+      const recentSearchesCollection = db.collection("latest-image-searches");
+      const recentSearches = await recentSearchesCollection.find({}).project({"_id": 0}).toArray();
+
       client.close();
       res.send(recentSearches);
     }
   });
 });
 
-var listener = app.listen(process.env.PORT, function () {
-  console.log('Your app is listening on port ' + listener.address().port);
+const listener = app.listen(process.env.PORT, () => {
+  console.log('The app is listening on port ' + listener.address().port);
 });
