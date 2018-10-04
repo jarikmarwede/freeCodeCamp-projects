@@ -82,14 +82,14 @@ function loadPollsOf(username) {
     }
     $("#created-polls").html(newHTML);
 
-    $(".delete-modal-btn").on("click", () => {
-      $(this).closest(".poll-btn").find(".modal").modal();
+    $(".delete-modal-btn").on("click", (event) => {
+      $(event.target).closest(".poll-btn").find(".modal").modal();
     });
 
-    $(".delete-btn").on("click", () => {
-      const pollName = $(this).closest(".poll-btn").find(".poll-name").text();
+    $(".delete-btn").on("click", (event) => {
+      const pollName = $(event.target).closest(".poll-btn").find(".poll-name").text();
       deletePoll(pollName);
-      $(this).closest(".modal").modal("hide");
+      $(event.target).closest(".modal").modal("hide");
     });
     if (pollsArray.length > 10) {
       $("#load-more-btn").show();
