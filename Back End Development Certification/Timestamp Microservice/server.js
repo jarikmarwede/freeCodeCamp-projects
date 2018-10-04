@@ -1,19 +1,19 @@
-var express = require('express');
-var app = express();
+const express = require('express');
+const app = express();
 
 app.use(express.static('public'));
 
-app.get("/", function (request, response) {
+app.get("/", (request, response) => {
   response.sendFile(__dirname + '/views/index.html');
 });
 
-app.get("/:date", function(req, res) {
+app.get("/:date", (req, res) => {
   if (isNaN(parseInt(req.params.date))) {
     var date = new Date(req.params.date);
   } else {
     var date = new Date(parseInt(req.params.date));
   }
-  var dateJSON = {
+  const dateJSON = {
       "unix": date.getTime(),
       "natural": date.toDateString()
   };
@@ -25,6 +25,6 @@ app.get("/:date", function(req, res) {
   }
 });
 
-var listener = app.listen(process.env.PORT, function () {
+const listener = app.listen(process.env.PORT, () => {
   console.log('Your app is listening on port ' + listener.address().port);
 });
