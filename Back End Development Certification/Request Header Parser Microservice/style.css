@@ -1,0 +1,22 @@
+body {
+  background-color: #12a9e5;
+}
+a {
+  color: #3fc6fc;
+}
+p {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: white;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+@media only screen and (min-width: 992px) {
+  .container {
+    margin: 1rem 25%;
+  }
+}
