@@ -1,0 +1,25 @@
+{
+  "name": "jm-url-shortener-microservice",
+  "version": "0.1.0",
+  "description": "This is a URL Shortener Microservice built during a web development course on freeCodeCamp.org",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3",
+    "mongodb": "^3.1.6",
+    "body-parser": "^1.18.3"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/jarikmarwede/freeCodeCamp-projects"
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
