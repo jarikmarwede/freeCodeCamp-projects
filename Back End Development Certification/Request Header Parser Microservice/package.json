@@ -1,0 +1,23 @@
+{
+  "name": "jm-request-header-parser-microservice",
+  "version": "0.1.0",
+  "description": "This is a Request Header Parser Microservice built during a web development course on freeCodeCamp.org",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "engines": {
+    "node": "8.x"
+  },
+  "repository": {
+    "url": "https://github.com/jarikmarwede/freeCodeCamp-projects"
+  },
+  "keywords": [
+    "node",
+    "glitch",
+    "express"
+  ]
+}
