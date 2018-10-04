@@ -1,0 +1,42 @@
+body {
+  background-color: #d81724;
+}
+p, li {
+  font-family: Tahoma, Geneva, sans-serif;
+}
+input {
+  border: none;
+  border-radius: 100px;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  width: 95%;
+}
+button {
+  background-color: #d81724;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.2);
+  color: white;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+  padding: 0.5rem;
+}
+.container {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 10px;
+  color: white;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+
+@media only screen and (min-width: 992px) {
+  input {
+    margin: 1rem 25%;
+    width: 50%;
+  }
+  .container {
+    margin: 1rem 25%;
+  }
+}
