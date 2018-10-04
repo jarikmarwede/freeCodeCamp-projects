@@ -10,9 +10,10 @@ function loadPoll() {
   const pollName = decodeURIComponent(window.location.pathname.split("/")[window.location.pathname.split("/").length - 1]);
   $("#poll-title").text(pollName);
   const apiPath = "/api/getpoll/" + pollName;
-  $.getJSON(apiPath, function(pollData) {
+
+  $.getJSON(apiPath, (pollData) => {
     $("#creator-name").text("By " + pollData.creator);
-    
+
     let answerKeys = [];
     for (let answerKey in pollData.answers) {
       $("#answer-list").append("<option>" + answerKey + "</option>");
@@ -40,6 +41,6 @@ function loadPoll() {
   });
 }
 
-$(document).ready(function() {
+$(document).ready(() => {
   loadPoll();
 });

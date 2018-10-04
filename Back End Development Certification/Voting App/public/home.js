@@ -1,21 +1,12 @@
 const API_POLLS_PATH = "/api/getpolls";
 
-$(document).ready(function () {
-  $("#load-more-btn").hide();
-  loadPolls();
-  
-  $("#load-more-btn").on("click", function() {
-    showMorePolls();
-  });
-});
-
 function loadPolls() {
-  $.getJSON(API_POLLS_PATH, function(pollsArray) {
+  $.getJSON(API_POLLS_PATH, (pollsArray) => {
     let newHTML = "";
-    
+
     for (let i = pollsArray.length - 1; i >= 0; i--) {
       let pollName = pollsArray[i]["poll-name"];
-      
+
       if (i > pollsArray.length - 11) {
         newHTML = newHTML +
           "<div class=\"poll-btn\"> \
@@ -47,9 +38,18 @@ function showMorePolls() {
   const visiblePollAmount = $("#poll-list").children(":not(.hidden)").length;
   const startIndex = visiblePollAmount;
   const endIndex = visiblePollAmount + 10;
-  
+
   polls.slice(startIndex, endIndex).removeClass("hidden");
   if ($("#poll-list").children(".hidden").length === 0) {
     $("#load-more-btn").hide();
   }
 };
+
+$(document).ready(() => {
+  $("#load-more-btn").hide();
+  loadPolls();
+
+  $("#load-more-btn").on("click", () => {
+    showMorePolls();
+  });
+});

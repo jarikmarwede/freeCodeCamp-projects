@@ -10,11 +10,11 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 // routes
-app.get("/", function (req, res) {
+app.get("/", (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-app.post("/login", async function(req, res) {
+app.post("/login", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const sessionId = await server.getSessionId(username, password);
@@ -28,11 +28,11 @@ app.post("/login", async function(req, res) {
   }
 });
 
-app.get("/signup", function(req, res) {
+app.get("/signup", (req, res) => {
   res.sendFile(__dirname + "/views/signup.html");
 });
 
-app.post("/signup", async function(req, res) {
+app.post("/signup", async (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
@@ -45,7 +45,7 @@ app.post("/signup", async function(req, res) {
   }
 });
 
-app.get("/dashboard", async function(req, res) {
+app.get("/dashboard", async (req, res) => {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const loggedIn = await server.isLoggedIn(sessionId, username);
@@ -57,7 +57,7 @@ app.get("/dashboard", async function(req, res) {
   }
 });
 
-app.get("/newpoll", async function(req, res) {
+app.get("/newpoll", async (req, res) => {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const loggedIn = await server.isLoggedIn(sessionId, username);
@@ -69,7 +69,7 @@ app.get("/newpoll", async function(req, res) {
   }
 });
 
-app.post("/newpoll", async function(req, res) {
+app.post("/newpoll", async (req, res) => {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const pollName = req.body.pollname;
@@ -93,11 +93,11 @@ app.post("/newpoll", async function(req, res) {
   }
 });
 
-app.get("/poll/:poll", function(req, res) {
+app.get("/poll/:poll", (req, res) => {
   res.sendFile(__dirname + "/views/poll.html");
 });
 
-app.post("/poll/:poll", async function(req, res) {
+app.post("/poll/:poll", async (req, res) => {
   const pollName = req.params.poll;
   const answer = req.body.answer;
   await server.voteFor(pollName, answer);
@@ -105,7 +105,7 @@ app.post("/poll/:poll", async function(req, res) {
   res.redirect("back");
 });
 
-app.get("/poll/:poll/changepoll", function(req, res) {
+app.get("/poll/:poll/changepoll", (req, res) => {
   const pollName = req.params.poll;
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
@@ -119,7 +119,7 @@ app.get("/poll/:poll/changepoll", function(req, res) {
   }
 });
 
-app.post("/poll/:poll/changepoll", async function(req, res) {
+app.post("/poll/:poll/changepoll", async (req, res) => {
   const pollName = req.params.poll;
   let answers = []
   for (let key in req.body) {
@@ -146,13 +146,13 @@ app.post("/poll/:poll/changepoll", async function(req, res) {
 });
 
 // API
-app.get("/api/getpolls", async function(req, res) {
+app.get("/api/getpolls", async (req, res) => {
   const polls = await server.getPolls();
 
   res.send(polls);
 });
 
-app.get("/api/getpoll/:poll", async function(req, res) {
+app.get("/api/getpoll/:poll", async (req, res) => {
   const pollName = req.params.poll;
   const poll = await server.getPoll(pollName);
 
@@ -165,7 +165,7 @@ app.get("/api/getpoll/:poll", async function(req, res) {
   }
 });
 
-app.get("/api/getpollsof/:creator", async function(req, res) {
+app.get("/api/getpollsof/:creator", async (req, res) => {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const creator = req.params.creator;
@@ -180,7 +180,7 @@ app.get("/api/getpollsof/:creator", async function(req, res) {
   }
 });
 
-app.get("/api/deletepoll/:poll", async function(req, res) {
+app.get("/api/deletepoll/:poll", async (req, res) => {
   const pollName = req.params.poll;
   const sessionId = req.cookies.session;
   const username = req.cookies.username;
@@ -197,6 +197,6 @@ app.get("/api/deletepoll/:poll", async function(req, res) {
   }
 });
 
-const listener = app.listen(process.env.PORT, function () {
+const listener = app.listen(process.env.PORT, () => {
   console.log('App listening on port ' + listener.address().port);
 });

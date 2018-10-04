@@ -1,5 +1,5 @@
 function getCookie(name) {
-  var cookies = document.cookie.split("; ");
+  const cookies = document.cookie.split("; ");
   for (var i = 0; i < cookies.length; i++) {
     if (cookies[i].split("=")[0] == name) {
       return cookies[i].split("=")[1];
@@ -10,12 +10,13 @@ function getCookie(name) {
 
 function loadPollsOf(username) {
   const apiPollsPath = "/api/getpollsof/" + username;
-  $.getJSON(apiPollsPath, function(pollsArray) {
+
+  $.getJSON(apiPollsPath, (pollsArray) => {
     let newHTML = "";
-    
+
     for (let i = pollsArray.length - 1; i >= 0; i--) {
-      let pollName = pollsArray[i]["poll-name"];
-      
+      const pollName = pollsArray[i]["poll-name"];
+
       if (i > pollsArray.length - 11) {
         newHTML = newHTML +
           "<div class=\"poll-btn\"> \
@@ -80,12 +81,12 @@ function loadPollsOf(username) {
       newHTML += "<h3 class=\"text-center\">No polls found!</h3>";
     }
     $("#created-polls").html(newHTML);
-    
-    $(".delete-modal-btn").on("click", function() {
+
+    $(".delete-modal-btn").on("click", () => {
       $(this).closest(".poll-btn").find(".modal").modal();
     });
-    
-    $(".delete-btn").on("click", function() {
+
+    $(".delete-btn").on("click", () => {
       const pollName = $(this).closest(".poll-btn").find(".poll-name").text();
       deletePoll(pollName);
       $(this).closest(".modal").modal("hide");
@@ -101,7 +102,7 @@ function showMorePolls() {
   const visiblePollAmount = $("#created-polls").children(":not(.hidden)").length;
   const startIndex = visiblePollAmount;
   const endIndex = visiblePollAmount + 10;
-  
+
   polls.slice(startIndex, endIndex).removeClass("hidden");
   if ($("#created-polls").children(".hidden").length === 0) {
     $("#load-more-btn").hide();
@@ -110,18 +111,19 @@ function showMorePolls() {
 
 function deletePoll(pollName) {
   const apiPollPath = "/api/deletepoll/" + pollName;
-  $.getJSON(apiPollPath, function() {
+
+  $.getJSON(apiPollPath, () => {
     location.reload();
   });
 }
 
-$(document).ready(function() {
+$(document).ready(() => {
   $("#load-more-btn").hide();
   const username = getCookie("username");
-  
+
   loadPollsOf(username);
-  
-  $("#load-more-btn").on("click", function() {
+
+  $("#load-more-btn").on("click", () => {
     showMorePolls();
   });
 });

@@ -1,6 +1,6 @@
 function getCookie(name) {
-  var cookies = document.cookie.split("; ");
-  for (var i = 0; i < cookies.length; i++) {
+  const cookies = document.cookie.split("; ");
+  for (let i = 0; i < cookies.length; i++) {
     if (cookies[i].split("=")[0] == name) {
       return cookies[i].split("=")[1];
     }
@@ -23,17 +23,17 @@ function loggedIn() {
   $("#logged-in-form").show();
 }
 
-$(document).ready(function () {
+$(document).ready(() => {
   const session = getCookie("session");
   const username = getCookie("username");
-  
+
   if (session && username) {
     loggedIn();
   } else {
     loggedOut();
   }
-  
-  $("#logout-btn").on("click", function() {
+
+  $("#logout-btn").on("click", () => {
     clearCookies();
     window.location.replace(window.location.href);
   });
