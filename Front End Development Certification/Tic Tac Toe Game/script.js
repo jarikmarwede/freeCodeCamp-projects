@@ -1,7 +1,7 @@
-var computerSymbol = "o";
-var playerSymbol = "x";
-var computerSymbolHtml = "<i class=\"far fa-circle\"></i>";
-var playerSymbolHtml = "<i class=\"fas fa-times\"></i>";
+let computerSymbol = "o";
+let playerSymbol = "x";
+let computerSymbolHtml = "<i class=\"far fa-circle\"></i>";
+let playerSymbolHtml = "<i class=\"fas fa-times\"></i>";
 
 
 function changeSymbols(player, computer, playerHtml, computerHtml) {
@@ -12,19 +12,19 @@ function changeSymbols(player, computer, playerHtml, computerHtml) {
 }
 
 function computerTurn() {
-  var cellChoice = undefined;
-  var psh = playerSymbolHtml;
-  var cell0 = $("#cell-0").html();
-  var cell1 = $("#cell-1").html();
-  var cell2 = $("#cell-2").html();
-  var cell3 = $("#cell-3").html();
-  var cell4 = $("#cell-4").html();
-  var cell5 = $("#cell-5").html();
-  var cell6 = $("#cell-6").html();
-  var cell7 = $("#cell-7").html();
-  var cell8 = $("#cell-8").html();
-  var cells = [cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8];
-  var emptyCells = [];
+  let cellChoice = undefined;
+  const psh = playerSymbolHtml;
+  const cell0 = document.getElementById("cell-0").innerHTML;
+  const cell1 = document.getElementById("cell-1").innerHTML;
+  const cell2 = document.getElementById("cell-2").innerHTML;
+  const cell3 = document.getElementById("cell-3").innerHTML;
+  const cell4 = document.getElementById("cell-4").innerHTML;
+  const cell5 = document.getElementById("cell-5").innerHTML;
+  const cell6 = document.getElementById("cell-6").innerHTML;
+  const cell7 = document.getElementById("cell-7").innerHTML;
+  const cell8 = document.getElementById("cell-8").innerHTML;
+  const cells = [cell0, cell1, cell2, cell3, cell4, cell5, cell6, cell7, cell8];
+  const emptyCells = [];
   for (var cellIndex = 0; cellIndex < cells.length; cellIndex++) {
     if (cells[cellIndex] == "&nbsp;") {
       emptyCells.push(cellIndex);
@@ -85,46 +85,46 @@ function computerTurn() {
   } else if (cell2 == psh && cell6 == psh && cell4 == "&nbsp;") {
     cellChoice = 4;
   } else {
-    var emptyCellIndex = Math.floor((Math.random() * emptyCells.length));
+    const emptyCellIndex = Math.floor((Math.random() * emptyCells.length));
     cellChoice = emptyCells[emptyCellIndex];
   }
-  $("#cell-" + cellChoice).html(computerSymbolHtml);
+  document.getElementById("cell-" + cellChoice).innerHTML = computerSymbolHtml;
 }
 
 function checkForWin() {
-  var symbols = [playerSymbolHtml, computerSymbolHtml];
-  var cell0 = $("#cell-0").html();
-  var cell1 = $("#cell-1").html();
-  var cell2 = $("#cell-2").html();
-  var cell3 = $("#cell-3").html();
-  var cell4 = $("#cell-4").html();
-  var cell5 = $("#cell-5").html();
-  var cell6 = $("#cell-6").html();
-  var cell7 = $("#cell-7").html();
-  var cell8 = $("#cell-8").html();
-  var winnerHtml = undefined;
-  for (var symbolIndex = 0; symbolIndex < symbols.length; symbolIndex++) {
-    var symbol = symbols[symbolIndex];
+  const symbols = [playerSymbolHtml, computerSymbolHtml];
+  const cell0 = document.getElementById("cell-0").innerHTML;
+  const cell1 = document.getElementById("cell-1").innerHTML;
+  const cell2 = document.getElementById("cell-2").innerHTML;
+  const cell3 = document.getElementById("cell-3").innerHTML;
+  const cell4 = document.getElementById("cell-4").innerHTML;
+  const cell5 = document.getElementById("cell-5").innerHTML;
+  const cell6 = document.getElementById("cell-6").innerHTML;
+  const cell7 = document.getElementById("cell-7").innerHTML;
+  const cell8 = document.getElementById("cell-8").innerHTML;
+  let winnerHtml = undefined;
+  for (let symbolIndex = 0; symbolIndex < symbols.length; symbolIndex++) {
+    const symbol = symbols[symbolIndex];
     if ((cell0 == symbol && cell1 == symbol && cell2 == symbol) || (cell3 == symbol && cell4 == symbol && cell5 == symbol) || (cell6 == symbol && cell7 == symbol && cell8 == symbol) || (cell0 == symbol && cell3 == symbol && cell6 == symbol) || (cell1 == symbol && cell4 == symbol && cell7 == symbol) || (cell2 == symbol && cell5 == symbol && cell8 == symbol) || (cell0 == symbol && cell4 == symbol && cell8 == symbol) || (cell2 == symbol && cell4 == symbol && cell6 == symbol)) {
       winnerHtml = symbol;
       break;
     }
   }
   if (winnerHtml == computerSymbolHtml) {
-    $("#computer-win-count").text(parseInt($("#computer-win-count").text()) + 1)
+    document.getElementById("computer-win-count").textContent = parseInt(document.getElementById("computer-win-count").textContent) + 1;
     clearPlayingBoard();
-    $("#winner-sentence").text("You lose!");
+    document.getElementById("winner-sentence").textContent = "You lose!";
     $("#winner-modal").modal();
     return true;
   } else if (winnerHtml == playerSymbolHtml) {
-    $("#player-win-count").text(parseInt($("#player-win-count").text()) + 1)
+    document.getElementById("player-win-count").textContent = parseInt(document.getElementById("player-win-count").textContent) + 1;
     clearPlayingBoard();
-    $("#winner-sentence").text("You win!");
+    document.getElementById("winner-sentence").textContent = "You win!";
     $("#winner-modal").modal();
     return true;
   } else if (cell0 != "&nbsp;" && cell1 != "&nbsp;" && cell2 != "&nbsp;" && cell3 != "&nbsp;" && cell4 != "&nbsp;" && cell5 != "&nbsp;" && cell6 != "&nbsp;" && cell7 != "&nbsp;" && cell8 != "&nbsp;") {
     clearPlayingBoard();
-    $("#winner-sentence").text("It's a draw!");
+    document.getElementById("winner-sentence").textContent = "It's a draw!";
     $("#winner-modal").modal();
     return true;
   }
@@ -133,42 +133,41 @@ function checkForWin() {
 
 function reset() {
   clearPlayingBoard();
-  $("#player-win-count").text(0);
-  $("#computer-win-count").text(0);
+  document.getElementById("player-win-count").textContent = 0;
+  document.getElementById("computer-win-count").textContent = 0;
   $("#symbol-modal").modal();
 }
 
 function clearPlayingBoard() {
-  $("#cell-0").html("&nbsp;");
-  $("#cell-1").html("&nbsp;");
-  $("#cell-2").html("&nbsp;");
-  $("#cell-3").html("&nbsp;");
-  $("#cell-4").html("&nbsp;");
-  $("#cell-5").html("&nbsp;");
-  $("#cell-6").html("&nbsp;");
-  $("#cell-7").html("&nbsp;");
-  $("#cell-8").html("&nbsp;");
+  document.getElementById("cell-0").innerHTML = "&nbsp;";
+  document.getElementById("cell-1").innerHTML = "&nbsp;";
+  document.getElementById("cell-2").innerHTML = "&nbsp;";
+  document.getElementById("cell-3").innerHTML = "&nbsp;";
+  document.getElementById("cell-4").innerHTML = "&nbsp;";
+  document.getElementById("cell-5").innerHTML = "&nbsp;";
+  document.getElementById("cell-6").innerHTML = "&nbsp;";
+  document.getElementById("cell-7").innerHTML = "&nbsp;";
+  document.getElementById("cell-8").innerHTML = "&nbsp;";
 }
 
-
-$("document").ready(function() {
+document.addEventListener("DOMContentLoaded", () => {
   $("#symbol-modal").modal();
-  $("#symbol-o-btn").on("click", function() {
+  document.getElementById("symbol-o-btn").addEventListener("click", () => {
     changeSymbols("o", "x", "<i class=\"far fa-circle\"></i>", "<i class=\"fas fa-times\"></i>");
   });
-  $("#symbol-x-btn").on("click", function() {
+  document.getElementById("symbol-x-btn").addEventListener("click", () => {
     changeSymbols("x", "o", "<i class=\"fas fa-times\"></i>", "<i class=\"far fa-circle\"></i>");
   });
-  $(".game-cell").on("click", function() {
-    if ($(this).html() == "&nbsp;") {
-      $(this).html(playerSymbolHtml);
-      if (checkForWin() === false) {
-        computerTurn();
-        checkForWin();
+  for (let element of document.getElementsByClassName("game-cell")) {
+    element.addEventListener("click", (event) => {
+      if (event.target.innerHTML == "&nbsp;") {
+        event.target.innerHTML = playerSymbolHtml;
+        if (!checkForWin()) {
+          computerTurn();
+          checkForWin();
+        }
       }
-    }
-  });
-  $("#reset-btn").on("click", function() {
-    reset();
-  })
-})
+    });
+  }
+  document.getElementById("reset-btn").addEventListener("click", reset);
+});
