@@ -6,18 +6,20 @@ const flashingGreen = "#2ffc3d";
 const flashingRed = "#fc2714";
 const flashingYellow = "#fcf800";
 const flashingBlue = "#0ca8fc";
-var currentSteps = [];
-var fullSteps = [];
+let currentSteps = [];
+let fullSteps = [];
 
 function newStep() {
-  if (parseInt($("#count").text()) >= 19) {
-    $("#win-modal").modal();
+  const countElement = document.getElementById("count");
+
+  if (parseInt(countElement.textContent) >= 19) {
+    document.getElementById("win-modal").modal();
   } else {
-    var buttonChoice = Math.round(Math.random() * 3);
+    const buttonChoice = Math.round(Math.random() * 3);
     fullSteps.push(buttonChoice);
     currentSteps = fullSteps.slice(0);
-    $("#count").text(parseInt($("#count").text()) + 1);
-    setTimeout(function() {flashColors(0)}, 800);
+    countElement.textContent = parseInt(countElement.textContent) + 1;
+    setTimeout(() => {flashColors(0)}, 800);
   }
 }
 
@@ -29,44 +31,44 @@ function flashColors(index) {
   playSound(fullSteps[index]);
   index++;
   if (index >= fullSteps.length) {
-    setTimeout(function() {activateBtns();}, 800);
+    setTimeout(activateBtns, 800);
   } else {
-    setTimeout(function() {flashColors(index);}, 1000);
+    setTimeout(() => {flashColors(index)}, 1000);
   }
 }
 
 function flashColor(id) {
   if (id == 0) {
-    $("#green-btn").css("background-color", flashingGreen);
+    document.getElementById("green-btn").style.backgroundColor = flashingGreen;
   } else if (id == 1) {
-    $("#red-btn").css("background-color", flashingRed);
+    document.getElementById("red-btn").style.backgroundColor = flashingRed;
   } else if (id == 2) {
-    $("#yellow-btn").css("background-color", flashingYellow);
+    document.getElementById("yellow-btn").style.backgroundColor = flashingYellow;
   } else if (id == 3) {
-    $("#blue-btn").css("background-color", flashingBlue);
+    document.getElementById("blue-btn").style.backgroundColor = flashingBlue;
   }
-  setTimeout(function() {resetColors();}, 800);
+  setTimeout(resetColors, 800);
 }
 
 function deactivateBtns() {
-  $("#green-btn").off("click");
-  $("#red-btn").off("click");
-  $("#yellow-btn").off("click");
-  $("#blue-btn").off("click");
+  document.getElementById("green-btn").removeEventListener("click", clickGreenBtn);
+  document.getElementById("red-btn").removeEventListener("click", clickRedBtn);
+  document.getElementById("yellow-btn").removeEventListener("click", clickYellowBtn);
+  document.getElementById("blue-btn").removeEventListener("click", clickBlueBtn);
 }
 
 function activateBtns() {
-  $("#green-btn").on("click", function() {clickedBtn(0);});
-  $("#red-btn").on("click", function() {clickedBtn(1);});
-  $("#yellow-btn").on("click", function() {clickedBtn(2);});
-  $("#blue-btn").on("click", function() {clickedBtn(3);});
+  document.getElementById("green-btn").addEventListener("click", clickGreenBtn);
+  document.getElementById("red-btn").addEventListener("click", clickRedBtn);
+  document.getElementById("yellow-btn").addEventListener("click", clickYellowBtn);
+  document.getElementById("blue-btn").addEventListener("click", clickBlueBtn);
 }
 
 function resetColors() {
-  $("#green-btn").css("background-color", regularGreen);
-  $("#red-btn").css("background-color", regularRed);
-  $("#yellow-btn").css("background-color", regularYellow);
-  $("#blue-btn").css("background-color", regularBlue);
+  document.getElementById("green-btn").style.backgroundColor = regularGreen;
+  document.getElementById("red-btn").style.backgroundColor = regularRed;
+  document.getElementById("yellow-btn").style.backgroundColor = regularYellow;
+  document.getElementById("blue-btn").style.backgroundColor = regularBlue;
 }
 
 function clickedBtn(id) {
@@ -77,13 +79,26 @@ function clickedBtn(id) {
     if (currentSteps.length == 0) {
       newStep();
     }
-  } else if ($("#strict-mode").prop("checked") == true) {
+  } else if (document.getElementById("strict-mode").checked == true) {
     mistake();
     restartGame();
   } else {
     mistake();
-    setTimeout(function() {flashColors(0);}, 1000);
+    setTimeout(() => {flashColors(0)}, 1000);
   }
+}
+
+function clickGreenBtn() {
+  clickedBtn(0);
+}
+function clickRedBtn() {
+  clickedBtn(1);
+}
+function clickYellowBtn() {
+  clickedBtn(2);
+}
+function clickBlueBtn() {
+  clickedBtn(3);
 }
 
 function mistake() {
@@ -99,46 +114,39 @@ function mistake() {
 
 function playSound(index) {
   if (index == 0) {
-    $("#green-sound").trigger("play");
+    document.getElementById("green-sound").play();
   } else if (index == 1) {
-    $("#red-sound").trigger("play");
+    document.getElementById("red-sound").play();
   } else if (index == 2) {
-    $("#yellow-sound").trigger("play");
+    document.getElementById("yellow-sound").play();
   } else if (index == 3) {
-    $("#blue-sound").trigger("play");
+    document.getElementById("blue-sound").play();
   }
 }
 
 function restartGame() {
   currentSteps = [];
   fullSteps = [];
-  $("#count").text(0);
+  document.getElementById("count").textContent = 0;
   newStep();
 }
 
 
-$(document).ready(function() {
-  $("#start-btn").on("click", function() {
-    if ($("#start-btn").text() == "Start") {
-      $("#start-btn").removeClass("btn-primary");
-      $("#start-btn").addClass("btn-danger");
-      $("#start-btn").text("Restart");
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("start-btn").addEventListener("click", () => {
+    const startBtnElement = document.getElementById("start-btn");
+    if (startBtnElement.textContent == "Start") {
+      document.getElementById("start-btn").classList.remove("btn-primary");
+      document.getElementById("start-btn").classList.add("btn-danger");
+      startBtnElement.textContent = "Restart";
     }
     restartGame();
   });
-  $("#green-btn").on("click", function() {
-    clickedBtn(0);
-  });
-  $("#red-btn").on("click", function() {
-    clickedBtn(1);
-  });
-  $("#yellow-btn").on("click", function() {
-    clickedBtn(2);
-  });
-  $("#blue-btn").on("click", function() {
-    clickedBtn(3);
-  });
-  $(".new-game-btn").on("click", function() {
-    restartGame();
-  })
+  document.getElementById("green-btn").addEventListener("click", clickGreenBtn);
+  document.getElementById("red-btn").addEventListener("click", clickRedBtn);
+  document.getElementById("yellow-btn").addEventListener("click", clickYellowBtn);
+  document.getElementById("blue-btn").addEventListener("click", clickBlueBtn);
+  for (let element of document.getElementsByClassName("new-game-btn")) {
+    element.addEventListener("click", restartGame);
+  }
 })
