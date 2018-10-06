@@ -1,29 +1,36 @@
-var pageLimit = 10;
+let pageLimit = 10;
 
-function wikipediaSearch(string, pageLimit=10) {
-  var requestUrl = "https://en.wikipedia.org/w/api.php?" + ["origin=*", "format=json", "action=query", "list=search", "srsearch=" + encodeURI(string), "srlimit=" + pageLimit].join("&");
-  $.getJSON(requestUrl, showSearchResults);
+async function wikipediaSearch(string, pageLimit=10) {
+  const responseData = await requestSearch(string, pageLimit);
+  showSearchResults(responseData);
+}
+
+async function requestSearch(string, pageLimit) {
+  const requestUrl = "https://en.wikipedia.org/w/api.php?" + ["origin=*", "format=json", "action=query", "list=search", "srsearch=" + encodeURI(string), "srlimit=" + pageLimit].join("&");
+  const response = await fetch(requestUrl);
+  const responseData = await response.json();
+  return responseData;
 }
 
 function showSearchResults(json) {
-  $("#search-results-container").empty();
-  var pages = json.query.search;
-  var totalhits = json.query.searchinfo.totalhits;
-  $("#search-results-container").append("<p class=\"total-matches\">Total matches: " + totalhits + "</p>");
-  for (var i = 0; i < pages.length; i++) {
-    var page = pages[i]
-    var url = "https://en.wikipedia.org/?curid=" + page.pageid
-    var snippet = page.snippet
-    var title = page.title
+  document.getElementById("search-results-container").innerHTML = "";
+  const pages = json.query.search;
+  const totalhits = json.query.searchinfo.totalhits;
+  document.getElementById("search-results-container").innerHTML += "<p class=\"total-matches\">Total matches: " + totalhits + "</p>";
+  for (let i = 0; i < pages.length; i++) {
+    const page = pages[i]
+    const url = "https://en.wikipedia.org/?curid=" + page.pageid
+    const snippet = page.snippet
+    const title = page.title
     addSearchResult(title, snippet, url);
   }
   if (pageLimit < 50) {
-    $("#search-results-container").append("<button class=\"load-more-btn\" id=\"load-more-btn\">Load more</button>")
-  $("#load-more-btn").on("click", function() {
+    document.getElementById("search-results-container").innerHTML += "<button class=\"load-more-btn\" id=\"load-more-btn\">Load more</button>";
+  document.getElementById("load-more-btn").addEventListener("click", () => {
     if (pageLimit <= 40) {
       pageLimit += 10;
     }
-    wikipediaSearch($("#search-input").val(), pageLimit);
+    wikipediaSearch(document.getElementById("search-input").value, pageLimit);
   });
   }
 }
@@ -36,17 +43,18 @@ function addSearchResult(title, snippet, url) {
         <p class="search-result-snippet">' + snippet + '...</p> \
       </a> \
     </div>'
-  $("#search-results-container").append(html);
+  document.getElementById("search-results-container").innerHTML += html;
 }
 
-$(document).ready(function() {
-  $("#search-btn").on("click", function() {
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("search-btn").addEventListener("click", () => {
     pageLimit = 10;
-    wikipediaSearch($("#search-input").val())});
-  $("#search-input").on("keypress", function(e) {
-    if (e.which == 13) {
+    wikipediaSearch(document.getElementById("search-input").value)
+  });
+  document.getElementById("search-input").addEventListener("keypress", (event) => {
+    if (event.which == 13) {
       pageLimit = 10;
-      wikipediaSearch($("#search-input").val());
+      wikipediaSearch(document.getElementById("search-input").value);
     }
   });
 })
