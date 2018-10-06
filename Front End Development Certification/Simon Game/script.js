@@ -13,7 +13,7 @@ function newStep() {
   const countElement = document.getElementById("count");
 
   if (parseInt(countElement.textContent) >= 19) {
-    document.getElementById("win-modal").modal();
+    $("#win-modal").modal();
   } else {
     const buttonChoice = Math.round(Math.random() * 3);
     fullSteps.push(buttonChoice);
