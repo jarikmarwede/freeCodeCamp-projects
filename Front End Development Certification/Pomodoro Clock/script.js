@@ -1,11 +1,12 @@
-var countingDown = false;
-var intervalVar = null;
+let countingDown = false;
+let intervalVar = null;
 
 function updateTime() {
-  var oldTime = $("#time").text();
-  var minutes = parseInt(oldTime.split(":")[0]);
-  var seconds = parseInt(oldTime.split(":")[1]);
-  
+  const timeElement = document.getElementById("time");
+  const oldTime = timeElement.textContent;
+  let minutes = parseInt(oldTime.split(":")[0]);
+  let seconds = parseInt(oldTime.split(":")[1]);
+
   if (seconds == 0) {
     if (minutes < 1) {
       changeStatus();
@@ -17,38 +18,38 @@ function updateTime() {
   } else {
     seconds -= 1;
   }
-  var newTime = minutes + ":";
+  let newTime = minutes + ":";
   if (seconds < 10) {
     newTime += "0" + seconds;
   } else {
     newTime += seconds;
   }
-  $("#time").text(newTime);
+  timeElement.textContent = newTime;
   updateProgressBar(minutes, seconds);
 }
 
 function updateProgressBar(minutes, seconds) {
-  if ($("#status").text() == "Session") {
-    var maxTime = parseInt($("#session-length").text()) * 60;
-  } else {
-    var maxTime = parseInt($("#break-length").text()) * 60;
-  }
-  var timePassed = maxTime - (minutes * 60 + seconds);
-  var percentage = timePassed / maxTime * 100;
-  $("#progress-bar").css("width", percentage + "%");
+  const maxTime = document.getElementById("status").textContent == "Session" ? parseInt(document.getElementById("session-length").textContent) * 60 : parseInt(document.getElementById("break-length").textContent) * 60;
+  const timePassed = maxTime - (minutes * 60 + seconds);
+  const percentage = timePassed / maxTime * 100;
+
+  document.getElementById("progress-bar").style.width = percentage + "%";
 }
 
 function changeStatus() {
-  var oldStatus = $("#status").text();
+  const oldStatus = document.getElementById("status").textContent;
+  const statusElement = document.getElementById("status");
+  const timeElement = document.getElementById("time");
+
   if (oldStatus == "Session") {
-    $("#status").text("Break");
+    statusElement.textContent = "Break";
     deactivateCounting();
-    $("#time").text($("#break-length").text() + ":00");
+    timeElement.textContent = document.getElementById("break-length").textContent + ":00";
     activateCounting();
   } else {
-    $("#status").text("Session");
+    statusElement.textContent = "Session";
     deactivateCounting();
-    $("#time").text($("#session-length").text() + ":00");
+    document.getElementById("time").textContent = document.getElementById("session-length").textContent + ":00";
     activateCounting();
   }
 }
@@ -73,36 +74,42 @@ function activateCounting() {
 }
 
 function reset() {
-  $("#status").text("Session");
-  $("#time").text($("#session-length").text() + ":00");
-  $("#progress-bar").css("width", "0%");
+  document.getElementById("status").textContent = "Session";
+  document.getElementById("time").textContent = document.getElementById("session-length").textContent + ":00";
+  document.getElementById("progress-bar").style.width = "0%";
 }
 
-$("document").ready(function() {
-  $("#minus-session").on("click", function() {
-    if (parseInt($("#session-length").text()) >= 2) {
-      $("#session-length").text(parseInt($("#session-length").text()) - 1);
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("minus-session").addEventListener("click", () => {
+    const sessionLengthElement = document.getElementById("session-length");
+    const sessionLength = parseInt(sessionLengthElement.textContent);
+
+    if (sessionLength >= 2) {
+      sessionLengthElement.textContent = sessionLength - 1;
       reset();
     }
   });
-  $("#plus-session").on("click", function() {
-    $("#session-length").text(parseInt($("#session-length").text()) + 1);
+  document.getElementById("plus-session").addEventListener("click", () => {
+    const sessionLengthElement = document.getElementById("session-length");
+    sessionLengthElement.textContent(parseInt(sessionLengthElement.textContent) + 1);
     reset();
   });
-  $("#minus-break").on("click", function() {
-    if (parseInt($("#break-length").text()) >= 2) {
-      $("#break-length").text(parseInt($("#break-length").text()) - 1);
+  document.getElementById("minus-break").addEventListener("click", () => {
+    const breakLengthElement = document.getElementById("break-length");
+    if (parseInt(breakLengthElement.textContent) >= 2) {
+      breakLengthElement.textContent = parseInt(breakLengthElement.textContent) - 1;
       reset();
     }
   });
-  $("#plus-break").on("click", function() {
-    $("#break-length").text(parseInt($("#break-length").text()) + 1);
+  document.getElementById("plus-break").addEventListener("click", () => {
+    const breakLengthElement = document.getElementById("break-length");
+    breakLengthElement.textContent = parseInt(breakLengthElement.textContent) + 1;
     reset();
   });
-  $("#progress-bar-container").on("click", function() {
+  document.getElementById("progress-bar-container").addEventListener("click", () => {
     toggleCounting();
   });
-  $("#reset-btn").on("click", function() {
+  document.getElementById("reset-btn").addEventListener("click", () => {
     reset();
   });
 })
