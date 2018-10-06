@@ -6,24 +6,25 @@ function getLocation() {
   }
 }
 
-function getWeather(position) {
-  var requestUrl = "https://fcc-weather-api.glitch.me/api/current?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude;
-  $.getJSON(requestUrl, function(json) {displayWeather(json);});
+async function getWeather(position) {
+  const requestUrl = "https://fcc-weather-api.glitch.me/api/current?lat=" + position.coords.latitude + "&lon=" + position.coords.longitude;
+  const response = await fetch(requestUrl);
+  displayWeather(await response.json());
 }
 
 function displayWeather(json) {
-  $("#location").text(json.name + ", " + json.sys.country)
-  $("#weather-text").text(json.weather[0].main);
-  $("#weather-description").text(json.weather[0].description);
-  $("#weather-icon").attr("src", json.weather[0].icon);
-  $("#weather-icon").attr("alt", json.weather[0].description);
-  $("#humidity").text("Humidity: " + json.main.humidity);
-  $("#pressure").text("Pressure: " + json.main.pressure);
-  $("#temperature").text("Temperature: " + json.main.temp + "°C");
-  $("#temperature-max").text("Temperature max: " + json.main.temp_max + "°C");
-  $("#temperature-min").text("Temperature min: " + json.main.temp_min + "°C");
-  $("#wind-degrees").text("Wind degrees: " + json.wind.deg);
-  $("#wind-speed").text("Wind speed: " + json.wind.speed);
+  document.getElementById("location").textContent = json.name + ", " + json.sys.country;
+  document.getElementById("weather-text").textContent = json.weather[0].main;
+  document.getElementById("weather-description").textContent = json.weather[0].description;
+  document.getElementById("weather-icon").src.value = json.weather[0].icon;
+  document.getElementById("weather-icon").alt.value = json.weather[0].description;
+  document.getElementById("humidity").textContent = "Humidity: " + json.main.humidity;
+  document.getElementById("pressure").textContent = "Pressure: " + json.main.pressure;
+  document.getElementById("temperature").textContent = "Temperature: " + json.main.temp + "°C";
+  document.getElementById("temperature-max").textContent = "Temperature max: " + json.main.temp_max + "°C";
+  document.getElementById("temperature-min").textContent = "Temperature min: " + json.main.temp_min + "°C";
+  document.getElementById("wind-degrees").textContent = "Wind degrees: " + json.wind.deg;
+  document.getElementById("wind-speed").textContent = "Wind speed: " + json.wind.speed;
 }
 
 function showError(error) {
@@ -44,59 +45,62 @@ function showError(error) {
 }
 
 function switchTempUnit() {
-  if ($("#switch-unit-btn").text() == "°F") {
+  const switchUnitButton = document.getElementById("switch-unit-btn");
+  const temperature = document.getElementById("temperature");
+  const temperatureMax = document.getElementById("temperature-max");
+  const temperatureMin = document.getElementById("temperature-min");
+
+  if (switchUnitButton.textContent == "°F") {
     // change temperature
-    $("#temperature").text(function(i, origText) {
-      var oldTemp = Number(origText.split(" ")[1].split("°")[0]);
-      var newTemp = Math.round(oldTemp * 1.8 + 32);
-      $("#temperature").text("Temperature: " + newTemp + "°F");
-    })
+    const oldTemp = Number(temperature.textContent.split(" ")[1].split("°")[0]);
+    const newTemp = Math.round(oldTemp * 1.8 + 32);
+    temperature.textContent = "Temperature: " + newTemp + "°F";
     // change temperature max
-    $("#temperature-max").text(function(i, origText) {
-      var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = Math.round(oldTemp * 1.8 + 32);
-      $("#temperature-max").text("Temperature max: " + newTemp + "°F");
-    })
+    const oldTempMax = Number(temperatureMax.textContent.split(" ")[2].split("°")[0]);
+    const newTempMax = Math.round(oldTempMax * 1.8 + 32);
+    temperatureMax.textContent = "Temperature max: " + newTempMax + "°F";
     // change temperature min
-    $("#temperature-min").text(function(i, origText) {
-      var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = Math.round(oldTemp * 1.8 + 32);
-      $("#temperature-min").text("Temperature min: " + newTemp + "°F");
-    })
-    $("#switch-unit-btn").text("°C");
+    const oldTempMin = Number(temperatureMin.textContent.split(" ")[2].split("°")[0]);
+    const newTempMin = Math.round(oldTempMin * 1.8 + 32);
+    temperatureMin.textContent = "Temperature min: " + newTempMin + "°F";
+    switchUnitButton.textContent = "°C";
   } else {
     // change temperature
-    $("#temperature").text(function(i, origText) {
-      var oldTemp = Number(origText.split(" ")[1].split("°")[0]);
-      var newTemp = Math.round((oldTemp - 32) / 1.8);
-      $("#temperature").text("Temperature: " + newTemp + "°C");
-    })
+    const oldTemp = Number(temperature.textContent.split(" ")[1].split("°")[0]);
+    const newTemp = Math.round((oldTemp - 32) / 1.8);
+    temperature.textContent = "Temperature: " + newTemp + "°C";
     // change temperature max
-    $("#temperature-max").text(function(i, origText) {
-      var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = Math.round((oldTemp - 32) / 1.8);
-      $("#temperature-max").text("Temperature max: " + newTemp + "°C");
-    })
+    const oldTempMax = Number(temperatureMax.textContent.split(" ")[2].split("°")[0]);
+    const newTempMax = Math.round((oldTempMax - 32) / 1.8);
+    temperatureMax.textContent = "Temperature max: " + newTempMax + "°C";
     // change temperature min
-    $("#temperature-min").text(function(i, origText) {
-      var oldTemp = Number(origText.split(" ")[2].split("°")[0]);
-      var newTemp = Math.round((oldTemp - 32) / 1.8);
-      $("#temperature-min").text("Temperature min: " + newTemp + "°C");
-    })
-    $("#switch-unit-btn").text("°F");
+    const oldTempMin = Number(temperatureMin.textContent.split(" ")[2].split("°")[0]);
+    const newTempMin = Math.round((oldTempMin - 32) / 1.8);
+    temperatureMin.textContent = "Temperature min: " + newTempMin + "°C";
+    switchUnitButton.textContent = "°F";
   }
 }
 
-$(document).ready(function() {
-  $(".extra-info").hide();
-  getLocation();
-  $("#more-info-btn").on("click", function() {
-    $(".extra-info").toggle();
-    if ($("#more-info-btn").text() == "Show less") {
-      $("#more-info-btn").text("Show more");
-    } else {
-      $("#more-info-btn").text("Show less");
+function toggleMoreInfo() {
+  const moreInfoButton = document.getElementById("more-info-btn");
+  const extraInfoElements = document.getElementsByClassName("extra-info");
+
+  if (moreInfoButton.textContent == "Show less") {
+    moreInfoButton.textContent = "Show more";
+    for (element of extraInfoElements) {
+      element.style.display = "none";
     }
-  })
-  $("#switch-unit-btn").on("click", function() {switchTempUnit();})
-})
+  } else {
+    moreInfoButton.textContent = "Show less";
+    for (element of extraInfoElements) {
+      element.style.display = "block";
+    }
+  }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  getLocation();
+  toggleMoreInfo();
+  document.getElementById("more-info-btn").addEventListener("click", toggleMoreInfo);
+  document.getElementById("switch-unit-btn").addEventListener("click", switchTempUnit);
+});
