@@ -1,3 +1,12 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 button {
   background-color: inherit;
   border: 1px solid #45b1c6;
@@ -27,6 +36,9 @@ body {
   margin-bottom: 10rem;
   margin-top: 10rem;
   padding: 5rem 2rem;
+}
+.quote-container > * {
+  animation: fade-in 1s;
 }
 .quote-text {
   color: #2c99a3;
