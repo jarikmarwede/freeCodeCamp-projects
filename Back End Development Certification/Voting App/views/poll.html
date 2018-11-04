@@ -9,9 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
     <link rel="stylesheet" href="/style.css">
   </head>
-  
+
   <body>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -19,10 +20,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js" integrity="sha256-J2sc79NPV/osLcIpzL3K8uJyAD7T5gaEFKlLDM18oxY=" crossorigin="anonymous"></script>
     <script src="/navbar.js"></script>
     <script src="/poll.js"></script>
-    
-    <div class="container-fluid">
-      <nav class="navbar navbar-expand-sm bg-light">
-        <a class="navbar-brand black-link" href="/">Voting App</a>
+
+    <nav class="navbar navbar-expand-lg bg-light">
+      <a class="navbar-brand black-link" href="/">Voting App</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-navbar">
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsible-navbar">
         <form id="login-form" class="form-inline ml-auto" action="/login" method="post">
           <input type="text" placeholder="username" class="form-control" name="username" pattern="^[a-zA-Z0-9_]*$" required>
           <input type="password" placeholder="password" class="form-control" name="password" pattern=".{8}.*" required>
@@ -37,23 +41,23 @@
             <button class="btn default-btn" id="logout-btn">Logout</button>
           </li>
         </ul>
-      </nav>
-      
-      <div class="jumbotron jumbotron-fluid">
-        <div class="row">
-          <div class="col">
-            <h3 class="text-center" id="poll-title"></h3>
-            <h6 class="text-center" id="creator-name"></h6>
-            <form method="post" class="text-center mt-5">
-              <select class="form-control" id="answer-list" name="answer">
-                
-              </select>
-              <button class="btn default-btn" type="submit">Vote</button>
-            </form>
-          </div>
-          <div class="col">
-            <canvas id="poll-chart"></canvas>
-          </div>
+      </div>
+    </nav>
+
+    <div class="jumbotron jumbotron-fluid">
+      <div class="row">
+        <div class="col-lg">
+          <h4 class="text-center" id="poll-title"></h4>
+          <h6 class="text-center" id="creator-name"></h6>
+          <form method="post" class="text-center mt-5">
+            <select class="form-control" id="answer-list" name="answer">
+
+            </select>
+            <button class="btn default-btn" type="submit">Vote</button>
+          </form>
+        </div>
+        <div class="col-lg">
+          <canvas id="poll-chart"></canvas>
         </div>
       </div>
     </div>
