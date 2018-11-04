@@ -18,17 +18,15 @@ function loadPollsOf(username) {
       const pollName = pollsArray[i]["poll-name"];
 
       if (i > pollsArray.length - 11) {
-        newHTML = newHTML +
+        newHTML +=
           "<div class=\"poll-btn\"> \
             <div class=\"row\"> \
-              <div class=\"col-10\"> \
-                <a class=\"poll-link\" href=\"/poll/" + pollName +  "\"> \
-                  <h6 class=\"poll-name\">" + pollName + "</h6> \
-                </a> \
-              </div> \
-              <div class=\"col-2 my-auto\"> \
-                <a class=\"btn default-btn\" href=\"/poll/" + pollName + "/changepoll\">Edit</a> \
-                <button class=\"btn btn-danger delete-modal-btn\">Delete</button> \
+              <a class=\"col-sm poll-link\" href=\"/poll/" + pollName +  "\"> \
+                <h6 class=\"poll-name\">" + pollName + "</h6> \
+              </a> \
+              <div class=\"col-sm my-auto\"> \
+                <a class=\"btn default-btn float-right m-1\" href=\"/poll/" + pollName + "/changepoll\">Edit</a> \
+                <a><button class=\"btn btn-danger delete-modal-btn float-right m-1\">Delete</button></a> \
               </div> \
             </div> \
             <div class=\"modal\"> \
@@ -47,17 +45,15 @@ function loadPollsOf(username) {
             </div> \
           </div>";
       } else {
-        newHTML = newHTML +
+        newHTML +=
           "<div class=\"poll-btn hidden\"> \
             <div class=\"row\"> \
-              <div class=\"col-10\"> \
-                <a class=\"poll-link\" href=\"/poll/" + pollName +  "\"> \
-                  <h6 class=\"poll-name\">" + pollName + "</h6> \
-                </a> \
-              </div> \
-              <div class=\"col-2 my-auto\"> \
-                <a class=\"btn default-btn\" href=\"/poll/" + pollName + "/changepoll\">Edit</a> \
-                <button class=\"btn btn-danger delete-modal-btn\">Delete</button> \
+              <a class=\"col-sm poll-link\" href=\"/poll/" + pollName +  "\"> \
+                <h6 class=\"poll-name\">" + pollName + "</h6> \
+              </a> \
+              <div class=\"col-sm my-auto\"> \
+                <a class=\"btn default-btn float-right m-1\" href=\"/poll/" + pollName + "/changepoll\">Edit</a> \
+                <button class=\"btn btn-danger delete-modal-btn float-right m-1\">Delete</button> \
               </div> \
             </div> \
             <div class=\"modal\"> \
