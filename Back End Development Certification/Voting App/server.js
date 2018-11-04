@@ -9,6 +9,18 @@ const EMAIL_REGEXP = /^.+@.+\.{1}.+$/i;
 const PASSWORD_REGEXP = /^.{8}.*$/i;
 const POLL_NAME_REGEXP = ALPHANUMERIC_REGEXP;
 const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
+const ONE_MEGABYTE = 1048576;
+
+async function checkForDatabaseLimit(db) {
+  const stats = await db.runCommand({ dbStats: 1, scale: ONE_MEGABYTE });
+  if (stats.dataSize > 499) {
+    const pollsCollection = db.collection("polls");
+    const polls = await pollsCollection.find({}).toArray();
+    if (polls.length > 0) {
+      pollsCollection.remove({"_id": polls[0]["_id"]});
+    }
+  }
+}
 
 async function isLoggedIn(sessionId, username) {
   if (sessionId && username) {
@@ -105,6 +117,7 @@ async function createNewPoll(pollName, answers, username) {
     }
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
+    await checkForDatabaseLimit();
     const pollsCollection = db.collection("polls");
     const findPoll = await pollsCollection.find({"poll-name": pollName}).toArray();
 
