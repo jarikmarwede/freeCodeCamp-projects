@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Jarik Marwede">
+    <title>Product Landing Page</title>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <header id="header">
+      <div id="header-branding">
+        <img id="header-img" src="https://cdn.pixabay.com/photo/2014/04/02/10/52/chocolate-chip-cookies-304801_640.png" alt="Brand logo">
+      <h1 id="header-title">CookieDel</h1>
+      </div>
+      <nav id="nav-bar">
+        <a class="nav-link" href="#product-information"><p>Product Information</p></a>
+        <a class="nav-link" href="#video"><p>Cookie Tutorial</p></a>
+        <a class="nav-link" href="#pricing"><p>Pricing</p></a>
+      </nav>
+    </header>
+
+    <div class="main-content">
+      <h2>Premium Cookie Delivery Service</h2>
+      <form id="form" action="https://www.freecodecamp.com/email-submit" method="post">
+        <input id="email" type="email" name="email" placeholder="Enter you e-mail address">
+        <input id="submit" type="submit" value="Submit">
+      </form>
+      <div id="product-information">
+        <div class="product-information">
+          <i class="fas fa-hand-paper fa-7x"></i>
+          <p class="info-text">Handmade, Premium Cookies</p>
+        </div>
+        <div class="product-information">
+          <i class="fas fa-truck fa-7x"></i><p class="info-text">Fast delivery</p>
+        </div>
+        <div class="product-information">
+          <i class="fas fa-cookie fa-7x"></i><p class="info-text">Extremely delicious</p>
+        </div>
+      </div>
+      <div class="embed-container"><iframe id="video" src="https://www.youtube-nocookie.com/embed/rEdl2Uetpvo?controls=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
+      <div id="pricing">
+        <div class="price-container">
+          <h3>5 Cookies</h3>
+          <p>Good for trying them out</p>
+          <a class="price-button" href="#">5€</a>
+        </div>
+        <div class="price-container">
+          <h3>15 Cookies</h3>
+          <p>For cookie lovers</p>
+          <a class="price-button" href="#">13.99€</a>
+        </div>
+        <div class="price-container">
+          <h3>All of them</h3>
+          <p>Request a custom amount</p>
+          <a class="price-button" href="#">Custom Price</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

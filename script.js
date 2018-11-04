@@ -18,6 +18,7 @@ const BACK_END_PROJECTS = [
 ]
 const RESPONSIVE_WEB_DESIGN_PROJECTS = [
   {name: "Personal Portfolio Webpage", link: "./Responsive Web Design Certification/Personal Portfolio Webpage/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Personal%20Portfolio%20Webpage"},
+  {name: "Product Landing Page", link: "./Responsive Web Design Certification/Product Landing Page/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Product%20Landing%20Page"},
   {name: "Survey Form", link: "./Responsive Web Design Certification/Survey Form/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Survey%20Form"},
   {name: "Tribute Page", link: "./Responsive Web Design Certification/Tribute Page/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Tribute%20Page"}
 ]
