@@ -23,14 +23,19 @@ const RESPONSIVE_WEB_DESIGN_PROJECTS = [
   {name: "Technical Documentation Page", link: "./Responsive Web Design Certification/Technical Documentation Page/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Technical%20Documentation%20Page"},
   {name: "Tribute Page", link: "./Responsive Web Design Certification/Tribute Page/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Tribute%20Page"}
 ]
+const APIS_AND_MICROSERVICES_PROJECTS = [
+  {name: "Exercise Tracker", link: "./Apis And Microservices Certification/Exercise Tracker/index.html", src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Exercise%20Tracker"}
+]
 const CERTIFICATIONS = [
   {projects: FRONT_END_PROJECTS, container_id: "front-end-projects"},
   {projects: BACK_END_PROJECTS, container_id: "back-end-projects"},
-  {projects: RESPONSIVE_WEB_DESIGN_PROJECTS, container_id: "responsive-web-design-projects"}
+  {projects: RESPONSIVE_WEB_DESIGN_PROJECTS, container_id: "responsive-web-design-projects"},
+  {projects: APIS_AND_MICROSERVICES_PROJECTS, container_id: "apis-and-microservices-projects"}
 ]
 Object.freeze(FRONT_END_PROJECTS);
 Object.freeze(BACK_END_PROJECTS);
 Object.freeze(RESPONSIVE_WEB_DESIGN_PROJECTS);
+Object.freeze(APIS_AND_MICROSERVICES_PROJECTS);
 Object.freeze(CERTIFICATIONS);
 
 function loadProjects() {
