@@ -1,5 +1,5 @@
 # freeCodeCamp-projects
-All of the [freeCodeCamp](https://www.freecodecamp.org/jarikmarwede) projects I built for the [Front End Development Certification](https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end), the Back End Development Certification and the [Responsive Web Design Certification](https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design).
+All of the [freeCodeCamp](https://www.freecodecamp.org/jarikmarwede) projects I built to get their certifications.
 
 Go to https://jarikmarwede.github.io/freeCodeCamp-projects/ to check them out.
 
