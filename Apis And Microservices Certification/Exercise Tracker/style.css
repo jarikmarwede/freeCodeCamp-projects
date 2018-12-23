@@ -4,10 +4,10 @@
 }
 
 body {
-  font-family:sans-serif;
-  margin: 25px;
-  color: #222;
   background-color: #f5f5f5;
+  color: #222;
+  font-family: sans-serif;
+  margin: 25px;
 }
 
 h1 {
@@ -24,32 +24,32 @@ p {
 }
 
 form {
-  margin-bottom: 25px;
-  padding: 15px;
   background-color: #87D37C;
-  display: inline-block;
-  width: 100%;
-  max-width: 340px;
   border-radius: 5px;
+  display: inline-block;
+  margin-bottom: 25px;
+  max-width: 340px;
+  padding: 15px;
+  width: 100%;
 }
 
 input {
+  border: 1px solid lightgrey;
+  border-radius: 3px;
   display: block;
+  font-size: 16px;
   margin-bottom: 10px;
   padding: 5px;
   width: 100%;
-  border: 1px solid lightgrey;
-  border-radius: 3px;
-  font-size: 16px;
 }
 
 input[type=submit] {
-  font-size: 16px;
-  border-radius: 3px;
   background-color: #E4F1FE;
   border: 1px solid grey;
+  border-radius: 3px;
   box-shadow: 2px 2px #999;
   cursor: pointer;
+  font-size: 16px;
 }
 
 input[type=submit]:hover {
@@ -57,8 +57,8 @@ input[type=submit]:hover {
 }
 
 code {
+  background-color: #FFFEC4;
   font-family: monospace;
   font-size: 1.2em;
-  background-color: #FFFEC4;
   padding: 2px;
 }
