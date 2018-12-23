@@ -1,3 +1,4 @@
+const fs = require("fs");
 const multer = require("multer");
 const upload = multer({ dest: 'uploads/' })
 const express = require('express');
@@ -12,6 +13,7 @@ app.post("/upload", upload.single("upfile"), (req, res, next) => {
   } else {
     res.send({});
   }
+  fs.unlink(req.file.destination + "/" + req.file.filename, (err) => {console.log(err)});
 });
 
 module.exports = app;
