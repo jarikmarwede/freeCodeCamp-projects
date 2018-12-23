@@ -17,7 +17,7 @@ mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || 'mongodb://localhost/e
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
-app.post("/api/exercise/new-user", (req, res) => {
+app.post("/exercise/new-user", (req, res) => {
   const user = new User({username: req.body.username});
   user.save((err, user) => {
     if (err) return res.sendStatus(500);
@@ -25,14 +25,14 @@ app.post("/api/exercise/new-user", (req, res) => {
   });
 });
 
-app.get("/api/exercise/users", (req, res) => {
+app.get("/exercise/users", (req, res) => {
   User.find({}, "username _id", (err, users) => {
     if (err) return res.sendStatus(500);
     res.status(200).send(users);
   });
 });
 
-app.post("/api/exercise/add", (req, res) => {
+app.post("/exercise/add", (req, res) => {
   User.findOne({_id: req.body.userId}, "_id username exercises", (err, user) => {
     if (err) return res.sendStatus(500);
     if (user) {
@@ -47,7 +47,7 @@ app.post("/api/exercise/add", (req, res) => {
   });
 });
 
-app.get("/api/exercise/log", (req, res) => {
+app.get("/exercise/log", (req, res) => {
   User.findById(req.query.userId, "_id username exercises", (err, user) => {
     if (err) return res.sendStatus(500);
     if (user) {

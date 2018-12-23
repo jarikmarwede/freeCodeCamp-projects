@@ -38,7 +38,7 @@ app.get("/:id", async (req, res) => {
   }
 });
 
-app.post("/api/shorturl/new", async (req, res) => {
+app.post("/shorturl/new", async (req, res) => {
   const inputUrl = req.body.url;
 
   if (inputUrl.search(/^http(s)?:\/\/(.)+(\.){1}(.)+/gi) != -1) {

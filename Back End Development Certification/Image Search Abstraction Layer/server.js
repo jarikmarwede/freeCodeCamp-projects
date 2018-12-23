@@ -7,7 +7,7 @@ const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL;
 const RapidAPI = new require('rapidapi-connect');
 const rapid = new RapidAPI(process.env.RAPID_API_KEY, '/connect/auth/' + process.env.RAPID_API_KEY);
 
-app.get("/api/imagesearch/*?", (req, res) => {
+app.get("/imagesearch/*?", (req, res) => {
   const searchString = req.params[0];
   const offset = req.query.offset;
   if (offset == undefined) {offset = 1};
@@ -36,7 +36,7 @@ app.get("/api/imagesearch/*?", (req, res) => {
   });
 });
 
-app.get("/api/latest/imagesearch/", (req, res) => {
+app.get("/latest/imagesearch/", (req, res) => {
   MongoClient.connect(databasePath, async function(err, client) {
     if (err) {
       console.log("Error connecting to database: " + err);

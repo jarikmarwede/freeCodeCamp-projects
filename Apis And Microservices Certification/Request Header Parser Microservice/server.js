@@ -1,7 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.get("/api/whoami", (req, res) => {
+app.get("/whoami", (req, res) => {
   const responseJSON = {
     "ipaddress": req.get("x-forwarded-for").split(",")[0],
     "language": req.get("accept-language").split(",")[0],
