@@ -13,10 +13,6 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
 app.get("/:id", async (req, res) => {
   if (parseInt(req.params.id) != NaN && Number.isInteger(parseInt(req.params.id))) {
     const urlId = parseInt(req.params.id);
@@ -89,6 +85,4 @@ function invalidUrl(res) {
   res.send({"error": "URL invalid"});
 };
 
-const listener = app.listen(process.env.PORT, () => {
-  console.log('The app is listening on port ' + listener.address().port);
-});
+module.exports = app;

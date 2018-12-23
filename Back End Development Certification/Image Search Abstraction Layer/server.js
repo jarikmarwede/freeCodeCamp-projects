@@ -7,12 +7,6 @@ const databasePath = process.env.DATABASE_PATH;
 const RapidAPI = new require('rapidapi-connect');
 const rapid = new RapidAPI(process.env.RAPID_API, '/connect/auth/' + process.env.RAPID_API);
 
-app.use(express.static('public'));
-
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
 app.get("/api/imagesearch/*?", (req, res) => {
   const searchString = req.params[0];
   const offset = req.query.offset;
@@ -57,6 +51,4 @@ app.get("/api/latest/imagesearch/", (req, res) => {
   });
 });
 
-const listener = app.listen(process.env.PORT, () => {
-  console.log('The app is listening on port ' + listener.address().port);
-});
+module.exports = app;

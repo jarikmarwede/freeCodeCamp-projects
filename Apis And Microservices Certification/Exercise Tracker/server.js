@@ -1,9 +1,6 @@
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
-
-const cors = require('cors')
-
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
@@ -17,16 +14,8 @@ const userSchema = new Schema({
 const User = mongoose.model("User", userSchema);
 mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
 
-app.use(cors())
-
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
-
-
-app.use(express.static('public'))
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/index.html')
-});
 
 app.post("/api/exercise/new-user", (req, res) => {
   const user = new User({username: req.body.username});
@@ -101,6 +90,4 @@ app.use((err, req, res, next) => {
     .send(errMessage)
 })
 
-const listener = app.listen(process.env.PORT || 3000, () => {
-  console.log('Your app is listening on port ' + listener.address().port)
-})
+module.exports = app;
