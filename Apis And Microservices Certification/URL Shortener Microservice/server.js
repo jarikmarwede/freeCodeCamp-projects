@@ -5,7 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const MongoClient = mongodb.MongoClient;
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.URL_SHORTENER_DATABASE_URL;
 const app = express();
 const lookup = util.promisify(dns.lookup);
 

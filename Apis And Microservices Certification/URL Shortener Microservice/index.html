@@ -3,11 +3,9 @@
   <head>
     <title>jm-url-shortener-microservice</title>
     <meta name="description" content="This is a URL Shortener Microservice built during a web development course on freeCodeCamp.org">
-    <link id="favicon" rel="icon" href="https://glitch.com/edit/favicon-app.ico" type="image/x-icon">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <link rel="stylesheet" href="/style.css">
   </head>
   <body>
@@ -23,14 +21,12 @@
         <li>"original_url" set to your URL and "short_url" set to the shortened version</li>
         <li>Or with an "error" argument set to the corresponding error message</li>
       </ul>
-      <form action="/api/shorturl/new" method="post">
+      <form action="https://jm-freecodecamp-projects.herokuapp.com/url-shortener-microservice/api/shorturl/new" method="post">
         <input name="url" placeholder="URL">
         <button type="submit">
           POST URL
         </button>
       </form>
     </div>
-
-    <script src="/client.js"></script>
   </body>
 </html>
