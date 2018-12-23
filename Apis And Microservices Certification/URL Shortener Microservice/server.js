@@ -9,7 +9,6 @@ const databaseUrl = process.env.DATABASE_URL;
 const app = express();
 const lookup = util.promisify(dns.lookup);
 
-app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

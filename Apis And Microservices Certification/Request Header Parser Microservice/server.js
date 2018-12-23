@@ -1,12 +1,6 @@
 const express = require('express');
 const app = express();
 
-app.use(express.static('public'));
-
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + '/index.html');
-});
-
 app.get("/api/whoami", (req, res) => {
   const responseJSON = {
     "ipaddress": req.get("x-forwarded-for").split(",")[0],
