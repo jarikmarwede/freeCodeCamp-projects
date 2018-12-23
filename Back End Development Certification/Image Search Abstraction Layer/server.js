@@ -3,17 +3,11 @@ const express = require('express');
 const app = express();
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const databasePath = process.env.DATABASE_PATH;
+const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL;
 const RapidAPI = new require('rapidapi-connect');
-const rapid = new RapidAPI(process.env.RAPID_API, '/connect/auth/' + process.env.RAPID_API);
+const rapid = new RapidAPI(process.env.RAPID_API_KEY, '/connect/auth/' + process.env.RAPID_API_KEY);
 
-app.use(express.static('public'));
-
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
-app.get("/api/imagesearch/*?", (req, res) => {
+app.get("/imagesearch/*?", (req, res) => {
   const searchString = req.params[0];
   const offset = req.query.offset;
   if (offset == undefined) {offset = 1};
@@ -42,7 +36,7 @@ app.get("/api/imagesearch/*?", (req, res) => {
   });
 });
 
-app.get("/api/latest/imagesearch/", (req, res) => {
+app.get("/latest/imagesearch/", (req, res) => {
   MongoClient.connect(databasePath, async function(err, client) {
     if (err) {
       console.log("Error connecting to database: " + err);
@@ -57,6 +51,4 @@ app.get("/api/latest/imagesearch/", (req, res) => {
   });
 });
 
-const listener = app.listen(process.env.PORT, () => {
-  console.log('The app is listening on port ' + listener.address().port);
-});
+module.exports = app;

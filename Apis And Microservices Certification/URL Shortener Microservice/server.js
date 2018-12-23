@@ -5,17 +5,12 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const MongoClient = mongodb.MongoClient;
-const databaseUrl = process.env.DATABASE_URL;
+const databaseUrl = process.env.URL_SHORTENER_DATABASE_URL;
 const app = express();
 const lookup = util.promisify(dns.lookup);
 
-app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + '/views/index.html');
-});
 
 app.get("/:id", async (req, res) => {
   if (parseInt(req.params.id) != NaN && Number.isInteger(parseInt(req.params.id))) {
@@ -43,7 +38,7 @@ app.get("/:id", async (req, res) => {
   }
 });
 
-app.post("/api/shorturl/new", async (req, res) => {
+app.post("/shorturl/new", async (req, res) => {
   const inputUrl = req.body.url;
 
   if (inputUrl.search(/^http(s)?:\/\/(.)+(\.){1}(.)+/gi) != -1) {
@@ -52,7 +47,7 @@ app.post("/api/shorturl/new", async (req, res) => {
     } catch(err) {
       invalidUrl(res);
     }
-    let shortUrl = req.protocol + '://' + req.get('host') + "/";
+    let shortUrl = req.protocol + '://' + req.get('host') + "/url-shortener-microservice/";
 
     MongoClient.connect(databaseUrl, async (err, client) => {
       if (err) {
@@ -89,6 +84,4 @@ function invalidUrl(res) {
   res.send({"error": "URL invalid"});
 };
 
-const listener = app.listen(process.env.PORT, () => {
-  console.log('The app is listening on port ' + listener.address().port);
-});
+module.exports = app;

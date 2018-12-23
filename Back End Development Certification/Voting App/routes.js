@@ -4,14 +4,14 @@ const app = express();
 const server = require("./server");
 
 // middleware
-app.use(express.static('public'));
+app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 // routes
-app.get("/", (req, res) => {
-  res.sendFile(__dirname + '/views/index.html');
+app.get("/", (request, response) => {
+  response.sendFile(__dirname + "/views/index.html");
 });
 
 app.post("/login", async (req, res) => {
@@ -195,8 +195,4 @@ app.get("/api/deletepoll/:poll", async (req, res) => {
     res.status(401);
     res.send({});
   }
-});
-
-const listener = app.listen(process.env.PORT, () => {
-  console.log('App listening on port ' + listener.address().port);
 });
