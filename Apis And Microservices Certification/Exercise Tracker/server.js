@@ -12,7 +12,7 @@ const userSchema = new Schema({
   }]
 }, {usePushEach: true});
 const User = mongoose.model("User", userSchema);
-mongoose.connect(process.env.MLAB_URI || 'mongodb://localhost/exercise-track' )
+mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || 'mongodb://localhost/exercise-tracker' );
 
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
