@@ -3,9 +3,9 @@ const express = require('express');
 const app = express();
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const databasePath = process.env.DATABASE_PATH;
+const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL;
 const RapidAPI = new require('rapidapi-connect');
-const rapid = new RapidAPI(process.env.RAPID_API, '/connect/auth/' + process.env.RAPID_API);
+const rapid = new RapidAPI(process.env.RAPID_API_KEY, '/connect/auth/' + process.env.RAPID_API_KEY);
 
 app.get("/api/imagesearch/*?", (req, res) => {
   const searchString = req.params[0];
