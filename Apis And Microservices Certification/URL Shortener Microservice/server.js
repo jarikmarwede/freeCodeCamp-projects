@@ -47,7 +47,7 @@ app.post("/shorturl/new", async (req, res) => {
     } catch(err) {
       invalidUrl(res);
     }
-    let shortUrl = req.protocol + '://' + req.get('host') + "/";
+    let shortUrl = req.protocol + '://' + req.get('host') + "/url-shortener-microservice/";
 
     MongoClient.connect(databaseUrl, async (err, client) => {
       if (err) {
