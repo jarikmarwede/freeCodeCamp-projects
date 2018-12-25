@@ -1,7 +1,7 @@
-const express = require('express')
-const app = express()
-const bodyParser = require('body-parser')
-const mongoose = require('mongoose')
+const express = require("express");
+const app = express();
+const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
@@ -12,10 +12,10 @@ const userSchema = new Schema({
   }]
 }, {usePushEach: true});
 const User = mongoose.model("User", userSchema);
-mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || 'mongodb://localhost/exercise-tracker' );
+mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || "mongodb://localhost/exercise-tracker" );
 
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 app.post("/exercise/new-user", (req, res) => {
   const user = new User({username: req.body.username});
@@ -68,26 +68,26 @@ app.get("/exercise/log", (req, res) => {
 
 // Not found middleware
 app.use((req, res, next) => {
-  return next({status: 404, message: 'not found'})
-})
+  return next({status: 404, message: "not found"})
+});
 
 // Error Handling middleware
-app.use((err, req, res, next) => {
-  let errCode, errMessage
+app.use((err, req, res) => {
+  let errCode, errMessage;
 
   if (err.errors) {
     // mongoose validation error
-    errCode = 400 // bad request
-    const keys = Object.keys(err.errors)
+    errCode = 400; // bad request
+    const keys = Object.keys(err.errors);
     // report the first validation error
     errMessage = err.errors[keys[0]].message
   } else {
     // generic or custom error
-    errCode = err.status || 500
-    errMessage = err.message || 'Internal Server Error'
+    errCode = err.status || 500;
+    errMessage = err.message || "Internal Server Error"
   }
-  res.status(errCode).type('txt')
+  res.status(errCode).type("txt")
     .send(errMessage)
-})
+});
 
 module.exports = app;

@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Exercise Tracker | Free Code Camp</title>
+    <title>Exercise Tracker</title>
     <meta charset="UTF-8">
-    <link href="https://fonts.googles.com/css?family=Roboto" rel="stylesheet" type="text/css">
     <link href="./style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
@@ -12,21 +11,36 @@
       <form action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/new-user" method="post">
         <h3>Create a New User</h3>
         <p><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/new-user</code></p>
-        <input id="uname" type="text" name="username" placeholder="username">
+        <label for="username">Username:</label>
+        <input id="username" type="text" name="username" placeholder="username" required>
         <input type="submit" value="Submit">
       </form>
       <form action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add" method="post">
         <h3>Add exercises</h3>
         <p><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add</code></p>
-        <input id="uid" type="text" name="userId" placeholder="userId*">
-        <input id="desc" type="text" name="description" placeholder="description*">
-        <input id="dur" type="text" name="duration" placeholder="duration* (mins.)">
-        <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)">
+        <label for="add-exercise-userId">User ID:</label>
+        <input id="add-exercise-userId" type="text" name="userId" placeholder="User ID" required>
+        <label for="add-exercise-description">Description:</label>
+        <input id="add-exercise-description" type="text" name="description" placeholder="Description" required>
+        <label for="add-exercise-duration">Duration:</label>
+        <input id="add-exercise-duration" type="number" name="duration" placeholder="Duration (mins.)" min="0" required>
+        <label for="add-exercise-date">Date:</label>
+        <input id="add-exercise-date" type="date" name="date" placeholder="Date (yyyy-mm-dd)">
         <input type="submit" value="Submit">
       </form>
-      <p><strong>GET users's exercise log: </strong><code>GET https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code></p>
-      <p><strong>{ }</strong> = required, <strong>[ ]</strong> = optional</p>
-      <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
+      <form action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log">
+        <h3>Get users's exercise log:</h3>
+        <p><code>GET jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log</code></p>
+        <label for="get-exercise-log-userId">User ID:</label>
+        <input id="get-exercise-log-userId" type="text" name="userId" placeholder="User ID" required>
+        <label for="get-exercise-log-from">From:</label>
+        <input id="get-exercise-log-from" type="date" name="from" placeholder="from">
+        <label for="get-exercise-log-to">To:</label>
+        <input id="get-exercise-log-to" type="date" name="to" placeholder="to">
+        <label for="get-exercise-log-limit">Limit:</label>
+        <input id="get-exercise-log-limit" type="number" name="limit" placeholder="limit" min="1">
+        <input type="submit" value="Submit">
+      </form>
     </div>
   </body>
 </html>
