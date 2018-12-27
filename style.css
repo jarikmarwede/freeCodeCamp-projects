@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
 }
 .title {
   text-align: center;
@@ -18,30 +19,28 @@ h3 {
 a {
   color: #1c6b2c;
 }
-header {
-  background-color: #1c6b2c;
-  padding-top: 1vmax;
-}
 nav {
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
   padding: 0;
+  text-align: center;
+  background-color: #1c6b2c;
 }
-nav a {
+nav a:not(.title-link) {
   border: 1px solid rgba(0, 0, 0, 0.1);
   color: white;
   font-size: 1rem;
   padding: 1rem;
-  text-align: center;
+
   text-decoration: none;
 }
-nav a:hover {
+nav a:not(.title-link):hover {
   background-color: #515452;
   background-color: rgba(0, 0, 0, 0.3);
 }
 main {
   padding: 0 2vmax;
+  grid-column-start: 2;
 }
 .introduction {
   font-size: 1.3rem;
@@ -98,15 +97,26 @@ main {
 }
 
 @media only screen and (min-width: 576px) {
-  header a {
-    font-size: 1.5rem;
-  }
   .project-card {
     flex-flow: row wrap;
   }
 }
 @media only screen and (min-width: 992px) {
-  main {
-    padding: 0 25%;
+  body {
+    display: grid;
+    grid-template-columns: 25% auto;
+  }
+  nav {
+    text-align: left;
+    height: 100vh;
+    top: 0;
+    position: sticky;
+    grid-column: 1 / 2;
+  }
+  nav a:not(.title-link) {
+    padding: 2rem 1rem;
+  }
+  .home-btn {
+    display: none;
   }
 }
