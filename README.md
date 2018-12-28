@@ -1,4 +1,5 @@
 # freeCodeCamp-projects
+
 All of the [freeCodeCamp](https://www.freecodecamp.org/jarikmarwede) projects I built to get their certifications.
 
 Go to [jarikmarwede.github.io/freeCodeCamp-projects/](https://jarikmarwede.github.io/freeCodeCamp-projects/) to check them out.
