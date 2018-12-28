@@ -5,7 +5,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 
 const MongoClient = mongodb.MongoClient;
-const databaseUrl = process.env.URL_SHORTENER_DATABASE_URL;
+const databaseUrl = process.env.URL_SHORTENER_DATABASE_URL || "mongodb://localhost/url-shortener-microservice";
 const app = express();
 const lookup = util.promisify(dns.lookup);
 
@@ -41,9 +41,9 @@ app.get("/:id", async (req, res) => {
 app.post("/shorturl/new", async (req, res) => {
   const inputUrl = req.body.url;
 
-  if (inputUrl.search(/^http(s)?:\/\/(.)+(\.){1}(.)+/gi) != -1) {
+  if (inputUrl.search(/^http(s)?:\/\/(.)+(\.){1}(.)+/gi) !== -1) {
     try {
-      const lookupResult = await lookup(inputUrl.split("://")[-1]);
+      await lookup(inputUrl.split("://")[-1]);
     } catch(err) {
       invalidUrl(res);
     }
@@ -82,6 +82,6 @@ app.post("/shorturl/new", async (req, res) => {
 function invalidUrl(res) {
   res.status(400);
   res.send({"error": "URL invalid"});
-};
+}
 
 module.exports = app;

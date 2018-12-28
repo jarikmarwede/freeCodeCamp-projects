@@ -11,6 +11,9 @@ const imageSearchAbstractionLayer = require("./Back End Development Certificatio
 
 const corsOptions = {
   origin: "jarikmarwede.github.io/freeCodeCamp-projects/"
+};
+if (process.env.NODE_ENV === "development") {
+  corsOptions.origin = "*";
 }
 
 app.use(cors(corsOptions));
@@ -24,4 +27,4 @@ app.use("/image-search-abstraction-layer", imageSearchAbstractionLayer);
 
 const listener = app.listen(process.env.PORT || 3000, () => {
   console.log('The app is listening on port ' + listener.address().port)
-})
+});

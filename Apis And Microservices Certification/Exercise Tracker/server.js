@@ -18,23 +18,24 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.post("/exercise/new-user", (req, res) => {
+  console.log(req.body);
   const user = new User({username: req.body.username});
   user.save((err, user) => {
-    if (err) return res.sendStatus(500);
+    if (err) return res.status(500).json({"error": "Could not add user"});
     res.status(201).send({username: user.username, _id: user._id});
   });
 });
 
 app.get("/exercise/users", (req, res) => {
   User.find({}, "username _id", (err, users) => {
-    if (err) return res.sendStatus(500);
+    if (err) return res.status(500).json("Could not find any user");
     res.status(200).send(users);
   });
 });
 
 app.post("/exercise/add", (req, res) => {
   User.findOne({_id: req.body.userId}, "_id username exercises", (err, user) => {
-    if (err) return res.sendStatus(500);
+    if (err) return res.status(500).json({"error": "Could not find user"});
     if (user) {
       user.exercises.push({description: req.body.description, duration: req.body.duration, date: req.body.date ? req.body.date : new Date().toISOString()});
       user.save((err, user) => {
@@ -49,7 +50,7 @@ app.post("/exercise/add", (req, res) => {
 
 app.get("/exercise/log", (req, res) => {
   User.findById(req.query.userId, "_id username exercises", (err, user) => {
-    if (err) return res.sendStatus(500);
+    if (err) return res.status(500).json({"error": "Could not find user"});
     if (user) {
       user.count = user.exercises.length;
       if (req.query.to) {

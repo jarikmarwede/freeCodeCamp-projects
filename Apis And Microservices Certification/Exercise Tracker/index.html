@@ -8,14 +8,14 @@
   <body>
     <h1>Exercise tracker</h1>
     <div class="actions-container">
-      <form action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/new-user" method="post">
+      <form id="create-user-form" action="https://jm-freecodecamp-projects.herokuapp.com/localhost:3000/exercise-tracker/exercise/new-user" method="post">
         <h3>Create a New User</h3>
         <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/new-user</code></p>
-        <label for="username">Username:</label>
-        <input id="username" type="text" name="username" placeholder="Username" required>
+        <label for="create-user-username">Username:</label>
+        <input id="create-user-username" type="text" name="username" placeholder="Username" required>
         <input type="submit" value="Create">
       </form>
-      <form action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add" method="post">
+      <form id="add-exercise-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add" method="post">
         <h3>Add exercises</h3>
         <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add</code></p>
         <label for="add-exercise-userId">User ID:</label>
@@ -28,7 +28,7 @@
         <input id="add-exercise-date" type="date" name="date" placeholder="Date">
         <input type="submit" value="Add">
       </form>
-      <form action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log">
+      <form id="get-exercise-log-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log">
         <h3>Get users's exercise log:</h3>
         <p class="action-description"><code>GET jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log</code></p>
         <label for="get-exercise-log-userId">User ID:</label>
@@ -42,5 +42,11 @@
         <input type="submit" value="Get">
       </form>
     </div>
+    <p class="code-wrapper">
+      Output: <br>
+      <code id="api-response"></code>
+    </p>
+
+    <script src="./script.js"></script>
   </body>
 </html>

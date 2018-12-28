@@ -69,3 +69,14 @@ input[type=submit]:hover {
     font-family: monospace;
     font-size: 1.2em;
 }
+
+.code-wrapper {
+    background-color: #494949;
+    color: white;
+    padding: 1rem;
+    word-break: break-all;
+}
+#api-response {
+    font-family: monospace;
+    width: 100%;
+}

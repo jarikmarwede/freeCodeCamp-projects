@@ -3,14 +3,13 @@ const express = require('express');
 const app = express();
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
-const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL;
+const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL || "mongodb://localhost/image-search-abstraction-layer";
 const RapidAPI = new require('rapidapi-connect');
 const rapid = new RapidAPI(process.env.RAPID_API_KEY, '/connect/auth/' + process.env.RAPID_API_KEY);
 
 app.get("/imagesearch/*?", (req, res) => {
   const searchString = req.params[0];
-  const offset = req.query.offset;
-  if (offset == undefined) {offset = 1};
+  const offset = req.query.offset || 1;
   const APICallString = "https://contextualwebsearch-websearch-v1.p.mashape.com/api/Search/ImageSearchAPI?count=" + offset * 10 + "&q=" + searchString + "&autocorrect=false";
   unirest.get(APICallString).header("X-Mashape-Key", process.env.X_MASHAPE_KEY).header("X-Mashape-Host", "contextualwebsearch-websearch-v1.p.mashape.com").end(function (result) {
     const images = result.body.value.slice(offset * 10 - 10, offset * 10);
