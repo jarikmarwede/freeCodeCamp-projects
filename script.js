@@ -1,70 +1,3 @@
-const FRONT_END_PROJECTS = [
-  {
-    name: "JavaScript Calculator",
-    link:
-      "./Front End Development Certification/JavaScript Calculator/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/JavaScript%20Calculator"
-  },
-  {
-    name: "Local Wheather",
-    link: "./Front End Development Certification/Local Weather/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Local%20Weather"
-  },
-  {
-    name: "Pomodoro Clock",
-    link: "./Front End Development Certification/Pomodoro Clock/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Pomodoro%20Clock"
-  },
-  {
-    name: "Random Quote Machine",
-    link:
-      "./Front End Development Certification/Random Quote Machine/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Random%20Quote%20Machine"
-  },
-  {
-    name: "Simon Game",
-    link: "./Front End Development Certification/Simon Game/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Simon%20Game"
-  },
-  {
-    name: "Tic Tac Toe Game",
-    link: "./Front End Development Certification/Tic Tac Toe Game/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Tic%20Tac%20Toe%20Game"
-  },
-  {
-    name: "Twitch API",
-    link: "./Front End Development Certification/Twitch API/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Twitch%20API"
-  },
-  {
-    name: "Wikipedia Viewer",
-    link: "./Front End Development Certification/Wikipedia Viewer/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Wikipedia%20Viewer"
-  }
-];
-const BACK_END_PROJECTS = [
-  {
-    name: "Image Search Abstraction Layer",
-    link:
-      "./Back End Development Certification/Image Search Abstraction Layer/index.html",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Image%20Search%20Abstraction%20Layer"
-  },
-  {
-    name: "Voting App",
-    link: "https://jm-voting-app.glitch.me",
-    src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Voting%20App"
-  }
-];
 const RESPONSIVE_WEB_DESIGN_PROJECTS = [
   {
     name: "Personal Portfolio Webpage",
@@ -98,6 +31,28 @@ const RESPONSIVE_WEB_DESIGN_PROJECTS = [
     link: "./Responsive Web Design Certification/Tribute Page/index.html",
     src:
       "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Tribute%20Page"
+  }
+];
+const FRONT_END_LIBRARIES_PROJECTS = [
+  {
+    name: "Random Quote Machine",
+    link:
+        "./Front End Development Certification/Random Quote Machine/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Random%20Quote%20Machine"
+  },
+  {
+    name: "JavaScript Calculator",
+    link:
+        "./Front End Development Certification/JavaScript Calculator/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/JavaScript%20Calculator"
+  },
+  {
+    name: "Pomodoro Clock",
+    link: "./Front End Development Certification/Pomodoro Clock/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Pomodoro%20Clock"
   }
 ];
 const APIS_AND_MICROSERVICES_PROJECTS = [
@@ -136,22 +91,80 @@ const APIS_AND_MICROSERVICES_PROJECTS = [
       "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Exercise%20Tracker"
   }
 ];
+const FRONT_END_PROJECTS = [
+  {
+    name: "Local Wheather",
+    link: "./Front End Development Certification/Local Weather/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Local%20Weather"
+  },
+  {
+    name: "Simon Game",
+    link: "./Front End Development Certification/Simon Game/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Simon%20Game"
+  },
+  {
+    name: "Tic Tac Toe Game",
+    link: "./Front End Development Certification/Tic Tac Toe Game/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Tic%20Tac%20Toe%20Game"
+  },
+  {
+    name: "Twitch API",
+    link: "./Front End Development Certification/Twitch API/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Twitch%20API"
+  },
+  {
+    name: "Wikipedia Viewer",
+    link: "./Front End Development Certification/Wikipedia Viewer/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Wikipedia%20Viewer"
+  }
+];
+const BACK_END_PROJECTS = [
+  {
+    name: "Image Search Abstraction Layer",
+    link:
+        "./Back End Development Certification/Image Search Abstraction Layer/index.html",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Image%20Search%20Abstraction%20Layer"
+  },
+  {
+    name: "Voting App",
+    link: "https://jm-voting-app.glitch.me",
+    src:
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Voting%20App"
+  }
+];
 const CERTIFICATIONS = [
-  { projects: FRONT_END_PROJECTS, container_id: "front-end-projects" },
-  { projects: BACK_END_PROJECTS, container_id: "back-end-projects" },
   {
     projects: RESPONSIVE_WEB_DESIGN_PROJECTS,
     container_id: "responsive-web-design-projects"
   },
   {
+    projects: FRONT_END_LIBRARIES_PROJECTS,
+    container_id: "front-end-libraries-projects"
+  },
+  {
     projects: APIS_AND_MICROSERVICES_PROJECTS,
     container_id: "apis-and-microservices-projects"
+  },
+  {
+    projects: FRONT_END_PROJECTS,
+    container_id: "front-end-projects"
+  },
+  {
+    projects: BACK_END_PROJECTS,
+    container_id: "back-end-projects"
   }
 ];
+Object.freeze(RESPONSIVE_WEB_DESIGN_PROJECTS);
+Object.freeze(FRONT_END_LIBRARIES_PROJECTS);
+Object.freeze(APIS_AND_MICROSERVICES_PROJECTS);
 Object.freeze(FRONT_END_PROJECTS);
 Object.freeze(BACK_END_PROJECTS);
-Object.freeze(RESPONSIVE_WEB_DESIGN_PROJECTS);
-Object.freeze(APIS_AND_MICROSERVICES_PROJECTS);
 Object.freeze(CERTIFICATIONS);
 
 function loadProjects() {
