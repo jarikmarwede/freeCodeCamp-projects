@@ -14,16 +14,21 @@ form > * {
   text-align: center;
 }
 .submit-btn {
-  background-color: #d34a00;
-  border: none;
-  border-radius: 2px;
-  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
-  font-size: 1rem;
-  padding: 0.5rem;
+background-color: #d34a00;
+border: none;
+border-radius: 2px;
+box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+font-size: 1rem;
+padding: 0.5rem;
+}
+.code-wrapper {
+  background: #f2f2f2;
+  color: black;
+  padding: 1rem;
 }
 
 @media only screen and (min-width: 992px) {
-  form {
+  form, .code-wrapper {
     margin: 1rem 25%;
   }
 }

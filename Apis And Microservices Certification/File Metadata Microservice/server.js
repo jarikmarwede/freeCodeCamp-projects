@@ -1,19 +1,21 @@
 const fs = require("fs");
 const multer = require("multer");
-const upload = multer({ dest: 'uploads/' })
-const express = require('express');
+const upload = multer({ dest: "uploads/" });
+const express = require("express");
 const app = express();
 
-app.post("/upload", upload.single("upfile"), (req, res, next) => {
+app.post("/upload", upload.single("upfile"), (req, res) => {
   if (req.file) {
-    res.send({
-      "filename": req.file.originalname,
-      "size": req.file.size
+    res.status(200).json({
+      filename: req.file.originalname,
+      size: req.file.size
+    });
+    fs.unlink(req.file.destination + "/" + req.file.filename, err => {
+      if (err) console.log(err);
     });
   } else {
-    res.send({});
+    res.status(400).json({"error": "No file uploaded"});
   }
-  fs.unlink(req.file.destination + "/" + req.file.filename, (err) => {console.log(err)});
 });
 
 module.exports = app;
