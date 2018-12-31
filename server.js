@@ -13,6 +13,7 @@ const corsOptions = {
   origin: "jarikmarwede.github.io/freeCodeCamp-projects/"
 };
 if (process.env.NODE_ENV === "development") {
+  console.log("Starting in development mode");
   corsOptions.origin = "*";
 }
 

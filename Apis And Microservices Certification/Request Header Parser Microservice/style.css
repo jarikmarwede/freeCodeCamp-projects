@@ -1,17 +1,35 @@
 body {
   background-color: #12a9e5;
 }
-a {
-  color: #3fc6fc;
-}
 p {
   font-family: Tahoma, Geneva, sans-serif;
+}
+.button-wrapper {
+  text-align: center;
+}
+button {
+  background: #12a9e5;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 4px 2px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  color: white;
+  font-size: 1rem;
+  padding: 0.5rem;
 }
 .container {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   color: white;
   margin: 1rem 0;
+  padding: 1rem;
+}
+.container > * {
+  margin: 1.5rem 0;
+}
+.code-wrapper {
+  background: #333;
+  color: white;
   padding: 1rem;
 }
 
