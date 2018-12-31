@@ -13,9 +13,17 @@
       <p>
         This is a Timestamp Microservice built during a web development course on freeCodeCamp.org
       </p>
-      <p>
-        The API can be accessed via <a href="https://jm-freecodecamp-projects.herokuapp.com/timestamp-microservice/timestamp/">jm-freecodecamp-projects.herokuapp.com/timestamp-microservice/timestamp/&lt;yourDateString&gt;</a>. If you don't pass a date string as an argument it uses the current date.
+      <form id="get-timestamp-form" action="http://localhost:3000/timestamp-microservice/timestamp">
+        <label for="date">Date:</label>
+        <input id="date" name="date" type="date">
+        <input type="submit" value="Get timestamp">
+      </form>
+      <p class="code-wrapper">
+        Output:<br>
+        <code id="api-response"></code>
       </p>
     </div>
+
+    <script src="script.js"></script>
   </body>
 </html>
