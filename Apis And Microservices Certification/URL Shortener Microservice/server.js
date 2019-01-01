@@ -3,6 +3,8 @@ const dns = require("dns");
 const mongodb = require("mongodb");
 const express = require("express");
 const bodyParser = require("body-parser");
+const multer = require("multer");
+const upload = multer();
 
 const MongoClient = mongodb.MongoClient;
 const databaseUrl = process.env.URL_SHORTENER_DATABASE_URL || "mongodb://localhost/url-shortener-microservice";
@@ -13,7 +15,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/:id", async (req, res) => {
-  if (parseInt(req.params.id) != NaN && Number.isInteger(parseInt(req.params.id))) {
+  if (!isNaN(parseInt(req.params.id)) && Number.isInteger(parseInt(req.params.id))) {
     const urlId = parseInt(req.params.id);
 
     MongoClient.connect(databaseUrl, async (err, client) => {
@@ -38,10 +40,13 @@ app.get("/:id", async (req, res) => {
   }
 });
 
-app.post("/shorturl/new", async (req, res) => {
+app.post("/shorturl/new", upload.none(), async (req, res) => {
   const inputUrl = req.body.url;
+  if (inputUrl === undefined) {
+    res.status(400).json({"error": "No url was specified"});
+  }
 
-  if (inputUrl.search(/^http(s)?:\/\/(.)+(\.){1}(.)+/gi) !== -1) {
+  if (inputUrl.search(/^http(s)?:\/\/(.)+(\.)(.)+/gi) !== -1) {
     try {
       await lookup(inputUrl.split("://")[-1]);
     } catch(err) {
@@ -70,7 +75,7 @@ app.post("/shorturl/new", async (req, res) => {
           "original_url": inputUrl,
           "short_url": shortUrl
         };
-        res.send(responseJSON);
+        res.status(200).json(responseJSON);
       }
     });
   } else {
@@ -80,8 +85,7 @@ app.post("/shorturl/new", async (req, res) => {
 
 
 function invalidUrl(res) {
-  res.status(400);
-  res.send({"error": "URL invalid"});
+  res.status(400).json({"error": "URL invalid"});
 }
 
 module.exports = app;
