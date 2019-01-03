@@ -42,6 +42,11 @@ const FRONT_END_LIBRARIES_PROJECTS = [
         "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Random%20Quote%20Machine"
   },
   {
+    name: "Markdown Previewer",
+    link: "./Front End Development Certification/Markdown Previewer/index.html",
+    src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Markdown%20Previewer"
+  },
+  {
     name: "JavaScript Calculator",
     link:
         "./Front End Development Certification/JavaScript Calculator/index.html",
