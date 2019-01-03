@@ -4,10 +4,12 @@ renderer.link = function(href, title, text) {
 };
 
 function parseMarkdown(markdown) {
-  document.getElementById("preview").innerHTML = marked(markdown, {
+  const markdownOutput = marked(markdown, {
     breaks: true,
     renderer: renderer
   });
+  document.getElementById("preview").innerHTML = markdownOutput;
+  document.getElementById("code").innerText = markdownOutput;
 }
 
 document.addEventListener("DOMContentLoaded", () => {

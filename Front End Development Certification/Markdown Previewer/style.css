@@ -1,0 +1,99 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  background: #2fcae2;
+  color: white;
+  display: grid;
+  font-family: Arial Black, Arial Bold, Gadget, sans-serif;
+  grid-template-columns: 1fr;
+  grid-gap: 1%;
+  justify-items: center;
+  margin: 1rem 0;
+}
+.container {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #30c1d9;
+  border-radius: 5px;
+  box-shadow: 2px 2px 4px 4px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-flow: column;
+  padding: 1rem;
+  width: 95%;
+  min-width: 0;
+}
+.container > textarea, .container > div {
+  width: 100%;
+  height: 100%;
+  margin: 0.5rem 0;
+}
+
+#editor {
+  background: rgba(0, 0, 0, 0.2);
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-family: monaco,Consolas,Lucida Console,monospace;
+  padding: 1rem;
+  resize: none;
+  overflow: auto;
+  white-space: pre;
+}
+#preview {
+  font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+}
+#preview h1 {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.2);
+}
+#preview h2 {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.2);
+}
+#preview pre > code {
+  display: inline-block;
+  padding: 1rem;
+  overflow-x: auto;
+  width: 100%;
+}
+#preview code {
+  background: rgba(0, 0, 0, 0.4);
+}
+#preview blockquote {
+  border-left: 5px solid rgba(0, 0, 0, 0.3);
+  padding: 0 0.5rem;
+}
+#preview img {
+  max-width: 100%;
+}
+#preview a {
+  color: #25f7ff;
+  text-decoration: none;
+}
+#preview a:hover {
+  text-decoration: underline;
+}
+#preview table {
+  border-collapse: collapse;
+  text-align: center;
+  width: 100%;
+}
+#preview table, td, th {
+  border: 3px solid rgba(0, 0, 0, 0.5);
+}
+#preview td, th {
+  padding: 0.5rem 1rem;
+}
+#preview th {
+  background: rgba(0, 0, 0, 0.2);
+}
+#code {
+  font-family: monaco, Consolas, Lucida Console, monospace;
+}
+
+@media screen and (min-width: 1200px) {
+  body {
+    grid-template-columns: 1fr 1fr;
+  }
+  .container {
+    padding: 3rem 2rem;
+  }
+}
