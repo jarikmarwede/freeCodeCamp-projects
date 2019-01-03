@@ -37,27 +37,27 @@ const FRONT_END_LIBRARIES_PROJECTS = [
   {
     name: "Random Quote Machine",
     link:
-        "./Front End Development Certification/Random Quote Machine/index.html",
+        "./Front End Libraries Certification/Random Quote Machine/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Random%20Quote%20Machine"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Random%20Quote%20Machine"
   },
   {
     name: "Markdown Previewer",
-    link: "./Front End Development Certification/Markdown Previewer/index.html",
+    link: "./Front End Libraries Certification/Markdown Previewer/index.html",
     src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Markdown%20Previewer"
   },
   {
     name: "JavaScript Calculator",
     link:
-        "./Front End Development Certification/JavaScript Calculator/index.html",
+        "./Front End Libraries Certification/JavaScript Calculator/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/JavaScript%20Calculator"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/JavaScript%20Calculator"
   },
   {
     name: "Pomodoro Clock",
-    link: "./Front End Development Certification/Pomodoro Clock/index.html",
+    link: "./Front End Libraries Certification/Pomodoro Clock/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Pomodoro%20Clock"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Pomodoro%20Clock"
   }
 ];
 const APIS_AND_MICROSERVICES_PROJECTS = [
