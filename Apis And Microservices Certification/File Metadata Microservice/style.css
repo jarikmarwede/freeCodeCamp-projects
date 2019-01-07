@@ -1,5 +1,13 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
 body {
   background-color: #dd7b46;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }
 form {
   background-color: rgba(0, 0, 0, 0.05);
@@ -14,17 +22,28 @@ form > * {
   text-align: center;
 }
 .submit-btn {
-background-color: #d34a00;
-border: none;
-border-radius: 2px;
-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
-font-size: 1rem;
-padding: 0.5rem;
+  background-color: #d34a00;
+  border: none;
+  border-radius: 2px;
+  box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  padding: 0.5rem;
 }
 .code-wrapper {
   background: #f2f2f2;
   color: black;
   padding: 1rem;
+}
+footer {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+footer a {
+  color: #7a2e04;
 }
 
 @media only screen and (min-width: 992px) {
