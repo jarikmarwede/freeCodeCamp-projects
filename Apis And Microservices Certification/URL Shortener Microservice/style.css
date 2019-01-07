@@ -1,5 +1,13 @@
+html, body {
+  height: 100%;
+}
 body {
   background-color: #d81724;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 p, li {
   font-family: Tahoma, Geneva, sans-serif;
@@ -22,21 +30,30 @@ button {
   margin: 0 auto;
   padding: 0.5rem;
 }
-.container {
+main {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
-  color: white;
-  margin: 1rem 0;
+  margin: 1rem;
   padding: 1rem;
 }
-
+footer {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+footer a {
+  color: #fc0f1e;
+}
 
 @media only screen and (min-width: 992px) {
   input {
     margin: 1rem 25%;
     width: 50%;
   }
-  .container {
+  main {
     margin: 1rem 25%;
   }
 }
