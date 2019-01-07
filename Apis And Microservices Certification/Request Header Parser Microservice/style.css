@@ -3,7 +3,6 @@ html, body {
 }
 body {
   background-color: #12a9e5;
-  color: #2d2d2d;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
