@@ -1,5 +1,13 @@
+html, body {
+  height: 100%;
+}
 body {
   background-color: #12a9e5;
+  color: #2d2d2d;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 p {
   font-family: Tahoma, Geneva, sans-serif;
@@ -17,14 +25,14 @@ button {
   font-size: 1rem;
   padding: 0.5rem;
 }
-.container {
+main {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 10px;
   color: white;
-  margin: 1rem 0;
+  margin: 1rem;
   padding: 1rem;
 }
-.container > * {
+main > * {
   margin: 1.5rem 0;
 }
 .code-wrapper {
@@ -32,9 +40,18 @@ button {
   color: white;
   padding: 1rem;
 }
+footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+
 
 @media only screen and (min-width: 992px) {
-  .container {
+  main {
     margin: 1rem 25%;
   }
 }
