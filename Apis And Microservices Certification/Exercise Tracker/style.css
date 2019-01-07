@@ -1,11 +1,17 @@
 * {
     box-sizing: border-box;
 }
+html, body {
+    height: 100%;
+}
 
 body {
     color: #2d2d2d;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
     font-family: sans-serif;
-    margin: 1.5rem;
+    margin: 0;
 }
 
 h1 {
@@ -74,9 +80,21 @@ input[type=submit]:hover {
     background-color: #494949;
     color: white;
     padding: 1rem;
+    margin: 0;
     word-break: break-all;
 }
 #api-response {
     font-family: monospace;
     width: 100%;
+}
+footer {
+    background: #f6909b;
+    padding: 1rem;
+    text-align: center;
+}
+footer p {
+    display: inline;
+}
+footer a {
+    color: #930532;
 }

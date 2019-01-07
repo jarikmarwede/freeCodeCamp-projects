@@ -3,49 +3,57 @@
   <head>
     <title>Exercise Tracker</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link href="./style.css" rel="stylesheet" type="text/css">
   </head>
   <body>
-    <h1>Exercise tracker</h1>
-    <div class="actions-container">
-      <form id="create-user-form" action="https://jm-freecodecamp-projects.herokuapp.com/localhost:3000/exercise-tracker/exercise/new-user" method="post">
-        <h3>Create a New User</h3>
-        <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/new-user</code></p>
-        <label for="create-user-username">Username:</label>
-        <input id="create-user-username" type="text" name="username" placeholder="Username" required>
-        <input type="submit" value="Create">
-      </form>
-      <form id="add-exercise-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add" method="post">
-        <h3>Add exercises</h3>
-        <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add</code></p>
-        <label for="add-exercise-userId">User ID:</label>
-        <input id="add-exercise-userId" type="text" name="userId" placeholder="User ID" required>
-        <label for="add-exercise-description">Description:</label>
-        <input id="add-exercise-description" type="text" name="description" placeholder="Description" required>
-        <label for="add-exercise-duration">Duration:</label>
-        <input id="add-exercise-duration" type="number" name="duration" placeholder="Duration (mins.)" min="0" required>
-        <label for="add-exercise-date">Date:</label>
-        <input id="add-exercise-date" type="date" name="date" placeholder="Date">
-        <input type="submit" value="Add">
-      </form>
-      <form id="get-exercise-log-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log">
-        <h3>Get users's exercise log:</h3>
-        <p class="action-description"><code>GET jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log</code></p>
-        <label for="get-exercise-log-userId">User ID:</label>
-        <input id="get-exercise-log-userId" type="text" name="userId" placeholder="User ID" required>
-        <label for="get-exercise-log-from">From:</label>
-        <input id="get-exercise-log-from" type="date" name="from" placeholder="From">
-        <label for="get-exercise-log-to">To:</label>
-        <input id="get-exercise-log-to" type="date" name="to" placeholder="To">
-        <label for="get-exercise-log-limit">Limit:</label>
-        <input id="get-exercise-log-limit" type="number" name="limit" placeholder="Limit" min="1">
-        <input type="submit" value="Get">
-      </form>
-    </div>
-    <p class="code-wrapper">
-      Output: <br>
-      <code id="api-response"></code>
-    </p>
+    <main>
+      <h1>Exercise tracker</h1>
+      <div class="actions-container">
+        <form id="create-user-form" action="https://jm-freecodecamp-projects.herokuapp.com/localhost:3000/exercise-tracker/exercise/new-user" method="post">
+          <h3>Create a New User</h3>
+          <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/new-user</code></p>
+          <label for="create-user-username">Username:</label>
+          <input id="create-user-username" type="text" name="username" placeholder="Username" required>
+          <input type="submit" value="Create">
+        </form>
+        <form id="add-exercise-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add" method="post">
+          <h3>Add exercises</h3>
+          <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add</code></p>
+          <label for="add-exercise-userId">User ID:</label>
+          <input id="add-exercise-userId" type="text" name="userId" placeholder="User ID" required>
+          <label for="add-exercise-description">Description:</label>
+          <input id="add-exercise-description" type="text" name="description" placeholder="Description" required>
+          <label for="add-exercise-duration">Duration:</label>
+          <input id="add-exercise-duration" type="number" name="duration" placeholder="Duration (mins.)" min="0" required>
+          <label for="add-exercise-date">Date:</label>
+          <input id="add-exercise-date" type="date" name="date" placeholder="Date">
+          <input type="submit" value="Add">
+        </form>
+        <form id="get-exercise-log-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log">
+          <h3>Get users's exercise log:</h3>
+          <p class="action-description"><code>GET jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log</code></p>
+          <label for="get-exercise-log-userId">User ID:</label>
+          <input id="get-exercise-log-userId" type="text" name="userId" placeholder="User ID" required>
+          <label for="get-exercise-log-from">From:</label>
+          <input id="get-exercise-log-from" type="date" name="from" placeholder="From">
+          <label for="get-exercise-log-to">To:</label>
+          <input id="get-exercise-log-to" type="date" name="to" placeholder="To">
+          <label for="get-exercise-log-limit">Limit:</label>
+          <input id="get-exercise-log-limit" type="number" name="limit" placeholder="Limit" min="1">
+          <input type="submit" value="Get">
+        </form>
+      </div>
+      <p class="code-wrapper">
+        Output: <br>
+        <code id="api-response"></code>
+      </p>
+    </main>
+    <footer>
+      <p>By <a href="https://jarikmarwe.de">Jarik Marwede</a>.</p>
+      <p>See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.</p>
+    </footer>
 
     <script src="./script.js"></script>
   </body>
