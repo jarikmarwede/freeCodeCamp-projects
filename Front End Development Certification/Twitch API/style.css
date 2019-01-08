@@ -1,4 +1,8 @@
+html, body {
+  height: 100%;
+}
 a {
+  color: #89229b;
   text-decoration: none;
 }
 p {
@@ -27,6 +31,11 @@ button:hover {
 }
 body {
   background-color: #280838;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 
 .category-btns {
@@ -45,7 +54,7 @@ body {
   background-color: #6f207c;
   border-color: #6f207c;
 }
-.main-container {
+main {
   background-color: #481363;
   padding: 4rem;
 }
@@ -81,6 +90,14 @@ body {
   color: white;
   margin-left: 1rem;
 }
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
 
 @media only screen and (max-width: 500px) {
   .channel-name {
@@ -88,7 +105,7 @@ body {
   }
 }
 @media only screen and (min-width: 992px) {
-  .main-container {
+  main {
     margin: 0 25%;
   }
   .main-channel-row {

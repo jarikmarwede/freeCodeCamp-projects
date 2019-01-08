@@ -4,7 +4,6 @@
 html, body {
     height: 100%;
 }
-
 body {
     color: #2d2d2d;
     display: flex;
@@ -13,11 +12,9 @@ body {
     font-family: sans-serif;
     margin: 0;
 }
-
 h1 {
     text-align: center;
 }
-
 form {
     background-color: #f6909b;
     border-radius: 5px;
@@ -30,11 +27,9 @@ form {
     padding: 1rem;
     word-break: break-all;
 }
-
 label {
     margin-left: 0.5rem;
 }
-
 input {
     border: none;
     border-radius: 100px;
@@ -45,7 +40,6 @@ input {
     padding: 10px;
     width: 100%;
 }
-
 input[type=submit] {
     background-color: #ff276c;
     border: none;
@@ -54,28 +48,23 @@ input[type=submit] {
     cursor: pointer;
     font-size: 16px;
 }
-
 input[type=submit]:hover {
     background-color: #cc1f55;
     color: white;
 }
-
 .actions-container {
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
 }
-
 .action-description {
     background-color: #fffec4;
     padding: 0.2rem;
 }
-
 .action-description > code {
     font-family: monospace;
     font-size: 1.2em;
 }
-
 .code-wrapper {
     background-color: #494949;
     color: white;
