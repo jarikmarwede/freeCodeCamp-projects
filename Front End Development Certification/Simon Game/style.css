@@ -1,7 +1,17 @@
+a, a:hover {
+  color: #4e310e;
+}
+
+html, body {
+  height: 100%;
+}
 body {
   background-color: #ddaa61;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }
-.main-container {
+main {
   background-color: #7c5012;
   box-shadow: 5px 5px 20px #000;
   margin: 2rem;
@@ -41,9 +51,17 @@ body {
 .blue-btn {
   background-color: #2777a3;
 }
+footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
 
 @media only screen and (min-width: 992px) {
-  .main-container {
+  main {
     margin: 2rem 25%;
   }
 }
