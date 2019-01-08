@@ -17,12 +17,23 @@ button::-moz-focus-inner {
 button:focus {
   border: 2px solid rgba(0, 0, 0, 0.4);
 }
+a {
+  color: #88d5f7;
+}
 
+html, body {
+  height: 100%;
+}
 body {
   background: #008ecc;
+  color: white;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }
 .info-container {
-  background: #00638e;
+  background: rgba(0, 0, 0, 0.3);
   margin-bottom: 2rem;
   margin-top: 2rem;
   padding: 1rem;
@@ -38,6 +49,14 @@ body {
 .extra-info {
   font-size: 0.75rem;
   margin: 1rem;
+}
+footer {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
 }
 
 @media only screen and (min-width: 768px) {
