@@ -1,5 +1,13 @@
+html, body {
+  height: 100%;
+}
 body {
   background-color: #0a5b04;
+  display: flex;
+  color: white;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 button {
   background-color: #1e8e16;
@@ -23,8 +31,11 @@ input {
 p {
   font-family: fantasy;
 }
+a {
+  color: #10a704;
+}
 
-.main-container {
+main {
   margin: 0 1rem;
 }
 .search-row {
@@ -50,13 +61,11 @@ p {
   color: white;
 }
 .total-matches {
-  color: white;
   text-align: center;
 }
 .search-result {
   background-color: #1aa53d;
   border-left: 0.5em solid transparent;
-  color: white;
 }
 .search-result:hover {
   border-left: 0.5em solid #0a4709;
@@ -87,6 +96,15 @@ p {
   margin-top: 1rem;
   width: 100%;
 }
+footer {
+  background: rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+
 @media only screen and (max-width: 576px) {
   .search-row > * {
     width: 100%;
@@ -98,7 +116,7 @@ p {
   }
 }
 @media only screen and (min-width: 992px) {
-  .main-container {
+  main {
     margin: 0 20%;
   }
 }
