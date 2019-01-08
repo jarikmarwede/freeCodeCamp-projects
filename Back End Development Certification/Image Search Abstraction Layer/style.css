@@ -1,5 +1,16 @@
+* {
+  box-sizing: border-box;
+}
+html, body {
+  height: 100%;
+}
 body {
   background-color: #c98dc7;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 a {
   color: #fc05f4;
@@ -10,16 +21,23 @@ p {
 li {
   font-family: "Lucida Console", Monaco, monospace;
 }
-.container {
+main {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
-  color: white;
-  margin: 1rem 0;
+  margin: 1rem;
   padding: 2rem;
+}
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
 }
 
 @media only screen and (min-width: 992px) {
-  .container {
+  main {
     margin: 1rem 25%;
   }
 }
