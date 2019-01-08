@@ -1,12 +1,23 @@
 * {
   box-sizing: border-box;
 }
+a {
+  color: #25f7ff;
+  text-decoration: none;
+}
+ a:hover {
+  text-decoration: underline;
+}
 body {
   background: #2fcae2;
   color: white;
   display: grid;
   font-family: Arial Black, Arial Bold, Gadget, sans-serif;
-  grid-template-columns: 1fr;
+  grid-template-areas:
+    "editor"
+    "preview"
+    "code"
+    "footer";
   grid-gap: 1%;
   justify-items: center;
   margin: 1rem 0;
@@ -33,7 +44,8 @@ body {
   border: none;
   border-radius: 5px;
   color: white;
-  font-family: monaco,Consolas,Lucida Console,monospace;
+  font-family: monaco, Consolas, Lucida Console, monospace;
+  grid-area: editor;
   padding: 1rem;
   resize: none;
   overflow: auto;
@@ -41,6 +53,7 @@ body {
 }
 #preview {
   font-family: Candara, Calibri, Segoe, Segoe UI, Optima, Arial, sans-serif;
+  grid-area: preview;
 }
 #preview h1 {
   border-bottom: 3px solid rgba(0, 0, 0, 0.2);
@@ -64,13 +77,6 @@ body {
 #preview img {
   max-width: 100%;
 }
-#preview a {
-  color: #25f7ff;
-  text-decoration: none;
-}
-#preview a:hover {
-  text-decoration: underline;
-}
 #preview table {
   border-collapse: collapse;
   text-align: center;
@@ -87,11 +93,26 @@ body {
 }
 #code {
   font-family: monaco, Consolas, Lucida Console, monospace;
+  grid-area: code;
+}
+footer {
+  background: rgba(0, 0, 0, 0.4);
+  grid-area: footer;
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+}
+footer p {
+  display: inline;
 }
 
 @media screen and (min-width: 1200px) {
   body {
     grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "editor preview"
+      "code ."
+      "footer footer";
   }
   .container {
     padding: 3rem 2rem;
