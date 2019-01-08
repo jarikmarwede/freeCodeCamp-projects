@@ -10,11 +10,11 @@ body {
   background-color: #ebf466;
   margin: 2rem;
 }
-#main-container {
+main {
   padding: 1rem;
   background-color: white;
 }
-#main-container > * {
+main > * {
   margin: 3rem;
   text-align: center;
 }
@@ -59,6 +59,17 @@ body {
 }
 #submit:hover {
   background-color: #f4e42c;
+}
+footer {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+footer a {
+  color: #4f5428;
 }
 
 @media only screen and (min-width: 768px) {
