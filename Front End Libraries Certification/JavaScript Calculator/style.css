@@ -1,3 +1,6 @@
+body, html {
+  height: 100%;
+}
 button {
   background-color: white;
   border: 1px solid #1ed5ed;
@@ -10,11 +13,18 @@ button:hover {
   background-color: #1ed5ed;
   color: white;
 }
+a {
+  color: #60b4e2;
+}
 body {
   background-color: #588cb7;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
 }
 
-.main-container {
+main {
   background-color: #fff;
   box-shadow: 5px 5px 18px #000;
   margin: 5rem 1rem;
@@ -47,8 +57,18 @@ body {
   margin: 0 0.5rem;
   width: 100%;
 }
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+
 @media only screen and (min-width: 900px) {
-  .main-container {
+  main {
     margin: 5rem 25%;
   }
 }
