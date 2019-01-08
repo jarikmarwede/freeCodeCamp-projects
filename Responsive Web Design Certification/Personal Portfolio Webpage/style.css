@@ -2,14 +2,16 @@ body {
   background-color: #d2e0e0;
   
 }
+a, a:hover {
+  color: #396363;
+}
 .navbar {
   background-color: #95b7b7;
 }
 #introduction {
   margin-top: 4rem;
   background-color: #95b7b7;
-  padding: 1rem;
-  padding-top: 4rem;
+  padding: 4rem 1rem 1rem;
 }
 #introduction-text {
   font-size: 1.25rem;
@@ -18,8 +20,7 @@ body {
 }
 #portfolio {
   background-color: #5d8989;
-  padding: 1rem;
-  padding-top: 4rem;
+  padding: 4rem 1rem 1rem;
 }
 .portfolio-project {
   margin-bottom: 1rem;
@@ -27,15 +28,12 @@ body {
 }
 #contact {
   background-color: #78a1a1;
-  padding: 1rem;
-  padding-top: 4rem;
+  padding: 4rem 1rem 1rem;
 }
 .contact-btn {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  padding: 1rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+  padding: 1rem 2rem;
 }
 #footer {
   background-color: #c3d5d5;
