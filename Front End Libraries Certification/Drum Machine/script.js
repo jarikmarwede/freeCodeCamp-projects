@@ -1,17 +1,53 @@
 const drumPadButtons = {
-  "Q": "Heater-1",
-  "W": "Heater-2",
-  "E": "Heater-3",
-  "A": "Heater-4",
-  "S": "Clap",
-  "D": "Open-HH",
-  "Z": "Kick-n-Hat",
-  "X": "Kick",
-  "C": "Closed-HH"
+  "Q": {
+    buttonId: "Heater-1",
+    timerId: 0
+  },
+  "W": {
+    buttonId: "Heater-2",
+    timerId: 0
+  },
+  "E": {
+    buttonId: "Heater-3",
+    timerId: 0
+  },
+  "A": {
+    buttonId: "Heater-4",
+    timerId: 0
+  },
+  "S": {
+    buttonId: "Clap",
+    timerId: 0
+  },
+  "D": {
+    buttonId: "Open-HH",
+    timerId: 0
+  },
+  "Z": {
+    buttonId: "Kick-n-Hat",
+    timerId: 0
+  },
+  "X": {
+    buttonId: "Kick",
+    timerId: 0
+  },
+  "C": {
+    buttonId: "Closed-HH",
+    timerId: 0
+  }
 };
 
+
+function changePadLook(buttonKey) {
+  clearTimeout(drumPadButtons[buttonKey].timerId);
+  const padElement = document.getElementById(drumPadButtons[buttonKey].buttonId);
+  padElement.classList.add("activated");
+  drumPadButtons[buttonKey].timerId = setTimeout(() => {
+    padElement.classList.remove("activated");
+  }, 1000);
+}
+
 function playSound(audioId) {
-  audioId = audioId.toUpperCase();
   const audioElement = document.getElementById(audioId);
   if (audioElement.currentTime >= 0.01 || audioElement.paused) {
     audioElement.currentTime = 0;
@@ -19,20 +55,24 @@ function playSound(audioId) {
   }
 }
 
-function padTriggered(audioId, buttonId) {
+function padTriggered(audioId) {
+  audioId = audioId.toUpperCase();
+  changePadLook(audioId);
+  document.getElementById("display").innerText = drumPadButtons[audioId].buttonId.replace(/-/g, " ");
   playSound(audioId);
-  document.getElementById("display").innerText = buttonId.replace(/-/g, " ");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  Object.entries(drumPadButtons).forEach(([audioId, buttonId]) => {
-    document.getElementById(buttonId).addEventListener("click", () => padTriggered(audioId, buttonId));
+  Object.keys(drumPadButtons).forEach((audioId) => {
+    document
+        .getElementById(drumPadButtons[audioId].buttonId)
+        .addEventListener("click", () => padTriggered(audioId));
   });
   document.addEventListener("keydown", event => {
     const pressedKey = event.key.toUpperCase();
     if (Object.keys(drumPadButtons).includes(pressedKey)) {
       event.preventDefault();
-      playSound(pressedKey, drumPadButtons[pressedKey]);
+      padTriggered(pressedKey);
     }
   });
 });
