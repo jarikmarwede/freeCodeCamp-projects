@@ -47,6 +47,11 @@ const FRONT_END_LIBRARIES_PROJECTS = [
     src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Markdown%20Previewer"
   },
   {
+    name: "Drum Machine",
+    link: "./Front End Libraries Certification/Drum Machine/index.html",
+    src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Drum%20Machine"
+  },
+  {
     name: "JavaScript Calculator",
     link:
         "./Front End Libraries Certification/JavaScript Calculator/index.html",
