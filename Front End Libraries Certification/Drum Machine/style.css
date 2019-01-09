@@ -1,0 +1,56 @@
+html, body {
+  height: 100%;
+}
+a {
+  color: #1ed5ed;
+}
+body {
+  background: #353535;
+  color: white;
+  font-family: Franklin Gothic Medium, Franklin Gothic, ITC Franklin Gothic, Arial, sans-serif;
+  margin: 0;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+main {
+  margin: 0 1rem;
+}
+.drum-pads {
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  padding: 1rem;
+}
+.drum-pad {
+  background: rgba(0, 0, 0, 0.5);
+  border: 4px solid #868686;
+  border-radius: 5px;
+  cursor: pointer;
+  color: white;
+  font-size: 1.5rem;
+  padding: 2rem;
+  margin: 1rem;
+}
+.drum-pad.activated {
+  border-color: #1ed5ed;
+}
+.pad-name-display {
+  background: rgba(0, 0, 0, 0.5);
+  text-align: center;
+  padding: 1rem;
+}
+footer {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+
+@media screen and (min-width: 992px) {
+  main {
+    margin: 0 25%;
+  }
+}
