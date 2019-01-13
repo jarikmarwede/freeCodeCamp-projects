@@ -10,7 +10,7 @@ const urlShortenerMicroservice = require("./Apis And Microservices Certification
 const imageSearchAbstractionLayer = require("./Back End Development Certification/Image Search Abstraction Layer/server.js");
 
 const corsOptions = {
-  origin: "jarikmarwede.github.io/freeCodeCamp-projects/"
+  origin: "https://jarikmarwede.github.io/freeCodeCamp-projects/"
 };
 if (process.env.NODE_ENV === "development") {
   console.log("Starting in development mode");
