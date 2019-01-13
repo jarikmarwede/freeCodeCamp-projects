@@ -21,11 +21,43 @@ p {
 li {
   font-family: "Lucida Console", Monaco, monospace;
 }
+input {
+  border: none;
+  border-radius: 50px;
+  display: block;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  margin-top: 0.2rem;
+  margin-bottom: 1rem;
+}
+button {
+  background: #fc05f4;
+  border: none;
+  border-radius: 50px;
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem;
+  margin: 0.5rem 0;
+  width: 100%;
+}
 main {
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
   margin: 1rem;
   padding: 2rem;
+}
+.code-wrapper {
+  background-color: #494949;
+  color: white;
+  padding: 1rem;
+  margin: 1rem 0;
+  word-break: break-all;
+}
+#api-response {
+  font-family: monospace;
+  width: 100%;
 }
 footer {
   background: rgba(0, 0, 0, 0.5);
@@ -34,6 +66,13 @@ footer {
 }
 footer p {
   display: inline;
+}
+
+@media only screen and (min-width: 576px) {
+  button {
+    margin: 0.5rem;
+    width: initial;
+  }
 }
 
 @media only screen and (min-width: 992px) {
