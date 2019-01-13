@@ -13,11 +13,12 @@ app.get("/imagesearch/*?", (req, res) => {
   const APICallString = "https://contextualwebsearch-websearch-v1.p.mashape.com/api/Search/ImageSearchAPI?count=" + offset * 10 + "&q=" + searchString + "&autocorrect=false";
   unirest.get(APICallString).header("X-Mashape-Key", process.env.X_MASHAPE_KEY).header("X-Mashape-Host", "contextualwebsearch-websearch-v1.p.mashape.com").end(function (result) {
     const images = result.body.value.slice(offset * 10 - 10, offset * 10);
-    res.send(images);
+    res.status(200).json(images);
   });
   MongoClient.connect(databasePath, async (err, client) => {
     if (err) {
       console.log("Error connecting to database: " + err);
+      res.sendStatus(500);
     } else {
       const db = client.db("image-search-abstraction-layer");
       const recentSearchesCollection = db.collection("latest-image-searches");
@@ -39,13 +40,14 @@ app.get("/latest/imagesearch/", (req, res) => {
   MongoClient.connect(databasePath, async function(err, client) {
     if (err) {
       console.log("Error connecting to database: " + err);
+      res.sendStatus(500);
     } else {
       const db = client.db("image-search-abstraction-layer");
       const recentSearchesCollection = db.collection("latest-image-searches");
       const recentSearches = await recentSearchesCollection.find({}).project({"_id": 0}).toArray();
 
       client.close();
-      res.send(recentSearches);
+      res.status(200).json(recentSearches);
     }
   });
 });

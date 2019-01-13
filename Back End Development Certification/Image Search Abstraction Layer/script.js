@@ -9,8 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchTerm = document.getElementById("search-term").value;
     const offset = document.getElementById("offset").value || 1;
     if (searchTerm) {
-      const APIURL = `https://jm-freecodecamp-projects.herokuapp.com/image-search-abstraction-layer
-      /imagesearch/${searchTerm}?offset=${offset}`;
+      const APIURL = `https://jm-freecodecamp-projects.herokuapp.com/image-search-abstraction-layer/imagesearch/${searchTerm}?offset=${offset}`;
       await getAPIResponse(APIURL);
     }
   });
