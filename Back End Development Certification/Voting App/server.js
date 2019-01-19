@@ -5,7 +5,7 @@ const MongoClient = mongodb.MongoClient;
 const DATABASE_PATH = process.env.DATABASE_PATH;
 const ALPHANUMERIC_REGEXP = /^[\w]*$/;
 const USERNAME_REGEXP = ALPHANUMERIC_REGEXP;
-const EMAIL_REGEXP = /^.+@.+\.{1}.+$/i;
+const EMAIL_REGEXP = /^.+@.+\..+$/i;
 const PASSWORD_REGEXP = /^.{8}.*$/i;
 const POLL_NAME_REGEXP = ALPHANUMERIC_REGEXP;
 const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
@@ -44,11 +44,7 @@ async function isLoggedIn(sessionId, username) {
 async function doesOwnPoll(username, pollName) {
   const poll = await getPoll(pollName);
 
-  if (poll && poll["creator"] === username) {
-    return true;
-  } else {
-    return false
-  }
+  return !!(poll && poll["creator"] === username);
 }
 
 async function getSessionId(username, password) {
@@ -58,7 +54,7 @@ async function getSessionId(username, password) {
     const collection = db.collection("user-data");
 
     const userData = await collection.find({"username": username}).toArray();
-    if (userData.length == 0) {
+    if (userData.length === 0) {
       console.log("Could not find user with username \"" + username + "\".");
       client.close();
       return null;
@@ -71,7 +67,7 @@ async function getSessionId(username, password) {
         return null;
       }
       const sessionId = crypto.randomBytes(20).toString('hex');
-      await collection.updateOne({"username": username}, {$set: {"session": sessionId}})
+      await collection.updateOne({"username": username}, {$set: {"session": sessionId}});
       client.close();
       return sessionId;
     }
@@ -98,7 +94,7 @@ async function signup(username, email, password) {
       const hash = crypto.createHash('sha256');
       hash.update(password);
       userCollection.insert({"username": username, "email": email, "password": hash.digest("hex")});
-      client.close()
+      client.close();
       return true;
     }
   } else {
@@ -110,7 +106,7 @@ async function signup(username, email, password) {
 async function createNewPoll(pollName, answers, username) {
   if (POLL_NAME_REGEXP.test(pollName) && answers.length >= 2 && username) {
     for (let answer of answers) {
-      if (ANSWER_REGEXP.test(answer) == -1) {
+      if (!ANSWER_REGEXP.test(answer)) {
         console.log("Invalid answers");
         return false;
       }
@@ -121,7 +117,7 @@ async function createNewPoll(pollName, answers, username) {
     const pollsCollection = db.collection("polls");
     const findPoll = await pollsCollection.find({"poll-name": pollName}).toArray();
 
-    if (findPoll.length == 0) {
+    if (findPoll.length === 0) {
       let answerJSON = {};
       for (let answer of answers) {
         answerJSON[answer] = 0;

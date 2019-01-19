@@ -22,10 +22,8 @@ app.post("/login", async (req, res) => {
   if (sessionId) {
     res.cookie("session", sessionId);
     res.cookie("username", username);
-    res.redirect("back");
-  } else {
-    res.redirect("back");
   }
+  res.redirect("back");
 });
 
 app.get("/signup", (req, res) => {
@@ -73,10 +71,10 @@ app.post("/newpoll", async (req, res) => {
   const username = req.cookies.username;
   const sessionId = req.cookies.session;
   const pollName = req.body.pollname;
-  let answers = []
-  for (let key in req.body) {
-    if (key.search(/^answer\d+$/) != -1) {
-      answers.push(req.body[key]);
+  let answers = [];
+  for (let [key, value] of req.body) {
+    if (key.search(/^answer\d+$/) !== -1) {
+      answers.push(value);
     }
   }
   const loggedIn = await server.isLoggedIn(sessionId, username);
@@ -121,10 +119,10 @@ app.get("/poll/:poll/changepoll", (req, res) => {
 
 app.post("/poll/:poll/changepoll", async (req, res) => {
   const pollName = req.params.poll;
-  let answers = []
-  for (let key in req.body) {
-    if (key.search(/^answer\d+$/) != -1) {
-      answers.push(req.body[key]);
+  let answers = [];
+  for (let [key, value] of req.body) {
+    if (key.search(/^answer\d+$/) !== -1) {
+      answers.push(value);
     }
   }
   const username = req.cookies.username;
@@ -195,4 +193,8 @@ app.get("/api/deletepoll/:poll", async (req, res) => {
     res.status(401);
     res.send({});
   }
+});
+
+const listener = app.listen(process.env.PORT, () => {
+  console.log('App listening on port ' + listener.address().port);
 });
