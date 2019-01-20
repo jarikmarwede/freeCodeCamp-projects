@@ -1,7 +1,72 @@
 const cookieParser = require("cookie-parser");
 const express = require('express');
-const app = express();
+const exphbs  = require('express-handlebars');
 const server = require("./server");
+
+// express configuration
+const app = express();
+const hbs = exphbs.create({
+  defaultLayout: 'main',
+  helpers: {
+    compare(lvalue, operator, rvalue, options) {
+      let operators, result;
+
+      if (arguments.length < 3) {
+        throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+      }
+
+      if (options === undefined) {
+        options = rvalue;
+        rvalue = operator;
+        operator = "===";
+      }
+
+      operators = {
+        '==': function (l, r) {
+          return l == r;
+        },
+        '===': function (l, r) {
+          return l === r;
+        },
+        '!=': function (l, r) {
+          return l != r;
+        },
+        '!==': function (l, r) {
+          return l !== r;
+        },
+        '<': function (l, r) {
+          return l < r;
+        },
+        '>': function (l, r) {
+          return l > r;
+        },
+        '<=': function (l, r) {
+          return l <= r;
+        },
+        '>=': function (l, r) {
+          return l >= r;
+        },
+        'typeof': function (l, r) {
+          return typeof l == r;
+        }
+      };
+
+      if (!operators[operator]) {
+        throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
+      }
+
+      result = operators[operator](lvalue, rvalue);
+
+      if (result) {
+        return options.fn(this);
+      } else {
+        return options.inverse(this);
+      }
+    }
+  }
+});
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
 
 // middleware
 app.use(express.static("public"));
@@ -10,8 +75,9 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 
 // routes
-app.get("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
+app.get("/", async (request, response) => {
+  const polls = await server.getPolls();
+  response.render("index", {polls});
 });
 
 app.post("/login", async (req, res) => {
@@ -195,6 +261,6 @@ app.get("/api/deletepoll/:poll", async (req, res) => {
   }
 });
 
-const listener = app.listen(process.env.PORT, () => {
+const listener = app.listen(process.env.PORT || 8080, () => {
   console.log('App listening on port ' + listener.address().port);
 });
