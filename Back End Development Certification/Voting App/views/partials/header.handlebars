@@ -4,16 +4,19 @@
     <i class="fas fa-bars"></i>
   </button>
   <div class="collapse navbar-collapse" id="collapsible-navbar">
-    <form id="login-form" class="form-inline ml-auto" action="/login" method="post">
-      <input type="text" placeholder="username" class="form-control" name="username" pattern="^[a-zA-Z0-9_]*$" required>
-      <input type="password" placeholder="password" class="form-control" name="password" pattern=".{8}.*" required>
-      <button class="btn default-btn" type="submit" id="login-btn">Login</button>
-      <a class="btn default-btn" href="/signup" id="signup-btn">Sign Up</a>
-    </form>
-    <form id="logged-in-list" class="form-inline ml-auto">
-      <a class="btn default-btn" href="/dashboard">Dashboard</a>
-      <button class="btn default-btn" id="logout-btn">Logout</button>
-    </form>
+    {{#if loggedIn}}
+      <form id="logged-in-list" class="form-inline ml-auto">
+        <a class="btn default-btn" href="/dashboard">Dashboard</a>
+        <button class="btn default-btn" id="logout-btn">Logout</button>
+      </form>
+    {{else}}
+      <form id="login-form" class="form-inline ml-auto" action="/login" method="post">
+        <input type="text" placeholder="username" class="form-control" name="username" pattern="^[a-zA-Z0-9_]*$" required>
+        <input type="password" placeholder="password" class="form-control" name="password" pattern=".{8}.*" required>
+        <button class="btn default-btn" type="submit" id="login-btn">Login</button>
+        <a class="btn default-btn" href="/signup" id="signup-btn">Sign Up</a>
+      </form>
+    {{/if}}
   </div>
 </nav>
 <script src="/navbar.js"></script>

@@ -12,7 +12,7 @@ const hbs = exphbs.create({
       let operators, result;
 
       if (arguments.length < 3) {
-        throw new Error("Handlerbars Helper 'compare' needs 2 parameters");
+        throw new Error("Handlebars Helper 'compare' needs 2 parameters");
       }
 
       if (options === undefined) {
@@ -52,7 +52,7 @@ const hbs = exphbs.create({
       };
 
       if (!operators[operator]) {
-        throw new Error("Handlerbars Helper 'compare' doesn't know the operator " + operator);
+        throw new Error("Handlebars Helper 'compare' doesn't know the operator " + operator);
       }
 
       result = operators[operator](lvalue, rvalue);
@@ -73,6 +73,16 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
+app.get("", async (request, response, next) => {
+  const loggedIn = await server.isLoggedIn(request.cookies.sessionId, request.cookies.username)
+  response.middlewareData = {};
+  response.middlewareData.loggedIn = loggedIn;
+  hbs._renderTemplate = (template, context, options) => {
+    context.loggedIn = loggedIn;
+    return template(context, options);
+  };
+  next();
+});
 
 // routes
 app.get("/", async (request, response) => {
