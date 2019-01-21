@@ -2,68 +2,13 @@ const cookieParser = require("cookie-parser");
 const express = require('express');
 const exphbs  = require('express-handlebars');
 const server = require("./server");
+const handlebarsHelpers = require("./handlebarsHelpers");
 
 // express configuration
 const app = express();
 const hbs = exphbs.create({
   defaultLayout: 'main',
-  helpers: {
-    compare(lvalue, operator, rvalue, options) {
-      let operators, result;
-
-      if (arguments.length < 3) {
-        throw new Error("Handlebars Helper 'compare' needs 2 parameters");
-      }
-
-      if (options === undefined) {
-        options = rvalue;
-        rvalue = operator;
-        operator = "===";
-      }
-
-      operators = {
-        '==': function (l, r) {
-          return l == r;
-        },
-        '===': function (l, r) {
-          return l === r;
-        },
-        '!=': function (l, r) {
-          return l != r;
-        },
-        '!==': function (l, r) {
-          return l !== r;
-        },
-        '<': function (l, r) {
-          return l < r;
-        },
-        '>': function (l, r) {
-          return l > r;
-        },
-        '<=': function (l, r) {
-          return l <= r;
-        },
-        '>=': function (l, r) {
-          return l >= r;
-        },
-        'typeof': function (l, r) {
-          return typeof l == r;
-        }
-      };
-
-      if (!operators[operator]) {
-        throw new Error("Handlebars Helper 'compare' doesn't know the operator " + operator);
-      }
-
-      result = operators[operator](lvalue, rvalue);
-
-      if (result) {
-        return options.fn(this);
-      } else {
-        return options.inverse(this);
-      }
-    }
-  }
+  helpers: handlebarsHelpers
 });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
