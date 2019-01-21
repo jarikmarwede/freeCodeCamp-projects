@@ -1,10 +1,8 @@
-$(document).ready(() => {
-  $("#signup-form").submit((e) => {
-    if ($("#password1").val() === $("#password2").val()) {
-      return;
-    } else {
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("signup-form").addEventListener("submit", event => {
+    if (document.getElementById("password1").innerText !== document.getElementById("password2").innerText) {
       $("#password2").popover("show");
-      e.preventDefault();
+      event.preventDefault();
       window.setTimeout(() => {$("#password2").popover("hide");}, 4000);
     }
   });

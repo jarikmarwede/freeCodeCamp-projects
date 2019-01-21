@@ -48,13 +48,14 @@ app.post("/login", async (req, res) => {
 });
 
 app.get("/signup", (req, res) => {
-  res.sendFile(__dirname + "/views/signup.html");
+  res.render("signup");
 });
 
 app.post("/signup", async (req, res) => {
   const username = req.body.username;
   const email = req.body.email;
   const password = req.body.password;
+
   const success = await server.signup(username, email, password);
 
   if (success) {
