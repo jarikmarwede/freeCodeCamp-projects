@@ -3,21 +3,13 @@
     <h3 class="text-center my-4">Latest polls</h3>
     <div id="poll-list">
       {{#each polls}}
-        {{#compare @index "<" 10}}
-          <div class="poll-btn">
-            <a class="poll-link text-center" href="/poll/{{ this.poll-name }}">
-              <h6>{{ this.poll-name }}</h6>
-            </a>
-          </div>
-        {{else}}
-          <div class="poll-btn" hidden>
-            <a class="poll-link text-center" href="/poll/{{ this.poll-name }}">
-              <h6>{{ this.poll-name }}</h6>
-            </a>
-          </div>
-        {{/compare}}
+        <div class="poll-btn" {{#if this.isHidden}}hidden{{/if}}>
+          <a class="poll-link text-center" href="/poll/{{ this.poll-name }}">
+            <h6>{{ this.poll-name }}</h6>
+          </a>
+        </div>
       {{else}}
-        <h2 class="text-center">Loading polls...</h2>
+        <h2 class="text-center">No polls found</h2>
       {{/each}}
     </div>
     <button class="btn default-btn btn-block my-2" id="load-more-btn">Load more...</button>

@@ -18,10 +18,10 @@ app.use(express.static("public"));
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
-app.get("", async (request, response, next) => {
-  const loggedIn = await server.isLoggedIn(request.cookies.sessionId, request.cookies.username)
-  response.middlewareData = {};
-  response.middlewareData.loggedIn = loggedIn;
+app.use(async (request, response, next) => {
+  const loggedIn = await server.isLoggedIn(request.cookies.session, request.cookies.username);
+  request.middlewareData = {};
+  request.middlewareData.loggedIn = loggedIn;
   hbs._renderTemplate = (template, context, options) => {
     context.loggedIn = loggedIn;
     return template(context, options);
@@ -32,6 +32,9 @@ app.get("", async (request, response, next) => {
 // routes
 app.get("/", async (request, response) => {
   const polls = await server.getPolls();
+  for (let index = 0; index < polls.length; index++) {
+    polls[index].isHidden = index >= 10;
+  }
   response.render("index", {polls});
 });
 
@@ -66,12 +69,14 @@ app.post("/signup", async (req, res) => {
 });
 
 app.get("/dashboard", async (req, res) => {
-  const username = req.cookies.username;
-  const sessionId = req.cookies.session;
-  const loggedIn = await server.isLoggedIn(sessionId, username);
+  if (req.middlewareData.loggedIn) {
+    const creator = req.cookies.username;
+    const polls = await server.getPolls({"creator": creator});
 
-  if (loggedIn) {
-    res.sendFile(__dirname + "/views/dashboard.html");
+    for (let index = 0; index < polls.length; index++) {
+      polls[index].isHidden = index >= 10;
+    }
+    res.render("dashboard", {polls});
   } else {
     res.redirect("/signup");
   }

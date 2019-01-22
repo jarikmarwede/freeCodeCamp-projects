@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="jumbotron jumbotron-fluid shadow-lg">
+    <div>
+      <a class="btn default-btn mx-auto" href="/newpoll">Create new Poll</a>
+    </div>
+    <div>
+      <h3 class="text-center my-4">Your Polls</h3>
+      <div id="created-polls" class="text-center">
+        {{#each polls}}
+          <div class="poll-btn" {{#if this.isHidden}}hidden{{/if}}>
+            <div class="row">
+              <a class="col-sm poll-link" href="/poll/{{this.poll-name}}">
+                <h6 class="poll-name">{{ this.poll-name }}</h6>
+              </a>
+              <div class="col-sm my-auto">
+                <a class="btn default-btn float-right m-1" href="/poll/{{this.poll-name}}/changepoll">Edit</a>
+                <a><button class="btn btn-danger delete-modal-btn float-right m-1">Delete</button></a>
+              </div>
+            </div>
+            <div class="modal">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h4 class="modal-title">Do you really want to delete this poll?</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger delete-btn">Yes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        {{else}}
+          <h3 class="text-center">No polls found!</h3>
+        {{/each}}
+      </div>
+      <button class="btn default-btn btn-block my-2" id="load-more-btn">Load more...</button>
+    </div>
+  </div>
+</div>
+<script src="/dashboard.js"></script>
