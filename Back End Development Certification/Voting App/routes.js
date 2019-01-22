@@ -83,12 +83,8 @@ app.get("/dashboard", async (req, res) => {
 });
 
 app.get("/newpoll", async (req, res) => {
-  const username = req.cookies.username;
-  const sessionId = req.cookies.session;
-  const loggedIn = await server.isLoggedIn(sessionId, username);
-
-  if (loggedIn) {
-    res.sendFile(__dirname + "/views/newpoll.html");
+  if (req.middlewareData.loggedIn) {
+    res.render("newpoll");
   } else {
     res.redirect("/signup");
   }

@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="jumbotron jumbotron-fluid shadow-lg">
+    <h3 class="text-center">Create an new Poll</h3>
+    <form action="/newpoll" method="post">
+      <div class="form-group">
+        <label for="name">Poll name: </label>
+        <input class="form-control" type="text" name="pollname" placeholder="Poll name" pattern="^[a-zA-Z0-9_]*$" required>
+      </div>
+      <div class="form-group" id="poll-answers">
+        <h6>Answers: </h6>
+        <input class="form-control answer" type="text" name="answer1" placeholder="answer1" pattern="^[a-zA-Z0-9_]*$" required>
+        <input class="form-control answer" type="text" name="answer2" placeholder="answer2" pattern="^[a-zA-Z0-9_]*$" required>
+      </div>
+      <div class="form-group">
+        <button class="btn default-btn" type="button" id="add-answer-btn">Add answer</button>
+        <button class="btn default-btn" type="button" id="delete-answer-btn">Delete last answer</button>
+        <button class="btn default-btn" type="submit">Save poll</button>
+      </div>
+    </form>
+  </div>
+</div>
+<script src="/newpoll.js"></script>
