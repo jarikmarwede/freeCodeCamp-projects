@@ -1,0 +1,24 @@
+<div class="jumbotron jumbotron-fluid">
+  {{#with poll}}
+    <div class="row">
+      <div class="col-lg">
+        <h4 class="text-center" id="poll-title">{{ poll-name }}</h4>
+        <h6 class="text-center" id="creator-name">By {{ creator }}</h6>
+        <form method="post" class="text-center mt-5">
+          <label for="answer-list">Choose your answer:</label>
+          <select class="form-control" id="answer-list" name="answer">
+            {{#each answers}}
+              <option>{{ @key }}</option>
+            {{/each}}
+          </select>
+          <button class="btn default-btn" type="submit">Vote</button>
+        </form>
+      </div>
+      <div class="col-lg">
+        <canvas id="poll-chart"></canvas>
+      </div>
+    </div>
+  {{/with}}
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.js" integrity="sha256-J2sc79NPV/osLcIpzL3K8uJyAD7T5gaEFKlLDM18oxY=" crossorigin="anonymous"></script>
+<script src="/poll.js"></script>

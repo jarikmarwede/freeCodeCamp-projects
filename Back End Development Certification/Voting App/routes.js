@@ -91,18 +91,16 @@ app.get("/newpoll", async (req, res) => {
 });
 
 app.post("/newpoll", async (req, res) => {
-  const username = req.cookies.username;
-  const sessionId = req.cookies.session;
-  const pollName = req.body.pollname;
-  let answers = [];
-  for (let [key, value] of req.body) {
-    if (key.search(/^answer\d+$/) !== -1) {
-      answers.push(value);
+  if (req.middlewareData.loggedIn) {
+    const username = req.cookies.username;
+    const pollName = req.body.pollname;
+    let answers = [];
+    for (let [key, value] of req.body) {
+      if (key.search(/^answer\d+$/) !== -1) {
+        answers.push(value);
+      }
     }
-  }
-  const loggedIn = await server.isLoggedIn(sessionId, username);
 
-  if (loggedIn) {
     const success = await server.createNewPoll(pollName, answers, username);
     if (success) {
       res.redirect("/poll/" + pollName);
@@ -114,8 +112,13 @@ app.post("/newpoll", async (req, res) => {
   }
 });
 
-app.get("/poll/:poll", (req, res) => {
-  res.sendFile(__dirname + "/views/poll.html");
+app.get("/poll/:poll", async (req, res) => {
+  const poll = await server.getPoll(req.params.poll);
+  if (poll) {
+    res.render("poll", {poll});
+  } else {
+    res.redirect("back");
+  }
 });
 
 app.post("/poll/:poll", async (req, res) => {
