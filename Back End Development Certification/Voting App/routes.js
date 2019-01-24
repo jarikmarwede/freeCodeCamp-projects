@@ -129,15 +129,14 @@ app.post("/poll/:poll", async (req, res) => {
   res.redirect("back");
 });
 
-app.get("/poll/:poll/changepoll", (req, res) => {
+app.get("/poll/:poll/changepoll", async (req, res) => {
   const pollName = req.params.poll;
   const username = req.cookies.username;
-  const sessionId = req.cookies.session;
-  const loggedIn = server.isLoggedIn(sessionId, username);
-  const ownsPoll = server.doesOwnPoll(username, pollName);
+  const poll = await server.getPoll(pollName);
+  const ownsPoll = username === poll.creator;
 
-  if (loggedIn && ownsPoll) {
-    res.sendFile(__dirname + "/views/changepoll.html");
+  if (req.middlewareData.loggedIn && ownsPoll) {
+    res.render("changepoll", {poll});
   } else {
     res.redirect("back");
   }
@@ -152,11 +151,9 @@ app.post("/poll/:poll/changepoll", async (req, res) => {
     }
   }
   const username = req.cookies.username;
-  const sessionId = req.cookies.session;
-  const loggedIn = server.isLoggedIn(sessionId, username);
-  const ownsPoll = server.doesOwnPoll(username, pollName);
+  const ownsPoll = await server.doesOwnPoll(username, pollName);
 
-  if (loggedIn && ownsPoll) {
+  if (req.middlewareData.loggedIn && ownsPoll) {
     const success = await server.changePollAnswers(pollName, answers, username);
 
     if (success) {

@@ -1,37 +1,19 @@
-let answers = 0;
+let answers = document.getElementById("poll-answers").children.length;
 
-function addPollAnswer(value="") {
+function addPollAnswer() {
   answers++;
-  const newAnswer = "<input class=\"form-control answer\" type=\"text\" name=\"answer" + answers + "\" placeholder=\"answer" + answers + "\" pattern=\"^[a-zA-Z0-9_]*$\" required>";
-  $("#poll-answers").append(newAnswer);
-  $("#poll-answers, .answer:last").val(value);
+  const newAnswer = `<input class="form-control answer" type="text" name="answer${answers}" placeholder="answer${answers}" pattern="^[a-zA-Z0-9_]*$" required>`;
+  document.getElementById("poll-answers").innerHTML += newAnswer;
 }
 
 function deleteLastAnswer() {
   if (answers > 2) {
     answers--;
-    $(".answer:last").remove();
+    document.getElementById("poll-answers").lastChild.outerHTML = "";
   }
 }
 
-function loadOldAnswers() {
-  const pollName = decodeURIComponent(window.location.pathname.split("/")[window.location.pathname.split("/").length - 2]);
-  const apiPath = "/api/getpoll/" + pollName;
-
-  $.getJSON(apiPath, (pollData) => {
-    $("#poll-answers").html("");
-    for (let key in pollData["answers"]) {
-      addPollAnswer(key);
-    }
-  });
-}
-
-$(document).ready(() => {
-  loadOldAnswers();
-  $("#add-answer-btn").on("click", () => {
-    addPollAnswer();
-  });
-  $("#delete-answer-btn").on("click", () => {
-    deleteLastAnswer();
-  });
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("add-answer-btn").addEventListener("click", addPollAnswer);
+  document.getElementById("delete-answer-btn").addEventListener("click", deleteLastAnswer);
 });
