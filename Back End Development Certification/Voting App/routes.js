@@ -1,14 +1,12 @@
 const cookieParser = require("cookie-parser");
-const express = require('express');
 const exphbs  = require('express-handlebars');
+const express = require('express');
 const server = require("./server");
-const handlebarsHelpers = require("./handlebarsHelpers");
 
 // express configuration
 const app = express();
 const hbs = exphbs.create({
-  defaultLayout: 'main',
-  helpers: handlebarsHelpers
+  defaultLayout: 'main'
 });
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
@@ -167,57 +165,30 @@ app.post("/poll/:poll/changepoll", async (req, res) => {
 });
 
 // API
-app.get("/api/getpolls", async (req, res) => {
-  const polls = await server.getPolls();
-
-  res.send(polls);
-});
-
 app.get("/api/getpoll/:poll", async (req, res) => {
   const pollName = req.params.poll;
   const poll = await server.getPoll(pollName);
 
   if (poll) {
-    res.status(200);
-    res.send(poll);
+    res.status(200).send(poll);
   } else {
-    res.status(400);
-    res.end();
-  }
-});
-
-app.get("/api/getpollsof/:creator", async (req, res) => {
-  const username = req.cookies.username;
-  const sessionId = req.cookies.session;
-  const creator = req.params.creator;
-  const loggedIn = await server.isLoggedIn(sessionId, username);
-
-  if (loggedIn) {
-    const polls = await server.getPolls({"creator": creator});
-    res.send(polls);
-  } else {
-    res.status(401);
-    res.end();
+    res.sendStatus(400);
   }
 });
 
 app.get("/api/deletepoll/:poll", async (req, res) => {
   const pollName = req.params.poll;
-  const sessionId = req.cookies.session;
   const username = req.cookies.username;
-  const loggedIn = await server.isLoggedIn(sessionId, username);
   const ownsPoll = await server.doesOwnPoll(username, pollName);
 
-  if (loggedIn && ownsPoll) {
+  if (req.middlewareData.loggedIn && ownsPoll) {
     await server.deletePoll(pollName);
-    res.status(200);
-    res.send({});
+    res.sendStatus(200);
   } else {
-    res.status(401);
-    res.send({});
+    res.sendStatus(401);
   }
 });
 
 const listener = app.listen(process.env.PORT || 8080, () => {
-  console.log('App listening on port ' + listener.address().port);
+  console.log("App listening on port " + listener.address().port);
 });
