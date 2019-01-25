@@ -143,7 +143,7 @@ const BACK_END_PROJECTS = [
   },
   {
     name: "Voting_App",
-    link: "https://jm-voting-app.glitch.me",
+    link: "https://jm-voting-app.herokuapp.com",
     src:
         "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Voting%20App"
   }
