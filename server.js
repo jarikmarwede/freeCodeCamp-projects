@@ -2,12 +2,12 @@ const express = require("express");
 app = express();
 const cors = require("cors");
 
-const exerciseTracker = require("./Apis And Microservices Certification/Exercise Tracker/server.js");
-const fileMetadataMicroservice = require("./Apis And Microservices Certification/File Metadata Microservice/server.js");
-const requestHeaderParserMicroservice = require("./Apis And Microservices Certification/Request Header Parser Microservice/server.js");
-const timestampMicroservice = require("./Apis And Microservices Certification/Timestamp Microservice/server.js");
-const urlShortenerMicroservice = require("./Apis And Microservices Certification/URL Shortener Microservice/server.js");
-const imageSearchAbstractionLayer = require("./Back End Development Certification/Image Search Abstraction Layer/server.js");
+const exerciseTracker = require("./Apis_And_Microservices_Certification/Exercise_Tracker/server.js");
+const fileMetadataMicroservice = require("./Apis_And_Microservices_Certification/File_Metadata_Microservice/server.js");
+const requestHeaderParserMicroservice = require("./Apis_And_Microservices_Certification/Request_Header_Parser_Microservice/server.js");
+const timestampMicroservice = require("./Apis_And_Microservices_Certification/Timestamp_Microservice/server.js");
+const urlShortenerMicroservice = require("./Apis_And_Microservices_Certification/URL_Shortener_Microservice/server.js");
+const imageSearchAbstractionLayer = require("./Back_End_Development_Certification/Image_Search_Abstraction_Layer/server.js");
 
 const corsOptions = {
   origin: "https://jarikmarwede.github.io"
