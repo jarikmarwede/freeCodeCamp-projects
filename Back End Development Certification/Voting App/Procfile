@@ -1,0 +1,1 @@
+web: cd "Back End Development Certification/Voting App" && npm start
