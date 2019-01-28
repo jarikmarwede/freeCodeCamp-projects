@@ -12,8 +12,8 @@ const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
 const ONE_MEGABYTE = 1048576;
 
 async function checkForDatabaseLimit(db) {
-  const stats = await db.runCommand({ dbStats: 1, scale: ONE_MEGABYTE });
-  if (stats.dataSize > 499) {
+  const stats = await db.stats({scale: ONE_MEGABYTE});
+  if (stats["dataSize"] > 499) {
     const pollsCollection = db.collection("polls");
     const polls = await pollsCollection.find({}).toArray();
     if (polls.length > 0) {
@@ -103,7 +103,7 @@ async function signup(username, email, password) {
   }
 }
 
-async function createNewPoll(pollName, answers, username) {
+async function createNewPoll(pollName, username, answers) {
   if (POLL_NAME_REGEXP.test(pollName) && answers.length >= 2 && username) {
     for (let answer of answers) {
       if (!ANSWER_REGEXP.test(answer)) {
@@ -113,7 +113,7 @@ async function createNewPoll(pollName, answers, username) {
     }
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
-    await checkForDatabaseLimit();
+    await checkForDatabaseLimit(db);
     const pollsCollection = db.collection("polls");
     const findPoll = await pollsCollection.find({"poll-name": pollName}).toArray();
 
@@ -122,7 +122,7 @@ async function createNewPoll(pollName, answers, username) {
       for (let answer of answers) {
         answerJSON[answer] = 0;
       }
-      pollsCollection.insert({"poll-name": pollName, "creator": username, "answers": answerJSON});
+      pollsCollection.insertOne({"poll-name": pollName, "creator": username, "answers": answerJSON});
       client.close();
       return true;
     } else {
@@ -183,15 +183,19 @@ async function deletePoll(pollName) {
 
 async function voteFor(pollName, answer) {
   if (pollName && answer) {
+    let status = false;
+
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
     const poll = await pollsCollection.find({"poll-name": pollName}).toArray();
 
     if (poll[0].answers.hasOwnProperty(answer)) {
-      pollsCollection.updateOne({"poll-name": pollName}, {$inc: {[`answers.${answer}`]: 1}});
+      const updateResult = await pollsCollection.updateOne({"poll-name": pollName}, {$inc: {[`answers.${answer}`]: 1}});
+      status = updateResult.result.ok;
     }
     client.close();
+    return status;
   }
 }
 
@@ -203,10 +207,12 @@ async function changePollAnswers(pollName, answers, username) {
         return false;
       }
     }
+
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollCollection = db.collection("polls");
     const pollData = await pollCollection.find({"poll-name": pollName}).toArray();
+
     const oldPollAnswers = pollData[0]["answers"];
     const newPollAnswers = {};
     for (let key of answers) {
@@ -216,9 +222,9 @@ async function changePollAnswers(pollName, answers, username) {
         newPollAnswers[key] = 0;
       }
     }
-    pollCollection.updateOne({"poll-name": pollName}, {$set: {"answers": newPollAnswers}});
+    const updateResult = await pollCollection.updateOne({"poll-name": pollName}, {$set: {"answers": newPollAnswers}});
     client.close();
-    return true;
+    return updateResult.result.ok;
   } else {
     return false;
   }

@@ -99,7 +99,7 @@ app.post("/newpoll", async (req, res) => {
       }
     }
 
-    const success = await server.createNewPoll(pollName, answers, username);
+    const success = await server.createNewPoll(pollName, username, answers);
     if (success) {
       res.redirect("/poll/" + pollName);
     } else {
