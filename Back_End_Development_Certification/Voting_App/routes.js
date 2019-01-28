@@ -93,7 +93,7 @@ app.post("/newpoll", async (req, res) => {
     const username = req.cookies.username;
     const pollName = req.body.pollname;
     let answers = [];
-    for (let [key, value] of req.body) {
+    for (let [key, value] of Object.entries(req.body)) {
       if (key.search(/^answer\d+$/) !== -1) {
         answers.push(value);
       }
@@ -143,7 +143,7 @@ app.get("/poll/:poll/changepoll", async (req, res) => {
 app.post("/poll/:poll/changepoll", async (req, res) => {
   const pollName = req.params.poll;
   let answers = [];
-  for (let [key, value] of req.body) {
+  for (let [key, value] of Object.entries(req.body)) {
     if (key.search(/^answer\d+$/) !== -1) {
       answers.push(value);
     }
