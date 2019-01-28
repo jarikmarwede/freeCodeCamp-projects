@@ -33,12 +33,11 @@ function showMorePolls() {
   }
 }
 
-function deletePoll(pollName) {
+async function deletePoll(pollName) {
   const apiPollPath = "/api/deletepoll/" + pollName;
+  await fetch(apiPollPath);
 
-  $.getJSON(apiPollPath, () => {
-    location.reload();
-  });
+  location.reload();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
