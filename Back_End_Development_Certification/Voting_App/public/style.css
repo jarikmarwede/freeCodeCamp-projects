@@ -45,8 +45,8 @@ fieldset[disabled] .default-btn.active {
   background-color: #433f70;
 }
 .jumbotron {
-  margin: 5rem;
-  padding: 10rem;
+  margin-top: 1rem;
+  padding: 1rem;
 }
 .poll-link {
   display: inline-block;
@@ -75,4 +75,11 @@ fieldset[disabled] .default-btn.active {
 }
 .hidden {
   display: none;
+}
+
+@media screen and (min-width: 992px) {
+  .jumbotron {
+    margin: 5rem;
+    padding: 10rem;
+  }
 }
