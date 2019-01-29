@@ -167,7 +167,7 @@ async function getPolls(searchQuery={}) {
     return polls
   } else {
     console.log("Could not find poll with search query: " + searchQuery);
-    return null;
+    return [];
   }
 }
 

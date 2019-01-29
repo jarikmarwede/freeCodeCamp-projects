@@ -33,7 +33,7 @@ app.get("/", async (request, response) => {
   for (let index = 0; index < polls.length; index++) {
     polls[index].isHidden = index >= 10;
   }
-  response.render("index", {polls});
+  response.render("index", {polls: polls.reverse()});
 });
 
 app.post("/login", async (req, res) => {
@@ -74,7 +74,7 @@ app.get("/dashboard", async (req, res) => {
     for (let index = 0; index < polls.length; index++) {
       polls[index].isHidden = index >= 10;
     }
-    res.render("dashboard", {polls});
+    res.render("dashboard", {polls: polls.reverse()});
   } else {
     res.redirect("/signup");
   }
