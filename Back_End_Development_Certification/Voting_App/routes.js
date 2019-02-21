@@ -42,8 +42,11 @@ app.post("/login", async (req, res) => {
   const sessionId = await server.getSessionId(username, password);
 
   if (sessionId) {
-    res.cookie("session", sessionId);
-    res.cookie("username", username);
+    const cookieSettings = {
+      sameSite: "lax"
+    };
+    res.cookie("session", sessionId, cookieSettings);
+    res.cookie("username", username, cookieSettings);
   }
   res.redirect("back");
 });
