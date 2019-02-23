@@ -59,14 +59,13 @@ async function getSessionId(username, password) {
       client.close();
       return null;
     } else {
-      const hash = crypto.createHash("sha256");
-      hash.update(password);
-      if (userData[0]["password"] !== hash.digest("hex")) {
-        console.log("Wrong password");
+      const hash = crypto.pbkdf2Sync(password, userData[0]["salt"],1000, 64, "sha512").toString("hex");
+      if (userData[0]["hash"] !== hash) {
+        console.log(`User "${username}" failed to log in.`);
         client.close();
         return null;
       }
-      const sessionId = crypto.randomBytes(20).toString('hex');
+      const sessionId = crypto.randomBytes(64).toString('hex');
       await collection.updateOne({"username": username}, {$set: {"session": sessionId}});
       client.close();
       return sessionId;
@@ -91,9 +90,9 @@ async function signup(username, email, password) {
       client.close();
       return false;
     } else {
-      const hash = crypto.createHash('sha256');
-      hash.update(password);
-      userCollection.insert({"username": username, "email": email, "password": hash.digest("hex")});
+      const salt = crypto.randomBytes(16).toString("hex");
+      const hash = crypto.pbkdf2Sync(password, salt, 1000, 64,"sha512").toString("hex");
+      userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
       client.close();
       return true;
     }
