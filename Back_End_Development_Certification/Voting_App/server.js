@@ -175,7 +175,7 @@ async function deletePoll(pollName) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
-    pollsCollection.remove({"poll-name": pollName});
+    await pollsCollection.deleteOne({"poll-name": pollName});
     client.close();
   }
 }
