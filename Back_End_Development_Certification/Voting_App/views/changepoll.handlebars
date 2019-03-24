@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="jumbotron jumbotron-fluid shadow-lg">
     <h3 class="text-center">Change the possible answers to your poll ({{ poll.poll-name }})</h3>
-    <form method="post">
+    <form method="post" action="/api/poll/{{ poll.poll-name }}/changepoll">
       <h5 class="text-center">Answers: </h5>
       <div class="form-group" id="poll-answers">
         {{#each poll.answers}}

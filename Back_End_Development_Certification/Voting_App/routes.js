@@ -50,37 +50,8 @@ app.get("/", async (request, response) => {
   response.render("index", {polls: polls.reverse()});
 });
 
-app.post("/login", async (req, res) => {
-  const username = req.body.username;
-  const password = req.body.password;
-  const sessionId = await server.getSessionId(username, password);
-
-  if (sessionId) {
-    const cookieSettings = {
-      sameSite: "lax"
-    };
-    res.cookie("session", sessionId, cookieSettings);
-    res.cookie("username", username, cookieSettings);
-  }
-  res.redirect("back");
-});
-
 app.get("/signup", (req, res) => {
   res.render("signup");
-});
-
-app.post("/signup", async (req, res) => {
-  const username = req.body.username;
-  const email = req.body.email;
-  const password = req.body.password;
-
-  const success = await server.signup(username, email, password);
-
-  if (success) {
-    res.redirect("/");
-  } else {
-    res.redirect("back");
-  }
 });
 
 app.get("/dashboard", async (req, res) => {
@@ -105,7 +76,71 @@ app.get("/newpoll", async (req, res) => {
   }
 });
 
-app.post("/newpoll", async (req, res) => {
+app.get("/poll/:poll", async (req, res) => {
+  const poll = await server.getPoll(req.params.poll);
+  if (poll) {
+    res.render("poll", {poll});
+  } else {
+    res.redirect("back");
+  }
+});
+
+app.get("/poll/:poll/changepoll", async (req, res) => {
+  const pollName = req.params.poll;
+  const username = req.cookies.username;
+  const poll = await server.getPoll(pollName);
+  const ownsPoll = username === poll.creator;
+
+  if (req.middlewareData.loggedIn && ownsPoll) {
+    res.render("changepoll", {poll});
+  } else {
+    res.redirect("back");
+  }
+});
+
+
+// API
+app.get("/api/poll/:poll", async (req, res) => {
+  const pollName = req.params.poll;
+  const poll = await server.getPoll(pollName);
+
+  if (poll) {
+    res.status(200).send(poll);
+  } else {
+    res.sendStatus(400);
+  }
+});
+
+app.post("/api/signup", async (req, res) => {
+  const username = req.body.username;
+  const email = req.body.email;
+  const password = req.body.password;
+
+  const success = await server.signup(username, email, password);
+
+  if (success) {
+    res.redirect("/");
+  } else {
+    res.redirect("back");
+  }
+});
+
+app.post("/api/login", async (req, res) => {
+  const username = req.body.username;
+  const password = req.body.password;
+  const sessionId = await server.getSessionId(username, password);
+
+  if (sessionId) {
+    const cookieSettings = {
+      sameSite: "lax"
+    };
+    res.cookie("session", sessionId, cookieSettings);
+    res.cookie("username", username, cookieSettings);
+  }
+  res.redirect("back");
+});
+
+app.post("/api/newpoll", async (req, res) => {
   if (req.middlewareData.loggedIn) {
     const username = req.cookies.username;
     const pollName = req.body.pollname;
@@ -127,16 +162,7 @@ app.post("/newpoll", async (req, res) => {
   }
 });
 
-app.get("/poll/:poll", async (req, res) => {
-  const poll = await server.getPoll(req.params.poll);
-  if (poll) {
-    res.render("poll", {poll});
-  } else {
-    res.redirect("back");
-  }
-});
-
-app.post("/poll/:poll", async (req, res) => {
+app.post("/api/poll/:poll/vote", async (req, res) => {
   const pollName = req.params.poll;
   const answer = req.body.answer;
   await server.voteFor(pollName, answer);
@@ -144,20 +170,7 @@ app.post("/poll/:poll", async (req, res) => {
   res.redirect("back");
 });
 
-app.get("/poll/:poll/changepoll", async (req, res) => {
-  const pollName = req.params.poll;
-  const username = req.cookies.username;
-  const poll = await server.getPoll(pollName);
-  const ownsPoll = username === poll.creator;
-
-  if (req.middlewareData.loggedIn && ownsPoll) {
-    res.render("changepoll", {poll});
-  } else {
-    res.redirect("back");
-  }
-});
-
-app.post("/poll/:poll/changepoll", async (req, res) => {
+app.post("/api/poll/:poll/changepoll", async (req, res) => {
   const pollName = req.params.poll;
   let answers = [];
   for (let [key, value] of Object.entries(req.body)) {
@@ -178,18 +191,6 @@ app.post("/poll/:poll/changepoll", async (req, res) => {
     }
   } else {
     res.redirect("back");
-  }
-});
-
-// API
-app.get("/api/poll/:poll", async (req, res) => {
-  const pollName = req.params.poll;
-  const poll = await server.getPoll(pollName);
-
-  if (poll) {
-    res.status(200).send(poll);
-  } else {
-    res.sendStatus(400);
   }
 });
 
