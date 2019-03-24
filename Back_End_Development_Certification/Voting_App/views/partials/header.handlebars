@@ -8,6 +8,7 @@
       <form id="logged-in-list" class="form-inline ml-auto">
         <a class="btn default-btn" href="/dashboard">Dashboard</a>
         <button class="btn default-btn" id="logout-btn">Logout</button>
+        <input name="xsrfFormValue" type="hidden" value="{{xsrfFormValue}}">
       </form>
     {{else}}
       <form id="login-form" class="form-inline ml-auto" action="/login" method="post">
@@ -15,6 +16,7 @@
         <input type="password" placeholder="password" class="form-control" name="password" pattern=".{8}.*" required>
         <button class="btn default-btn" type="submit" id="login-btn">Login</button>
         <a class="btn default-btn" href="/signup" id="signup-btn">Sign Up</a>
+        <input name="xsrfFormValue" type="hidden" value="{{xsrfFormValue}}">
       </form>
     {{/if}}
   </div>

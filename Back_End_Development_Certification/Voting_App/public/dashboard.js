@@ -1,3 +1,8 @@
+function getCookie(name) {
+  const match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+  if (match) return match[2];
+}
+
 function addPollEventHandlers() {
   for (const deleteModalButton of document.getElementsByClassName("delete-modal-btn")) {
     deleteModalButton.addEventListener("click", event => {
@@ -34,8 +39,18 @@ function showMorePolls() {
 }
 
 async function deletePoll(pollName) {
-  const apiPollPath = "/api/deletepoll/" + pollName;
-  await fetch(apiPollPath);
+  const apiPollPath = "/api/poll/" + pollName;
+  console.log(getCookie("xsrfFormValue"));
+  await fetch(apiPollPath, {
+    method: "DELETE",
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      xsrfFormValue: getCookie("xsrfFormValue")
+    })
+  });
 
   location.reload();
 }

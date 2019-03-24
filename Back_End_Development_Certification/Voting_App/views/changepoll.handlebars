@@ -1,23 +1,22 @@
 <div class="container-fluid">
-  {{#with poll}}
-    <div class="jumbotron jumbotron-fluid shadow-lg">
-      <h3 class="text-center">Change the possible answers to your poll ({{ poll-name }})</h3>
-      <form method="post">
-        <h5 class="text-center">Answers: </h5>
-        <div class="form-group" id="poll-answers">
-          {{#each answers}}
-            <input class="form-control answer" type="text" name="answer{{ @index }}" placeholder="answer{{ @index }}" pattern="^[a-zA-Z0-9_]*$" required value="{{ @key }}">
-          {{else}}
-            <h2 class="text-center">No answers could be loaded!</h2>
-          {{/each}}
-        </div>
-        <div class="form-group">
-          <button class="btn default-btn" type="button" id="add-answer-btn">Add answer</button>
-          <button class="btn default-btn" type="button" id="delete-answer-btn">Delete last answer</button>
-          <button class="btn default-btn" type="submit">Save changes</button>
-        </div>
-      </form>
-    </div>
-  {{/with}}
+  <div class="jumbotron jumbotron-fluid shadow-lg">
+    <h3 class="text-center">Change the possible answers to your poll ({{ poll.poll-name }})</h3>
+    <form method="post">
+      <h5 class="text-center">Answers: </h5>
+      <div class="form-group" id="poll-answers">
+        {{#each poll.answers}}
+          <input class="form-control answer" type="text" name="answer{{ @index }}" placeholder="answer{{ @index }}" pattern="^[a-zA-Z0-9_]*$" required value="{{ @key }}">
+        {{else}}
+          <h2 class="text-center">No answers could be loaded!</h2>
+        {{/each}}
+      </div>
+      <div class="form-group">
+        <button class="btn default-btn" type="button" id="add-answer-btn">Add answer</button>
+        <button class="btn default-btn" type="button" id="delete-answer-btn">Delete last answer</button>
+        <button class="btn default-btn" type="submit">Save changes</button>
+      </div>
+      <input name="xsrfFormValue" type="hidden" value="{{xsrfFormValue}}">
+    </form>
+  </div>
 </div>
 <script src="/changepoll.js"></script>

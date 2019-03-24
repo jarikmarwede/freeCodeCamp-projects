@@ -1,6 +1,7 @@
 const cookieParser = require("cookie-parser");
-const exphbs  = require('express-handlebars');
-const express = require('express');
+const exphbs  = require("express-handlebars");
+const express = require("express");
+const crypto = require("crypto");
 const server = require("./server");
 
 // express configuration
@@ -18,12 +19,25 @@ app.use(express.urlencoded({extended: true}));
 app.use(cookieParser());
 app.use(async (request, response, next) => {
   const loggedIn = await server.isLoggedIn(request.cookies.session, request.cookies.username);
+  const newXsrfFormValue = crypto.randomBytes(16).toString("hex");
+
   request.middlewareData = {};
   request.middlewareData.loggedIn = loggedIn;
+  if (request.method === "GET" && !request.path.startsWith("/api") && request.path !== "/favicon.ico") {
+    response.cookie("xsrfFormValue", newXsrfFormValue);
+  } else if (request.method === "POST" || request.method === "PUT" || request.method === "DELETE") {
+    const formValid = request.body.xsrfFormValue && request.body.xsrfFormValue === request.cookies.xsrfFormValue;
+    if (!formValid) {
+      return response.sendStatus(401);
+    }
+  }
+
   hbs._renderTemplate = (template, context, options) => {
     context.loggedIn = loggedIn;
+    context.xsrfFormValue = newXsrfFormValue;
     return template(context, options);
   };
+
   next();
 });
 
@@ -168,7 +182,7 @@ app.post("/poll/:poll/changepoll", async (req, res) => {
 });
 
 // API
-app.get("/api/getpoll/:poll", async (req, res) => {
+app.get("/api/poll/:poll", async (req, res) => {
   const pollName = req.params.poll;
   const poll = await server.getPoll(pollName);
 
@@ -179,7 +193,7 @@ app.get("/api/getpoll/:poll", async (req, res) => {
   }
 });
 
-app.get("/api/deletepoll/:poll", async (req, res) => {
+app.delete("/api/poll/:poll", async (req, res) => {
   const pollName = req.params.poll;
   const username = req.cookies.username;
   const ownsPoll = await server.doesOwnPoll(username, pollName);

@@ -19,6 +19,7 @@
         <input class="form-control" type="password" id="password2" pattern="^.{8}.*$" data-trigger="manual" data-placement="top" title="Passwords do not match" data-content="The passwords you entered do not match" required>
       </div>
       <button class="btn btn-block default-btn" type="submit">Sign Up</button>
+      <input name="xsrfFormValue" type="hidden" value="{{xsrfFormValue}}">
     </form>
   </div>
 </div>

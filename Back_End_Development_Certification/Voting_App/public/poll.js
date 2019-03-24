@@ -8,7 +8,7 @@ function randomColors(amount) {
 
 async function loadPoll() {
   const pollName = decodeURIComponent(window.location.pathname.split("/")[window.location.pathname.split("/").length - 1]);
-  const apiPath = "/api/getpoll/" + pollName;
+  const apiPath = "/api/poll/" + pollName;
 
   const response = await fetch(apiPath);
   const pollData = await response.json();
