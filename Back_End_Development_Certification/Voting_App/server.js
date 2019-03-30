@@ -229,13 +229,15 @@ async function changePollAnswers(pollName, answers, username) {
   }
 }
 
-module.exports.isLoggedIn = isLoggedIn;
-module.exports.doesOwnPoll = doesOwnPoll;
-module.exports.getSessionId = getSessionId;
-module.exports.signup = signup;
-module.exports.createNewPoll = createNewPoll;
-module.exports.getPoll = getPoll;
-module.exports.getPolls = getPolls;
-module.exports.deletePoll = deletePoll;
-module.exports.voteFor = voteFor;
-module.exports.changePollAnswers = changePollAnswers;
+module.exports = {
+  isLoggedIn,
+  doesOwnPoll,
+  getSessionId,
+  signup,
+  createNewPoll,
+  getPoll,
+  getPolls,
+  deletePoll,
+  voteFor,
+  changePollAnswers
+};
