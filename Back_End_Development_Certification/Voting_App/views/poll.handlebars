@@ -3,7 +3,7 @@
     <div class="col-lg">
       <h4 class="text-center" id="poll-title">{{ poll.poll-name }}</h4>
       <h6 class="text-center" id="creator-name">By {{ poll.creator }}</h6>
-      <form method="post" class="text-center mt-5" action="/api/poll/{{ poll-poll-name }}/vote">
+      <form method="post" class="text-center mt-5" action="/api/poll/{{ poll.poll-name }}/vote">
         <label for="answer-list">Choose your answer:</label>
         <select class="form-control" id="answer-list" name="answer">
           {{#each poll.answers}}
