@@ -174,6 +174,52 @@ async function getPolls(searchQuery={}) {
   }
 }
 
+async function getUserData(username) {
+  const client = await MongoClient.connect(DATABASE_PATH);
+  const db = client.db("voting-app");
+  const userCollection = db.collection("user-data");
+  const userData = await userCollection.findOne({username: username}, {projection: {_id: 0, hash: 0, salt: 0, session: 0}});
+  client.close();
+  return userData;
+}
+
+async function updateUserData(username, newUserData) {
+  const client = await MongoClient.connect(DATABASE_PATH);
+  const db = client.db("voting-app");
+  const userCollection = db.collection("user-data");
+  const oldUserData = await getUserData(username);
+  const usernameSearch = await userCollection.find({"username": newUserData.username}).toArray();
+  const emailSearch = await userCollection.find({"email": newUserData.email}).toArray();
+
+  for (let key of Object.keys(data)) {
+    if (key === "username") {
+      if (oldUserData.username !== newUserData.username && usernameSearch.length > 0) {
+        return false;
+      }
+    } else if (key === "email") {
+      if (oldUserData.email !== oldUserData.email && emailSearch.length > 0) {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
+  const updateResult = await userCollection.updateOne({username}, {$set: newUserData});
+  client.close();
+  return updateResult.result.ok;
+}
+
+async function changePassword(username, newPassword) {
+  const client = await MongoClient.connect(DATABASE_PATH);
+  const db = client.db("voting-app");
+  const userCollection = db.collection("user-data");
+  const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
+
+  const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
+  return updateResult.result.ok;
+}
+
 async function deletePoll(pollName) {
   if (pollName) {
     const client = await MongoClient.connect(DATABASE_PATH);
