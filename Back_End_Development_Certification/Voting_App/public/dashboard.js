@@ -40,7 +40,6 @@ function showMorePolls() {
 
 async function deletePoll(pollName) {
   const apiPollPath = "/api/poll/" + pollName;
-  console.log(getCookie("xsrfFormValue"));
   await fetch(apiPollPath, {
     method: "DELETE",
     headers: {
