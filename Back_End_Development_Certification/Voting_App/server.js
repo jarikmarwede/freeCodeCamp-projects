@@ -47,6 +47,10 @@ async function doesOwnPoll(username, pollName) {
   return !!(poll && poll["creator"] === username);
 }
 
+async function getHash(salt, password) {
+  return crypto.pbkdf2Sync(password, salt,1000, 64, "sha512").toString("hex");
+}
+
 async function getSessionId(username, password) {
   if (username && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
@@ -59,7 +63,7 @@ async function getSessionId(username, password) {
       client.close();
       return null;
     } else {
-      const hash = crypto.pbkdf2Sync(password, userData[0]["salt"],1000, 64, "sha512").toString("hex");
+      const hash = getHash(userData[0]["salt"], password);
       if (userData[0]["hash"] !== hash) {
         console.log(`User "${username}" failed to log in.`);
         client.close();
@@ -91,7 +95,7 @@ async function signup(username, email, password) {
       return false;
     } else {
       const salt = crypto.randomBytes(16).toString("hex");
-      const hash = crypto.pbkdf2Sync(password, salt, 1000, 64,"sha512").toString("hex");
+      const hash = getHash(salt, password);
       userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
       client.close();
       return true;
