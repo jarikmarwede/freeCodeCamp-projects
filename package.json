@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "description": "All of my freeCodeCamp projects",
   "license": "UNLICENSED",
-  "main": "server.js",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +25,16 @@
     "mongoose": "^5.4.0",
     "multer": "^1.4.1",
     "rapidapi-connect": "0.0.6",
-    "unirest": "^0.5.1"
+    "unirest": "^0.6.0"
+  },
+  "config": {
+    "pre-git": {
+      "pre-push": [
+        "git subtree push --prefix=Back_End_Development_Certification/Voting_App heroku master"
+      ]
+    }
+  },
+  "devDependencies": {
+    "pre-git": "^3.17.1"
   }
 }
