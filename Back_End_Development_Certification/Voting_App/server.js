@@ -187,11 +187,12 @@ async function updateUserData(username, newUserData) {
   const client = await MongoClient.connect(DATABASE_PATH);
   const db = client.db("voting-app");
   const userCollection = db.collection("user-data");
+  const pollsCollection = db.collection("polls");
   const oldUserData = await getUserData(username);
   const usernameSearch = await userCollection.find({"username": newUserData.username}).toArray();
   const emailSearch = await userCollection.find({"email": newUserData.email}).toArray();
 
-  for (let key of Object.keys(data)) {
+  for (let key of Object.keys(newUserData)) {
     if (key === "username") {
       if (oldUserData.username !== newUserData.username && usernameSearch.length > 0) {
         return false;
@@ -205,9 +206,14 @@ async function updateUserData(username, newUserData) {
     }
   }
 
-  const updateResult = await userCollection.updateOne({username}, {$set: newUserData});
+  const userUpdateResult = await userCollection.updateOne({username}, {$set: newUserData});
+  let result = userUpdateResult.result.ok;
+  if (newUserData.username) {
+    const pollsUpdateResult = await pollsCollection.updateMany({creator: username}, {$set: {creator: newUserData.username}});
+    result &= pollsUpdateResult.result.ok;
+  }
   client.close();
-  return updateResult.result.ok;
+  return result;
 }
 
 async function changePassword(username, newPassword) {
