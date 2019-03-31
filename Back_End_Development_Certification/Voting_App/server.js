@@ -233,6 +233,17 @@ async function changePollAnswers(pollName, answers, username) {
   }
 }
 
+async function deleteUser(username) {
+  const client = await MongoClient.connect(DATABASE_PATH);
+  const db = client.db("voting-app");
+  const userCollection = db.collection("user-data");
+  const pollsCollection = db.collection("polls");
+  const userDeletionResult = await userCollection.deleteOne({username});
+  const pollsDeletionResult = await pollsCollection.deleteMany({creator: username});
+  client.close();
+  return userDeletionResult.result.ok && pollsDeletionResult.result.ok;
+}
+
 module.exports = {
   isLoggedIn,
   doesOwnPoll,
@@ -241,7 +252,11 @@ module.exports = {
   createNewPoll,
   getPoll,
   getPolls,
+  getUserData,
+  updateUserData,
+  changePassword,
   deletePoll,
   voteFor,
-  changePollAnswers
+  changePollAnswers,
+  deleteUser
 };
