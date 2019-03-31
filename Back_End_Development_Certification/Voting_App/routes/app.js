@@ -28,6 +28,16 @@ router.get("/dashboard", async (request, response) => {
   }
 });
 
+router.get("/account", async (request, response) => {
+  if (request.middlewareData.loggedIn) {
+    const username = request.cookies.username;
+    const userData = await server.getUserData(username);
+    response.render("account", {username, email: userData.email});
+  } else {
+    response.redirect("/signup");
+  }
+});
+
 router.get("/newpoll", async (request, response) => {
   if (request.middlewareData.loggedIn) {
     response.render("newpoll");

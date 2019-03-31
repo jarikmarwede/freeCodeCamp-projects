@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="jumbotron jumbotron-fluid shadow-lg">
+    <h2>Account information:</h2>
+    <form action="/api/user/{{username}}" method="post">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input id="username" class="form-control" type="text" value="{{username}}" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email-address:</label>
+        <input id="email" class="form-control" type="email" value="{{email}}" required>
+      </div>
+      <button class="btn default-btn" type="submit">Save changes</button>
+      <input name="xsrfFormValue" type="hidden" value="{{xsrfFormValue}}">
+    </form>
+    <hr class="my-5">
+    <h2>Change password:</h2>
+    <form action="/api/user/{{username}}/change_password" method="post">
+      <div class="form-group">
+        <label for="old-password">Old password:</label>
+        <input id="old-password" class="form-control" type="password" required>
+      </div>
+      <div class="form-group">
+        <label for="new-password">New password:</label>
+        <input id="new-password" class="form-control" type="password" required>
+        <label for="new-password2">Confirm new password:</label>
+        <input id="new-password2" class="form-control" type="password" required>
+      </div>
+      <button class="btn default-btn" type="submit">Change password</button>
+      <input name="xsrfFormValue" type="hidden" value="{{xsrfFormValue}}">
+    </form>
+    <hr class="my-5">
+    <h2>Delete account:</h2>
+    <button class="btn btn-danger mt-3" data-toggle="modal" data-target="#delete-account-modal">Delete account</button>
+    <div class="modal fade" id="delete-account-modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete account</h5>
+            <button class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Do you really want to delete your account?</p>
+          </div>
+          <div class="modal-footer">
+            <button class="btn btn-danger" id="delete-account-button">Yes</button>
+            <button class="btn btn-secondary" data-dismiss="modal">No</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/account.js"></script>
