@@ -14,10 +14,10 @@ form * {
 .default-btn {
   background-color: #6a698c;
   border-color: #6a698c;
-  color: #ffffff;
+  color: white;
 }
 .default-btn:link {
-  color: #ffffff;
+  color: white;
 }
 .default-btn:hover,
 .default-btn:focus,
@@ -25,6 +25,7 @@ form * {
 .default-btn.active {
   background-color: #5f5e7d;
   border-color: #54536f;
+  color: white;
 }
 .default-btn.disabled:hover,
 .default-btn.disabled:focus,
@@ -40,6 +41,7 @@ fieldset[disabled] .default-btn:active,
 fieldset[disabled] .default-btn.active {
   background-color: #6a698c;
   border-color: #6a698c;
+  color: white;
 }
 #signup-btn {
   background-color: #433f70;
