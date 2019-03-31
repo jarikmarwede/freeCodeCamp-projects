@@ -4,8 +4,8 @@ body {
 form * {
   margin: 0.5rem;
 }
-.navbar * {
-  margin: 0.5rem;
+.navbar {
+  padding: 1.5rem;
 }
 .navbar-brand {
   margin-left: 2rem;

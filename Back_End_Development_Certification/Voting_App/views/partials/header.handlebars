@@ -1,14 +1,21 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar bg-light {{#if loggedIn}}navbar-expand{{else}}navbar-expand-lg{{/if}}">
   <a class="navbar-brand black-link" href="/">Voting App</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsible-navbar">
     <i class="fas fa-bars"></i>
   </button>
   <div class="collapse navbar-collapse" id="collapsible-navbar">
     {{#if loggedIn}}
-      <form id="logged-in-list" class="form-inline ml-auto">
-        <a class="btn default-btn" href="/dashboard">Dashboard</a>
-        <button class="btn default-btn" id="logout-btn">Logout</button>
-      </form>
+      <div class="dropleft ml-auto" role="menu">
+        <button class="btn default-btn btn-lg" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="/dashboard">Dashboard</a>
+          <a class="dropdown-item" href="/account">Account</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="logout-btn">Logout</button>
+        </div>
+      </div>
     {{else}}
       <form id="login-form" class="form-inline ml-auto" action="/api/login" method="post">
         <input type="text" placeholder="username" class="form-control" name="username" pattern="^[a-zA-Z0-9_]*$" required>
