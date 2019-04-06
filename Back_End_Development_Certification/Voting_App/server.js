@@ -47,7 +47,7 @@ async function passwordRight(username, password) {
     const db = client.db("voting-app");
     const userDataCollection = db.collection("user-data");
     const userData = await userDataCollection.findOne({"username": username});
-    if (userData && await getHash(userData.salt, password) === userData.hash) {
+    if (userData && getHash(userData.salt, password) === userData.hash) {
       return true;
     }
   }
@@ -60,7 +60,7 @@ async function doesOwnPoll(username, pollName) {
   return !!(poll && poll["creator"] === username);
 }
 
-async function getHash(salt, password) {
+function getHash(salt, password) {
   return crypto.pbkdf2Sync(password, salt,1000, 64, "sha512").toString("hex");
 }
 
@@ -76,7 +76,7 @@ async function getSessionId(username, password) {
       client.close();
       return null;
     } else {
-      const hash = await getHash(userData[0]["salt"], password);
+      const hash = getHash(userData[0]["salt"], password);
       if (userData[0]["hash"] !== hash) {
         console.log(`User "${username}" failed to log in.`);
         client.close();
@@ -235,7 +235,7 @@ async function changePassword(username, newPassword) {
   const userCollection = db.collection("user-data");
   const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
 
-  const updateResult = await userCollection.updateOne({username}, {$set: {hash: await getHash(userData.salt, newPassword)}});
+  const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
   return updateResult.result.ok;
 }
 
