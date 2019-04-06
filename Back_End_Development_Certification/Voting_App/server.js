@@ -63,7 +63,7 @@ async function getSessionId(username, password) {
       client.close();
       return null;
     } else {
-      const hash = getHash(userData[0]["salt"], password);
+      const hash = await getHash(userData[0]["salt"], password);
       if (userData[0]["hash"] !== hash) {
         console.log(`User "${username}" failed to log in.`);
         client.close();
