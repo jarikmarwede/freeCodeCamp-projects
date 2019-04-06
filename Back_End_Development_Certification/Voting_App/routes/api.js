@@ -123,6 +123,7 @@ router.post("/user/:username", async (request, response) => {
   if (request.middlewareData.loggedIn && request.params.username === request.cookies.username) {
     const success = await server.updateUserData(request.params.username, {username: request.body.username, email: request.body.email});
     if (success) {
+      response.cookie("username", request.body.username);
       response.status(200).redirect("back");
     } else {
       response.status(500).redirect("back");
