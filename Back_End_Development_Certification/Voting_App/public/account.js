@@ -11,7 +11,7 @@ async function deleteAccount() {
     })
   });
 
-  window.location.redirect("/");
+  window.location.replace("/");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
