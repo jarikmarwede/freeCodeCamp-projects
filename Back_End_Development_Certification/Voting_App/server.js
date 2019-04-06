@@ -222,7 +222,7 @@ async function changePassword(username, newPassword) {
   const userCollection = db.collection("user-data");
   const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
 
-  const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
+  const updateResult = await userCollection.updateOne({username}, {$set: {hash: await getHash(userData.salt, newPassword)}});
   return updateResult.result.ok;
 }
 
