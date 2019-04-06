@@ -11,6 +11,7 @@ async function deleteAccount() {
     })
   });
 
+  clearCookies();
   window.location.replace("/");
 }
 
