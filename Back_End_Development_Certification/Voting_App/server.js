@@ -194,11 +194,11 @@ async function updateUserData(username, newUserData) {
 
   for (let key of Object.keys(newUserData)) {
     if (key === "username") {
-      if (oldUserData.username !== newUserData.username && usernameSearch.length > 0) {
+      if ((oldUserData.username !== newUserData.username && usernameSearch.length > 0) || !USERNAME_REGEXP.test(newUserData.username)) {
         return false;
       }
     } else if (key === "email") {
-      if (oldUserData.email !== oldUserData.email && emailSearch.length > 0) {
+      if ((oldUserData.email !== oldUserData.email && emailSearch.length > 0) || !EMAIL_REGEXP.test(newUserData.email)) {
         return false;
       }
     } else {
