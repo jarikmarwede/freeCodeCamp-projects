@@ -135,8 +135,8 @@ router.post("/user/:username", async (request, response) => {
 
 router.post("/user/:username/change_password", async (request, response) => {
   if (request.middlewareData.loggedIn && request.params.username === request.cookies.username) {
-    if (request.body.newPassword === request.body.newPassword2) {
-      const success = await server.changePassword(request.params.username, request.body.newPassword);
+    if (request.body["new-password"] === request.body["new-password2"] && await server.passwordRight(request.params.username, request.body["old-password"])) {
+      const success = await server.changePassword(request.params.username, request.body["new-password"]);
       if (success) {
         response.status(200).redirect("back");
       } else {

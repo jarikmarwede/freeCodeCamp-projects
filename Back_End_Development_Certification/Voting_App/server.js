@@ -41,6 +41,19 @@ async function isLoggedIn(sessionId, username) {
   }
 }
 
+async function passwordRight(username, password) {
+  if (username && password) {
+    const client = await MongoClient.connect(DATABASE_PATH);
+    const db = client.db("voting-app");
+    const userDataCollection = db.collection("user-data");
+    const userData = await userDataCollection.findOne({"username": username});
+    if (userData && await getHash(userData.salt, password) === userData.hash) {
+      return true;
+    }
+  }
+  return false;
+}
+
 async function doesOwnPoll(username, pollName) {
   const poll = await getPoll(pollName);
 
@@ -298,6 +311,7 @@ async function deleteUser(username) {
 
 module.exports = {
   isLoggedIn,
+  passwordRight,
   doesOwnPoll,
   getSessionId,
   signup,
