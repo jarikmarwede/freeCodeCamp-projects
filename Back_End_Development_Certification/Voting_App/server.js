@@ -10,6 +10,7 @@ const PASSWORD_REGEXP = /^.{8}.*$/i;
 const POLL_NAME_REGEXP = ALPHANUMERIC_REGEXP;
 const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
 const ONE_MEGABYTE = 1048576;
+const KEY_LENGTH = 64;
 
 async function checkForDatabaseLimit(db) {
   const stats = await db.stats({scale: ONE_MEGABYTE});
@@ -61,7 +62,7 @@ async function doesOwnPoll(username, pollName) {
 }
 
 function getHash(salt, password) {
-  return crypto.pbkdf2Sync(password, salt,1000, 64, "sha512").toString("hex");
+  return crypto.pbkdf2Sync(password, salt, 20000, KEY_LENGTH, "sha512").toString("hex");
 }
 
 async function getSessionId(username, password) {
@@ -82,7 +83,7 @@ async function getSessionId(username, password) {
         client.close();
         return null;
       }
-      const sessionId = crypto.randomBytes(64).toString('hex');
+      const sessionId = crypto.randomBytes(KEY_LENGTH).toString('hex');
       await collection.updateOne({"username": username}, {$set: {"session": sessionId}});
       client.close();
       return sessionId;
@@ -107,7 +108,7 @@ async function signup(username, email, password) {
       client.close();
       return false;
     } else {
-      const salt = crypto.randomBytes(16).toString("hex");
+      const salt = crypto.randomBytes(KEY_LENGTH).toString("hex");
       const hash = getHash(salt, password);
       userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
       client.close();
