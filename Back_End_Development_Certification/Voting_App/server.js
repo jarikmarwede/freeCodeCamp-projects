@@ -62,7 +62,7 @@ async function doesOwnPoll(username, pollName) {
 }
 
 function getHash(salt, password) {
-  return crypto.pbkdf2Sync(password, salt, 20000, KEY_LENGTH, "sha512").toString("hex");
+  return crypto.scryptSync(password, salt, KEY_LENGTH).toString("hex");
 }
 
 async function getSessionId(username, password) {
