@@ -7,6 +7,7 @@ const ALPHANUMERIC_REGEXP = /^[\w]+$/;
 const USERNAME_REGEXP = ALPHANUMERIC_REGEXP;
 const EMAIL_REGEXP = /^.+@.+\..+$/i;
 const PASSWORD_REGEXP = /^.{8}.*$/i;
+const SESSION_ID_REGEXP = /^[a-zA-z0-9]{128}$/;
 const POLL_NAME_REGEXP = ALPHANUMERIC_REGEXP;
 const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
 const ONE_MEGABYTE = 1048576;
@@ -32,7 +33,7 @@ function generateSalt() {
 }
 
 module.exports.isLoggedIn = async function(sessionId, username) {
-  if (sessionId && USERNAME_REGEXP.test(username)) {
+  if (SESSION_ID_REGEXP.test(sessionId) && USERNAME_REGEXP.test(username)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const collection = db.collection("user-data");
@@ -41,6 +42,7 @@ module.exports.isLoggedIn = async function(sessionId, username) {
     client.close();
     return userData.length && userData[0]["session"] === sessionId;
   }
+  return false;
 };
 
 module.exports.passwordRight = async function(username, password) {
