@@ -32,7 +32,7 @@ function getSalt() {
 }
 
 module.exports.isLoggedIn = async function(sessionId, username) {
-  if (sessionId && username) {
+  if (sessionId && USERNAME_REGEXP.test(username)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const collection = db.collection("user-data");
@@ -44,7 +44,7 @@ module.exports.isLoggedIn = async function(sessionId, username) {
 };
 
 module.exports.passwordRight = async function(username, password) {
-  if (username && password) {
+  if (USERNAME_REGEXP.test(username) && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const userDataCollection = db.collection("user-data");
@@ -62,7 +62,7 @@ module.exports.doesOwnPoll = async function(username, pollName) {
 };
 
 module.exports.getSessionId = async function(username, password) {
-  if (username && PASSWORD_REGEXP.test(password)) {
+  if (USERNAME_REGEXP.test(username) && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const collection = db.collection("user-data");
@@ -116,7 +116,7 @@ module.exports.signup = async function(username, email, password) {
 };
 
 module.exports.createNewPoll = async function(pollName, username, answers) {
-  if (POLL_NAME_REGEXP.test(pollName) && answers.length >= 2 && username) {
+  if (POLL_NAME_REGEXP.test(pollName) && answers.length >= 2 && USERNAME_REGEXP.test(username)) {
     for (let answer of answers) {
       if (!ANSWER_REGEXP.test(answer)) {
         console.log("Invalid answers");
@@ -149,7 +149,7 @@ module.exports.createNewPoll = async function(pollName, username, answers) {
 };
 
 module.exports.getPoll = async function(pollName) {
-  if (pollName) {
+  if (POLL_NAME_REGEXP.test(pollName)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
@@ -181,60 +181,70 @@ module.exports.getPolls = async function(searchQuery={}) {
 };
 
 module.exports.getUserData = async function(username) {
-  const client = await MongoClient.connect(DATABASE_PATH);
-  const db = client.db("voting-app");
-  const userCollection = db.collection("user-data");
-  const userData = await userCollection.findOne({username: username}, {projection: {_id: 0, hash: 0, salt: 0, session: 0}});
-  client.close();
-  return userData;
+  if (USERNAME_REGEXP.test(username)) {
+    const client = await MongoClient.connect(DATABASE_PATH);
+    const db = client.db("voting-app");
+    const userCollection = db.collection("user-data");
+    const userData = await userCollection.findOne({username: username}, {projection: {_id: 0, hash: 0, salt: 0, session: 0}});
+    client.close();
+    return userData;
+  } else {
+    return {};
+  }
 };
 
 module.exports.updateUserData = async function(username, newUserData) {
-  const client = await MongoClient.connect(DATABASE_PATH);
-  const db = client.db("voting-app");
-  const userCollection = db.collection("user-data");
-  const pollsCollection = db.collection("polls");
-  const oldUserData = await getUserData(username);
-  const usernameSearch = await userCollection.find({"username": newUserData.username}).toArray();
-  const emailSearch = await userCollection.find({"email": newUserData.email}).toArray();
+  if (USERNAME_REGEXP.test(username)) {
+    const client = await MongoClient.connect(DATABASE_PATH);
+    const db = client.db("voting-app");
+    const userCollection = db.collection("user-data");
+    const pollsCollection = db.collection("polls");
+    const oldUserData = await getUserData(username);
+    const usernameSearch = await userCollection.find({"username": newUserData.username}).toArray();
+    const emailSearch = await userCollection.find({"email": newUserData.email}).toArray();
 
-  for (let key of Object.keys(newUserData)) {
-    if (key === "username") {
-      if ((oldUserData.username !== newUserData.username && usernameSearch.length > 0) || !USERNAME_REGEXP.test(newUserData.username)) {
+    for (let key of Object.keys(newUserData)) {
+      if (key === "username") {
+        if ((oldUserData.username !== newUserData.username && usernameSearch.length > 0) || !USERNAME_REGEXP.test(newUserData.username)) {
+          return false;
+        }
+      } else if (key === "email") {
+        if ((oldUserData.email !== oldUserData.email && emailSearch.length > 0) || !EMAIL_REGEXP.test(newUserData.email)) {
+          return false;
+        }
+      } else {
         return false;
       }
-    } else if (key === "email") {
-      if ((oldUserData.email !== oldUserData.email && emailSearch.length > 0) || !EMAIL_REGEXP.test(newUserData.email)) {
-        return false;
-      }
-    } else {
-      return false;
     }
-  }
 
-  const userUpdateResult = await userCollection.updateOne({username}, {$set: newUserData});
-  let result = userUpdateResult.result.ok;
-  if (newUserData.username) {
-    const pollsUpdateResult = await pollsCollection.updateMany({creator: username}, {$set: {creator: newUserData.username}});
-    result &= pollsUpdateResult.result.ok;
+    const userUpdateResult = await userCollection.updateOne({username}, {$set: newUserData});
+    let result = userUpdateResult.result.ok;
+    if (newUserData.username) {
+      const pollsUpdateResult = await pollsCollection.updateMany({creator: username}, {$set: {creator: newUserData.username}});
+      result &= pollsUpdateResult.result.ok;
+    }
+    client.close();
+    return result;
   }
-  client.close();
-  return result;
+  return false;
 };
 
 module.exports.changePassword = async function(username, newPassword) {
-  const client = await MongoClient.connect(DATABASE_PATH);
-  const db = client.db("voting-app");
-  const userCollection = db.collection("user-data");
-  const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
+  if (USERNAME_REGEXP.test(username) && PASSWORD_REGEXP.test(newPassword)) {
+    const client = await MongoClient.connect(DATABASE_PATH);
+    const db = client.db("voting-app");
+    const userCollection = db.collection("user-data");
+    const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
 
-  const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
-  client.close();
-  return updateResult.result.ok;
+    const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
+    client.close();
+    return updateResult.result.ok;
+  }
+  return false;
 };
 
 module.exports.deletePoll = async function(pollName) {
-  if (pollName) {
+  if (POLL_NAME_REGEXP.test(pollName)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
@@ -247,7 +257,7 @@ module.exports.deletePoll = async function(pollName) {
 
 module.exports.voteFor = async function(pollName, answer) {
   let status = false;
-  if (pollName && answer) {
+  if (POLL_NAME_REGEXP.test(pollName) && ANSWER_REGEXP.test(answer)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
@@ -263,7 +273,7 @@ module.exports.voteFor = async function(pollName, answer) {
 };
 
 module.exports.changePollAnswers = async function(pollName, answers, username) {
-  if (pollName && answers && username) {
+  if (POLL_NAME_REGEXP.test(pollName) && answers && USERNAME_REGEXP.test(username)) {
     for (let answer of answers) {
       if (ANSWER_REGEXP.test(answer) === false) {
         console.log("Invalid answers");
@@ -293,12 +303,15 @@ module.exports.changePollAnswers = async function(pollName, answers, username) {
 };
 
 module.exports.deleteUser = async function(username) {
-  const client = await MongoClient.connect(DATABASE_PATH);
-  const db = client.db("voting-app");
-  const userCollection = db.collection("user-data");
-  const pollsCollection = db.collection("polls");
-  const userDeletionResult = await userCollection.deleteOne({username});
-  const pollsDeletionResult = await pollsCollection.deleteMany({creator: username});
-  client.close();
-  return userDeletionResult.result.ok && pollsDeletionResult.result.ok;
+  if (USERNAME_REGEXP.test(username)) {
+    const client = await MongoClient.connect(DATABASE_PATH);
+    const db = client.db("voting-app");
+    const userCollection = db.collection("user-data");
+    const pollsCollection = db.collection("polls");
+    const userDeletionResult = await userCollection.deleteOne({username});
+    const pollsDeletionResult = await pollsCollection.deleteMany({creator: username});
+    client.close();
+    return userDeletionResult.result.ok && pollsDeletionResult.result.ok;
+  }
+  return false;
 };
