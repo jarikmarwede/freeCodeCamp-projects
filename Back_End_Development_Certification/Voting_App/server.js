@@ -23,11 +23,11 @@ async function checkForDatabaseLimit(db) {
   }
 }
 
-function getHash(salt, password) {
+function generatePasswordHash(salt, password) {
   return crypto.scryptSync(password, salt, KEY_LENGTH).toString("hex");
 }
 
-function getSalt() {
+function generateSalt() {
   crypto.randomBytes(KEY_LENGTH).toString("hex");
 }
 
@@ -50,7 +50,7 @@ module.exports.passwordRight = async function(username, password) {
     const userDataCollection = db.collection("user-data");
     const userData = await userDataCollection.findOne({"username": username});
     client.close();
-    return userData && getHash(userData.salt, password) === userData.hash;
+    return userData && generatePasswordHash(userData.salt, password) === userData.hash;
   }
   return false;
 };
@@ -73,7 +73,7 @@ module.exports.getSessionId = async function(username, password) {
       client.close();
       return null;
     } else {
-      const hash = getHash(userData[0]["salt"], password);
+      const hash = generatePasswordHash(userData[0]["salt"], password);
       if (userData[0]["hash"] !== hash) {
         console.log(`User "${username}" failed to log in.`);
         client.close();
@@ -103,8 +103,8 @@ module.exports.signup = async function(username, email, password) {
       client.close();
       return false;
     } else {
-      const salt = getSalt();
-      const hash = getHash(salt, password);
+      const salt = generateSalt();
+      const hash = generatePasswordHash(salt, password);
       userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
       client.close();
       return true;
@@ -236,7 +236,7 @@ module.exports.changePassword = async function(username, newPassword) {
     const userCollection = db.collection("user-data");
     const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
 
-    const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
+    const updateResult = await userCollection.updateOne({username}, {$set: {hash: generatePasswordHash(userData.salt, newPassword)}});
     client.close();
     return updateResult.result.ok;
   }
