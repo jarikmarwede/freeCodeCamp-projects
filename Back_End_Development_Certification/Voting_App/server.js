@@ -23,7 +23,11 @@ async function checkForDatabaseLimit(db) {
   }
 }
 
-async function isLoggedIn(sessionId, username) {
+function getHash(salt, password) {
+  return crypto.scryptSync(password, salt, KEY_LENGTH).toString("hex");
+}
+
+module.exports.isLoggedIn = async function(sessionId, username) {
   if (sessionId && username) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
@@ -40,9 +44,9 @@ async function isLoggedIn(sessionId, username) {
   } else {
     return false;
   }
-}
+};
 
-async function passwordRight(username, password) {
+module.exports.passwordRight = async function(username, password) {
   if (username && password) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
@@ -53,19 +57,15 @@ async function passwordRight(username, password) {
     }
   }
   return false;
-}
+};
 
-async function doesOwnPoll(username, pollName) {
+module.exports.doesOwnPoll = async function(username, pollName) {
   const poll = await getPoll(pollName);
 
   return !!(poll && poll["creator"] === username);
-}
+};
 
-function getHash(salt, password) {
-  return crypto.scryptSync(password, salt, KEY_LENGTH).toString("hex");
-}
-
-async function getSessionId(username, password) {
+module.exports.getSessionId = async function(username, password) {
   if (username && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
@@ -92,9 +92,9 @@ async function getSessionId(username, password) {
     console.log("Invalid credentials");
     return null;
   }
-}
+};
 
-async function signup(username, email, password) {
+module.exports.signup = async function(username, email, password) {
   if (USERNAME_REGEXP.test(username) && EMAIL_REGEXP.test(email) && PASSWORD_REGEXP.test(password)) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
@@ -118,9 +118,9 @@ async function signup(username, email, password) {
     console.log("Invalid credentials");
     return false;
   }
-}
+};
 
-async function createNewPoll(pollName, username, answers) {
+module.exports.createNewPoll = async function(pollName, username, answers) {
   if (POLL_NAME_REGEXP.test(pollName) && answers.length >= 2 && username) {
     for (let answer of answers) {
       if (!ANSWER_REGEXP.test(answer)) {
@@ -151,9 +151,9 @@ async function createNewPoll(pollName, username, answers) {
     console.log("Invalid arguments");
     return false;
   }
-}
+};
 
-async function getPoll(pollName) {
+module.exports.getPoll = async function(pollName) {
   if (pollName) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
@@ -171,9 +171,9 @@ async function getPoll(pollName) {
     console.log("No poll name passed to API!");
     return null;
   }
-}
+};
 
-async function getPolls(searchQuery={}) {
+module.exports.getPolls = async function(searchQuery={}) {
   const client = await MongoClient.connect(DATABASE_PATH);
   const db = client.db("voting-app");
   const pollsCollection = db.collection("polls");
@@ -186,18 +186,18 @@ async function getPolls(searchQuery={}) {
     console.log("Could not find poll with search query: " + searchQuery);
     return [];
   }
-}
+};
 
-async function getUserData(username) {
+module.exports.getUserData = async function(username) {
   const client = await MongoClient.connect(DATABASE_PATH);
   const db = client.db("voting-app");
   const userCollection = db.collection("user-data");
   const userData = await userCollection.findOne({username: username}, {projection: {_id: 0, hash: 0, salt: 0, session: 0}});
   client.close();
   return userData;
-}
+};
 
-async function updateUserData(username, newUserData) {
+module.exports.updateUserData = async function(username, newUserData) {
   const client = await MongoClient.connect(DATABASE_PATH);
   const db = client.db("voting-app");
   const userCollection = db.collection("user-data");
@@ -228,9 +228,9 @@ async function updateUserData(username, newUserData) {
   }
   client.close();
   return result;
-}
+};
 
-async function changePassword(username, newPassword) {
+module.exports.changePassword = async function(username, newPassword) {
   const client = await MongoClient.connect(DATABASE_PATH);
   const db = client.db("voting-app");
   const userCollection = db.collection("user-data");
@@ -238,9 +238,9 @@ async function changePassword(username, newPassword) {
 
   const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
   return updateResult.result.ok;
-}
+};
 
-async function deletePoll(pollName) {
+module.exports.deletePoll = async function(pollName) {
   if (pollName) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
@@ -248,9 +248,9 @@ async function deletePoll(pollName) {
     await pollsCollection.deleteOne({"poll-name": pollName});
     client.close();
   }
-}
+};
 
-async function voteFor(pollName, answer) {
+module.exports.voteFor = async function(pollName, answer) {
   if (pollName && answer) {
     let status = false;
 
@@ -266,9 +266,9 @@ async function voteFor(pollName, answer) {
     client.close();
     return status;
   }
-}
+};
 
-async function changePollAnswers(pollName, answers, username) {
+module.exports.changePollAnswers = async function(pollName, answers, username) {
   if (pollName && answers && username) {
     for (let answer of answers) {
       if (ANSWER_REGEXP.test(answer) === false) {
@@ -297,9 +297,9 @@ async function changePollAnswers(pollName, answers, username) {
   } else {
     return false;
   }
-}
+};
 
-async function deleteUser(username) {
+module.exports.deleteUser = async function(username) {
   const client = await MongoClient.connect(DATABASE_PATH);
   const db = client.db("voting-app");
   const userCollection = db.collection("user-data");
@@ -308,22 +308,4 @@ async function deleteUser(username) {
   const pollsDeletionResult = await pollsCollection.deleteMany({creator: username});
   client.close();
   return userDeletionResult.result.ok && pollsDeletionResult.result.ok;
-}
-
-module.exports = {
-  isLoggedIn,
-  passwordRight,
-  doesOwnPoll,
-  getSessionId,
-  signup,
-  createNewPoll,
-  getPoll,
-  getPolls,
-  getUserData,
-  updateUserData,
-  changePassword,
-  deletePoll,
-  voteFor,
-  changePollAnswers,
-  deleteUser
 };
