@@ -34,15 +34,8 @@ module.exports.isLoggedIn = async function(sessionId, username) {
     const collection = db.collection("user-data");
     const userData = await collection.find({"username": username}).toArray();
 
-    if (userData.length && userData[0]["session"] === sessionId) {
-      client.close();
-      return true;
-    } else {
-      client.close();
-      return false;
-    }
-  } else {
-    return false;
+    client.close();
+    return userData.length && userData[0]["session"] === sessionId;
   }
 };
 
@@ -52,9 +45,8 @@ module.exports.passwordRight = async function(username, password) {
     const db = client.db("voting-app");
     const userDataCollection = db.collection("user-data");
     const userData = await userDataCollection.findOne({"username": username});
-    if (userData && getHash(userData.salt, password) === userData.hash) {
-      return true;
-    }
+    client.close();
+    return userData && getHash(userData.salt, password) === userData.hash;
   }
   return false;
 };
@@ -62,7 +54,7 @@ module.exports.passwordRight = async function(username, password) {
 module.exports.doesOwnPoll = async function(username, pollName) {
   const poll = await getPoll(pollName);
 
-  return !!(poll && poll["creator"] === username);
+  return poll && poll["creator"] === username;
 };
 
 module.exports.getSessionId = async function(username, password) {
@@ -103,7 +95,6 @@ module.exports.signup = async function(username, email, password) {
     const emailSearch = await userCollection.find({"email": email}).toArray();
 
     if (usernameSearch.length > 0 || emailSearch.length > 0) {
-      console.log(usernameSearch);
       console.log("Username or Email already exists!");
       client.close();
       return false;
@@ -165,12 +156,11 @@ module.exports.getPoll = async function(pollName) {
       return pollSearch[0]
     } else {
       console.log("Could not find poll with name: " + pollName);
-      return null;
     }
   } else {
     console.log("No poll name passed to API!");
-    return null;
   }
+  return null;
 };
 
 module.exports.getPolls = async function(searchQuery={}) {
@@ -180,12 +170,10 @@ module.exports.getPolls = async function(searchQuery={}) {
   const polls = await pollsCollection.find(searchQuery).project({_id: 0}).toArray();
 
   client.close();
-  if (polls) {
-    return polls
-  } else {
+  if (!polls) {
     console.log("Could not find poll with search query: " + searchQuery);
-    return [];
   }
+  return polls
 };
 
 module.exports.getUserData = async function(username) {
@@ -237,6 +225,7 @@ module.exports.changePassword = async function(username, newPassword) {
   const userData = await userCollection.findOne({username}, {projection: {salt: 1}});
 
   const updateResult = await userCollection.updateOne({username}, {$set: {hash: getHash(userData.salt, newPassword)}});
+  client.close();
   return updateResult.result.ok;
 };
 
@@ -245,15 +234,16 @@ module.exports.deletePoll = async function(pollName) {
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
-    await pollsCollection.deleteOne({"poll-name": pollName});
+    const deleteResult = await pollsCollection.deleteOne({"poll-name": pollName});
     client.close();
+    return deleteResult.result.ok;
   }
+  return false;
 };
 
 module.exports.voteFor = async function(pollName, answer) {
+  let status = false;
   if (pollName && answer) {
-    let status = false;
-
     const client = await MongoClient.connect(DATABASE_PATH);
     const db = client.db("voting-app");
     const pollsCollection = db.collection("polls");
@@ -264,8 +254,8 @@ module.exports.voteFor = async function(pollName, answer) {
       status = updateResult.result.ok;
     }
     client.close();
-    return status;
   }
+  return status;
 };
 
 module.exports.changePollAnswers = async function(pollName, answers, username) {
@@ -294,9 +284,8 @@ module.exports.changePollAnswers = async function(pollName, answers, username) {
     const updateResult = await pollCollection.updateOne({"poll-name": pollName}, {$set: {"answers": newPollAnswers}});
     client.close();
     return updateResult.result.ok;
-  } else {
-    return false;
   }
+  return false;
 };
 
 module.exports.deleteUser = async function(username) {

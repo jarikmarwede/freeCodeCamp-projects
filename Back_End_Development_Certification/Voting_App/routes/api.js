@@ -112,8 +112,12 @@ router.delete("/poll/:poll", async (request, response) => {
   const ownsPoll = await server.doesOwnPoll(username, pollName);
 
   if (request.middlewareData.loggedIn && ownsPoll) {
-    await server.deletePoll(pollName);
-    response.sendStatus(200);
+    const success = await server.deletePoll(pollName);
+    if (success) {
+      response.sendStatus(200);
+    } else {
+      response.sendStatus(500);
+    }
   } else {
     response.sendStatus(401);
   }
