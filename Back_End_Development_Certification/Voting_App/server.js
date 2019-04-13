@@ -3,7 +3,7 @@ const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 
 const DATABASE_PATH = process.env.DATABASE_PATH || "mongodb://localhost/voting-app";
-const ALPHANUMERIC_REGEXP = /^[\w]*$/;
+const ALPHANUMERIC_REGEXP = /^[\w]+$/;
 const USERNAME_REGEXP = ALPHANUMERIC_REGEXP;
 const EMAIL_REGEXP = /^.+@.+\..+$/i;
 const PASSWORD_REGEXP = /^.{8}.*$/i;
