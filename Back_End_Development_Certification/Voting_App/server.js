@@ -27,6 +27,10 @@ function getHash(salt, password) {
   return crypto.scryptSync(password, salt, KEY_LENGTH).toString("hex");
 }
 
+function getSalt() {
+  crypto.randomBytes(KEY_LENGTH).toString("hex");
+}
+
 module.exports.isLoggedIn = async function(sessionId, username) {
   if (sessionId && username) {
     const client = await MongoClient.connect(DATABASE_PATH);
@@ -99,7 +103,7 @@ module.exports.signup = async function(username, email, password) {
       client.close();
       return false;
     } else {
-      const salt = crypto.randomBytes(KEY_LENGTH).toString("hex");
+      const salt = getSalt();
       const hash = getHash(salt, password);
       userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
       client.close();
