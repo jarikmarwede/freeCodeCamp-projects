@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: Deploy Voting App to Heroku
       env:
-        HEROKU_API_TOKEN: "something"
+        HEROKU_API_TOKEN: ${{ secrets.HEROKU_API_TOKEN }}
         HEROKU_APP_NAME: "jm-voting-app"
       if: github.ref == 'refs/heads/master' && job.status == 'success'
       run: |
