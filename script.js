@@ -4,33 +4,33 @@ const RESPONSIVE_WEB_DESIGN_PROJECTS = [
     link:
       "./Responsive_Web_Design_Certification/Personal_Portfolio_Webpage/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Personal%20Portfolio%20Webpage"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive_Web_Design_Certification/Personal_Portfolio_Webpage"
   },
   {
     name: "Product Landing Page",
     link:
       "./Responsive_Web_Design_Certification/Product_Landing_Page/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Product%20Landing%20Page"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive_Web_Design_Certification/Product_Landing_Page"
   },
   {
     name: "Survey Form",
     link: "./Responsive_Web_Design_Certification/Survey_Form/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Survey%20Form"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive_Web_Design_Certification/Survey_Form"
   },
   {
     name: "Technical Documentation Page",
     link:
       "./Responsive_Web_Design_Certification/Technical_Documentation_Page/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Technical%20Documentation%20Page"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive_Web_Design_Certification/Technical_Documentation_Page"
   },
   {
     name: "Tribute Page",
     link: "./Responsive_Web_Design_Certification/Tribute_Page/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive%20Web%20Design%20Certification/Tribute%20Page"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive_Web_Design_Certification/Tribute_Page"
   }
 ];
 const FRONT_END_LIBRARIES_PROJECTS = [
@@ -39,30 +39,30 @@ const FRONT_END_LIBRARIES_PROJECTS = [
     link:
         "./Front_End_Libraries_Certification/Random_Quote_Machine/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Random%20Quote%20Machine"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Libraries_Certification/Random_Quote_Machine"
   },
   {
     name: "Markdown Previewer",
     link: "./Front_End_Libraries_Certification/Markdown_Previewer/index.html",
-    src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Markdown%20Previewer"
+    src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Libraries_Certification/Markdown_Previewer"
   },
   {
     name: "Drum Machine",
     link: "./Front_End_Libraries_Certification/Drum_Machine/index.html",
-    src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Drum%20Machine"
+    src: "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Libraries_Certification/Drum_Machine"
   },
   {
     name: "JavaScript Calculator",
     link:
         "./Front_End_Libraries_Certification/JavaScript_Calculator/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/JavaScript%20Calculator"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Libraries_Certification/JavaScript_Calculator"
   },
   {
     name: "Pomodoro Clock",
     link: "./Front_End_Libraries_Certification/Pomodoro_Clock/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Libraries%20Certification/Pomodoro%20Clock"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Libraries_Certification/Pomodoro_Clock"
   }
 ];
 const APIS_AND_MICROSERVICES_PROJECTS = [
@@ -71,34 +71,34 @@ const APIS_AND_MICROSERVICES_PROJECTS = [
     link:
       "./Apis_And_Microservices_Certification/File_Metadata_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/File%20Metadata%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/File_Metadata_Microservice"
   },
   {
     name: "Request Header Parser Microservice",
     link:
       "./Apis_And_Microservices_Certification/Request_Header_Parser_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Request%20Header%20Parser%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Request_Header_Parser_Microservice"
   },
   {
     name: "Timestamp Microservice",
     link:
       "./Apis_And_Microservices_Certification/Timestamp_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Timestamp%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Timestamp_Microservice"
   },
   {
     name: "URL Shortener Microservice",
     link:
       "./Apis_And_Microservices_Certification/URL_Shortener_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/URL%20Shortener%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/URL_Shortener_Microservice"
   },
   {
     name: "Exercise Tracker",
     link: "./Apis_And_Microservices_Certification/Exercise_Tracker/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Exercise%20Tracker"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Exercise_Tracker"
   }
 ];
 const FRONT_END_PROJECTS = [
@@ -106,31 +106,31 @@ const FRONT_END_PROJECTS = [
     name: "Local Wheather",
     link: "./Front_End_Development_Certification/Local_Weather/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Local%20Weather"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Local_Weather"
   },
   {
     name: "Simon Game",
     link: "./Front_End_Development_Certification/Simon_Game/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Simon%20Game"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Simon_Game"
   },
   {
     name: "Tic Tac Toe Game",
     link: "./Front_End_Development_Certification/Tic_Tac_Toe_Game/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Tic%20Tac%20Toe%20Game"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Tic_Tac_Toe_Game"
   },
   {
     name: "Twitch API",
     link: "./Front_End_Development_Certification/Twitch_API/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Twitch%20API"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Twitch_API"
   },
   {
     name: "Wikipedia Viewer",
     link: "./Front_End_Development_Certification/Wikipedia_Viewer/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front%20End%20Development%20Certification/Wikipedia%20Viewer"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Wikipedia_Viewer"
   }
 ];
 const BACK_END_PROJECTS = [
@@ -139,13 +139,13 @@ const BACK_END_PROJECTS = [
     link:
         "./Back_End_Development_Certification/Image_Search_Abstraction_Layer/index.html",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Image%20Search%20Abstraction%20Layer"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back_End_Development_Certification/Image_Search_Abstraction_Layer"
   },
   {
     name: "Voting App",
     link: "https://jm-voting-app.herokuapp.com",
     src:
-        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Voting%20App"
+        "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back_End_Development_Certification/Voting_App"
   }
 ];
 const CERTIFICATIONS = [
