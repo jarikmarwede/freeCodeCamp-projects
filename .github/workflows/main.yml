@@ -15,5 +15,5 @@ jobs:
       if: github.ref == 'refs/heads/master' && job.status == 'success'
       run: |
         echo "https://heroku:${HEROKU_API_TOKEN}%40git.heroku.com/${HEROKU_APP_NAME}.git"
-        git subtree push --prefix=Back_End_Development_Certification/Voting_App "https://heroku:${HEROKU_API_TOKEN}@git.heroku.com/${HEROKU_APP_NAME}.git" origin/master:master
+        git subtree push --prefix=Back_End_Development_Certification/Voting_App "https://heroku:${HEROKU_API_TOKEN}$40git.heroku.com/${HEROKU_APP_NAME}.git" origin/master:master
 
