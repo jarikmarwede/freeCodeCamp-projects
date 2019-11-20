@@ -71,28 +71,28 @@ const APIS_AND_MICROSERVICES_PROJECTS = [
     link:
       "./Apis_And_Microservices_Certification/File_Metadata_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/File%20Metadata%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/File%20Metadata%20Microservice"
   },
   {
     name: "Request Header Parser Microservice",
     link:
       "./Apis_And_Microservices_Certification/Request_Header_Parser_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Request%20Header%20Parser%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Request%20Header%20Parser%20Microservice"
   },
   {
     name: "Timestamp Microservice",
     link:
       "./Apis_And_Microservices_Certification/Timestamp_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/Timestamp%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/Timestamp%20Microservice"
   },
   {
     name: "URL Shortener Microservice",
     link:
       "./Apis_And_Microservices_Certification/URL_Shortener_Microservice/index.html",
     src:
-      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back%20End%20Development%20Certification/URL%20Shortener%20Microservice"
+      "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis%20And%20Microservices%20Certification/URL%20Shortener%20Microservice"
   },
   {
     name: "Exercise Tracker",
