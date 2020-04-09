@@ -6,13 +6,6 @@ body {
   margin: 0;
   font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
 }
-.title {
-  text-align: center;
-}
-.title-link {
-  color: white;
-  text-decoration: none;
-}
 h2 {
   color: var(--primary-color);
   text-align: center;
@@ -22,25 +15,6 @@ h3 {
 }
 a {
   color: var(--primary-color);
-}
-nav {
-  display: flex;
-  flex-flow: column nowrap;
-  padding: 0;
-  text-align: center;
-  background-color: var(--primary-color);
-}
-nav a:not(.title-link) {
-  border: 1px solid rgba(0, 0, 0, 0.1);
-  color: white;
-  font-size: 1rem;
-  padding: 1rem;
-
-  text-decoration: none;
-}
-nav a:not(.title-link):hover {
-  background-color: #515452;
-  background-color: rgba(0, 0, 0, 0.3);
 }
 main {
   padding: 0 2vmax;
@@ -89,15 +63,11 @@ certification-section {
     display: grid;
     grid-template-columns: 25% auto;
   }
-  nav {
-    text-align: left;
+  app-nav {
     height: 100vh;
     top: 0;
     position: sticky;
     grid-column: 1 / 2;
-  }
-  nav a:not(.title-link) {
-    padding: 2rem 1rem;
   }
   .home-btn {
     display: none;
