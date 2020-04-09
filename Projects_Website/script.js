@@ -1,5 +1,5 @@
 import CERTIFICATIONS from "./certifications.js";
-import "./project-card.js";
+import "./project-card/project-card.js";
 
 function loadProjects() {
   for (
