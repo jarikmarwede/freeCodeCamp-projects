@@ -4,7 +4,7 @@ class ProjectCard extends HTMLElement {
 
     const shadow = this.attachShadow({mode: "open"});
     shadow.innerHTML = `
-      <link rel="stylesheet" href="/freeCodeCamp-projects/Projects_Website/project-card/project-card.css">
+      <link rel="stylesheet" href="./Projects_Website/project-card/project-card.css">
       <h3>${this.name}</h3>
       <div class='buttons'>
         <a class="link-btn" href='${this.link}'><p><i class='fa fa-desktop'></i> View</p></a>
