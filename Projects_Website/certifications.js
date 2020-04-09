@@ -1,5 +1,6 @@
 const CERTIFICATIONS = [
   {
+    container_id: "responsive-web-design-certification",
     name: "Responsive Web Design Certification",
     description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on Github Pages.",
     projects: [
@@ -36,16 +37,16 @@ const CERTIFICATIONS = [
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Responsive_Web_Design_Certification/Tribute_Page"
       }
-    ],
-    container_id: "responsive-web-design-projects"
+    ]
   },
   {
+    container_id: "javascript-algorithms-and-data-structures-certification",
     name: "Javascript Algorithms and Data Structures Certification",
     description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/javascript-algorithms-and-data-structures\" target=\"_blank\">this certification</a> are algorithm challenges which are not in this repository but can be found on <a href=\"https://www.freecodecamp.org/jarikmarwede\" target=\"_blank\">freeCodeCamp</a>.",
-    projects: [],
-    container_id: "javascript-algorithms-and-data-structures-projects"
+    projects: []
   },
   {
+    container_id: "front-end-libraries-certification",
     name: "Front End Libraries Certification",
     description: "The projects for <a href=\"https://github.com/jarikmarwede/freeCodeCamp-projects/blob/master/Front End Libraries Certification/Drum Machine/index.html\">this certification</a> are hosted on Github Pages.",
     projects: [
@@ -79,10 +80,10 @@ const CERTIFICATIONS = [
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Libraries_Certification/Pomodoro_Clock"
       }
-    ],
-    container_id: "front-end-libraries-projects"
+    ]
   },
   {
+    container_id: "apis-and-microservices-certification",
     name: "APIs and Microservices Certification",
     description: "Github Pages only supports front-end. Because of that the APIs of the projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/apis-and-microservices\">this certification</a> are hosted on Heroku.",
     projects: [
@@ -120,10 +121,10 @@ const CERTIFICATIONS = [
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Exercise_Tracker"
       }
-    ],
-    container_id: "apis-and-microservices-projects"
+    ]
   },
   {
+    container_id: "front-end-certification",
     name: "Front End Certification",
     description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Github Pages. Some of the projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-libraries-certification\">Front End Libraries Certification</a> and can only be found over there.",
     projects: [
@@ -157,10 +158,10 @@ const CERTIFICATIONS = [
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Wikipedia_Viewer"
       }
-    ],
-    container_id: "front-end-projects"
+    ]
   },
   {
+    container_id: "back-end-certification",
     name: "Back End Certification",
     description: "Github Pages only supports front-end. Because of that the APIs of the projects for this certification are hosted on Heroku. Some of the projects for this certification are also part of the <a href=\"#apis-and-microservices-certification\">APIs and Microservices Certification</a> and can only be found over there.",
     projects: [
@@ -177,8 +178,7 @@ const CERTIFICATIONS = [
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Back_End_Development_Certification/Voting_App"
       }
-    ],
-    container_id: "back-end-projects"
+    ]
   }
 ];
 

@@ -1,30 +1,18 @@
 import CERTIFICATIONS from "./certifications.js";
-import "./project-card/project-card.js";
+import "./certification-section/certification-section.js";
 
-function loadProjects() {
-  for (
-    let certificationIndex = 0;
-    certificationIndex < CERTIFICATIONS.length;
-    certificationIndex++
-  ) {
-    let certification = CERTIFICATIONS[certificationIndex];
-    let currentProjects = certification.projects;
-
-    for (let i = 0; i < currentProjects.length; i++) {
-      const name = currentProjects[i].name;
-      const link = currentProjects[i].link;
-      const sourcecode = currentProjects[i].src;
-
-      const container = document.getElementById(certification.container_id);
-      container.innerHTML += `<project-card name="${name}" link="${link}" sourcecode="${sourcecode}"></project-card>`;
-    }
+function loadCertifications() {
+  for (const certification of CERTIFICATIONS) {
+    const descriptionString = certification.description.replace(/"/g, "'");
+    const projectsString = JSON.stringify(certification.projects).replace(/"/g, "'");
+    document.getElementById("certifications").innerHTML += `
+      <certification-section id="${certification.container_id}" name="${certification.name}" description="${descriptionString}" projects="${projectsString}"></certification-section>
+    `;
   }
 }
 
 window.addEventListener(
   "DOMContentLoaded",
-  function() {
-    loadProjects();
-  },
+  loadCertifications,
   false
 );
