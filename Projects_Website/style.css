@@ -50,13 +50,6 @@ main {
   font-size: 1.3rem;
   margin: 2rem 1rem;
 }
-.certification {
-  margin: 3rem 0;
-}
-.description {
-  text-align: center;
-}
-
 .link-btn {
   background-color: var(--primary-color);
   border: 2px solid var(--primary-color);
@@ -66,12 +59,17 @@ main {
   padding: 0 1vmax 0 1vmax;
   text-decoration: none;
 }
-
 .link-btn:hover {
   background-color: white;
   color: var(--primary-color);
 }
-
+#certifications {
+  display: flex;
+  flex-direction: column;
+}
+certification-section {
+  margin: 1em 0;
+}
 .home-btn {
   border-radius: 100px;
   bottom: 0.5rem;
@@ -86,11 +84,6 @@ main {
   right: 0.5rem;
 }
 
-@media only screen and (min-width: 576px) {
-  project-card {
-    flex-flow: row wrap;
-  }
-}
 @media only screen and (min-width: 992px) {
   body {
     display: grid;

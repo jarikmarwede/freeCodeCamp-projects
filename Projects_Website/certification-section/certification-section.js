@@ -6,8 +6,9 @@ class CertificationSection extends HTMLElement {
 
     const shadow = this.attachShadow({mode: "open"});
     shadow.innerHTML = `
+      <link rel="stylesheet" href="/freeCodeCamp-projects/Projects_Website/certification-section/certification-section.css">
       <h2>${this.name}</h2>
-      <p>${this.description}</p>
+      <p id="description">${this.description}</p>
       <div id="projects">`;
     for (const project of this.projects) {
       shadow.innerHTML += `<project-card name="${project.name}" link="${project.link}" sourcecode="${project.sourcecode}"></project-card>`;
