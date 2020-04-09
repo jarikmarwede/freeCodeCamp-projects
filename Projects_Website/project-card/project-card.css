@@ -1,0 +1,19 @@
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "../style.css";
+:host {
+  align-items: center;
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  box-shadow: 4px 4px 6px 2px var(--primary-color);
+  display: flex;
+  flex-flow: column nowrap;
+  margin: 2vmax 0;
+  padding: 1vmax;
+}
+h3 {
+  flex-grow: 1;
+}
+.buttons {
+  display: flex;
+  flex-flow: row nowrap;
+}

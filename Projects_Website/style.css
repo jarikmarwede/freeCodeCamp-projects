@@ -1,0 +1,75 @@
+:root {
+  --primary-color: #1c6b2c;
+}
+
+body {
+  margin: 0;
+  font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
+}
+h2 {
+  color: var(--primary-color);
+  text-align: center;
+}
+h3 {
+  color: var(--primary-color);
+}
+a {
+  color: var(--primary-color);
+}
+main {
+  padding: 0 2vmax;
+  grid-column-start: 2;
+}
+.introduction {
+  font-size: 1.3rem;
+  margin: 2rem 1rem;
+}
+.link-btn {
+  background-color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  color: white;
+  margin: 0 1vmax 0 1vmax;
+  padding: 0 1vmax 0 1vmax;
+  text-decoration: none;
+}
+.link-btn:hover {
+  background-color: white;
+  color: var(--primary-color);
+}
+#certifications {
+  display: flex;
+  flex-direction: column;
+}
+certification-section {
+  margin: 1em 0;
+}
+.home-btn {
+  border-radius: 100px;
+  bottom: 0.5rem;
+  box-shadow: 1px 1px 5px 3px rgba(0, 0, 0, 0.3);
+  width: 1rem;
+  height: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  position: fixed;
+  right: 0.5rem;
+}
+
+@media only screen and (min-width: 992px) {
+  body {
+    display: grid;
+    grid-template-columns: 25% auto;
+  }
+  app-nav {
+    height: 100vh;
+    top: 0;
+    position: sticky;
+    grid-column: 1 / 2;
+  }
+  .home-btn {
+    display: none;
+  }
+}
