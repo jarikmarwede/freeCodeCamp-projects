@@ -52,24 +52,8 @@ main {
 .description {
   text-align: center;
 }
-.project-card {
-  align-items: center;
-  border: 1px solid #1c6b2c;
-  border-radius: 5px;
-  box-shadow: 4px 4px 6px 2px #16703b;
-  display: flex;
-  flex-flow: column nowrap;
-  margin: 2vmax 0;
-  padding: 1vmax;
-}
-.project-name {
-  flex-grow: 1;
-}
-.project-btns {
-  display: flex;
-  flex-flow: row nowrap;
-}
-.btn {
+
+.link-btn {
   background-color: #1c6b2c;
   border: 2px solid #1c6b2c;
   border-radius: 4px;
@@ -78,10 +62,12 @@ main {
   padding: 0 1vmax 0 1vmax;
   text-decoration: none;
 }
-.btn:hover {
+
+.link-btn:hover {
   background-color: white;
   color: #1c6b2c;
 }
+
 .home-btn {
   border-radius: 100px;
   bottom: 0.5rem;
@@ -97,7 +83,7 @@ main {
 }
 
 @media only screen and (min-width: 576px) {
-  .project-card {
+  project-card {
     flex-flow: row wrap;
   }
 }
