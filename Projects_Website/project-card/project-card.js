@@ -10,7 +10,6 @@ class ProjectCard extends HTMLElement {
         <a class="link-btn" href='${this.link}'><p><i class='fa fa-desktop'></i> View</p></a>
         <a class="link-btn" href='${this.sourcecode}' target='_blank'><p><i class='fa fa-code'></i> Source</p></a>
       </div>
-      <script async src="https://kit.fontawesome.com/1259fe3150.js" crossorigin="anonymous"></script>
     `;
   }
   get name() {
