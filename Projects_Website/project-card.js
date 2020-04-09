@@ -15,9 +15,9 @@ class ProjectCard extends HTMLElement {
       @import "./Projects_Website/style.css";
       :host {
         align-items: center;
-        border: 1px solid #1c6b2c;
+        border: 1px solid var(--primary-color);
         border-radius: 5px;
-        box-shadow: 4px 4px 6px 2px #16703b;
+        box-shadow: 4px 4px 6px 2px var(--primary-color);
         display: flex;
         flex-flow: column nowrap;
         margin: 2vmax 0;
@@ -46,4 +46,3 @@ class ProjectCard extends HTMLElement {
   }
 }
 window.customElements.define("project-card", ProjectCard);
-export default ProjectCard;
