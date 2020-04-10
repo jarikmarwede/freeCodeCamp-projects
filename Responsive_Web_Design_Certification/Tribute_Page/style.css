@@ -11,12 +11,12 @@ p {
   font-family: monospace;
 }
 
-.main-heading {
+h1 {
   font-weight: bold;
   margin: 1.25rem;
   text-align: center;
 }
-.sub-main-heading {
+h2 {
   font-style: italic;
   margin-bottom: 4rem;
   text-align: center;
@@ -32,11 +32,11 @@ p {
 .main-list-wrapper {
   margin-left: 2rem;
 }
-.main-list-item {
+.main-list-wrapper li {
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
 }
-.footer-text {
+footer {
   margin: 2rem;
   text-align: center;
 }
