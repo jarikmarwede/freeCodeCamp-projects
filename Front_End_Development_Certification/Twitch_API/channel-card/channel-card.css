@@ -1,0 +1,43 @@
+@import "../style.css";
+
+:host {
+  padding: 1rem;
+  background-color: #9b21bc;
+  display: flex;
+  flex-direction: column;
+}
+#main-channel-row {
+  align-items: center;
+  display: flex;
+  flex-flow: column;
+}
+img {
+  border-radius: 100%;
+  height: 6rem;
+  margin: 1rem;
+}
+#channel-name {
+  color: white;
+  font-size: 2rem;
+}
+#channel-link:link, #channel-link:visited, #channel-link:hover, #channel-link:active {
+  color: white;
+}
+#stream-status {
+  color: white;
+  margin-left: 1rem;
+}
+
+@media only screen and (max-width: 500px) {
+  #channel-name {
+    font-size: 1rem;
+  }
+}
+@media only screen and (min-width: 992px) {
+  #main-channel-row {
+    flex-flow: row;
+  }
+  #channel-name {
+    margin-left: 2rem;
+  }
+}

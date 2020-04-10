@@ -42,11 +42,11 @@ body {
   display: flex;
   justify-content: center;
 }
-.group-btn-left {
+#all-btn {
   border-bottom-left-radius: 5px;
   border-top-left-radius: 5px;
 }
-.group-btn-right {
+#offline-btn {
   border-bottom-right-radius: 5px;
   border-top-right-radius: 5px;
 }
@@ -58,60 +58,18 @@ main {
   background-color: #481363;
   padding: 4rem;
 }
-.twitch-channel {
+#twitch-channels > channel-card {
   margin-bottom: 1rem;
   margin-top: 1rem;
-  padding: 1rem;
-}
-.main-channel-row {
-  align-items: center;
-  display: flex;
-  flex-flow: column;
-}
-.offline {
-  background-color: #7e1d99;
-}
-.online {
-  background-color: #9b21bc;
-}
-.channel-logo {
-  border-radius: 100%;
-  height: 6rem;
-  margin: 1rem;
-}
-.channel-name {
-  color: white;
-  font-size: 2rem;
-}
-.channel-link:link, .channel-link:visited, .channel-link:hover, .channel-link:active {
-  color: white;
-}
-.stream-status {
-  color: white;
-  margin-left: 1rem;
 }
 footer {
   background: rgba(0, 0, 0, 0.5);
   padding: 1rem;
   text-align: center;
 }
-footer p {
-  display: inline;
-}
 
-@media only screen and (max-width: 500px) {
-  .channel-name {
-    font-size: 1rem;
-  }
-}
 @media only screen and (min-width: 992px) {
   main {
     margin: 0 25%;
-  }
-  .main-channel-row {
-    flex-flow: row;
-  }
-  .channel-name {
-    margin-left: 2rem;
   }
 }
