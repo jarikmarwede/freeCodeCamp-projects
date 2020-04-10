@@ -1,5 +1,10 @@
+:root {
+  --primary-color: #008ecc;
+  --primary-light: #88d5f7;
+  --primary-dark: #007cb2;
+}
 button {
-  background-color: #008ecc;
+  background-color: var(--primary-color);
   border-color: transparent;
   border-radius: 5px;
   border-width: 2px;
@@ -9,7 +14,7 @@ button {
   padding: 0.7rem;
 }
 button:hover {
-  background-color: #007cb2;
+  background-color: var(--primary-dark);
 }
 button::-moz-focus-inner {
   border: 0;
@@ -18,29 +23,26 @@ button:focus {
   border: 2px solid rgba(0, 0, 0, 0.4);
 }
 a {
-  color: #88d5f7;
+  color: var(--primary-light);
 }
 
 html, body {
   height: 100%;
 }
 body {
-  background: #008ecc;
+  background: var(--primary-color);
   color: white;
   margin: 0;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
 }
-.info-container {
+main {
   background: rgba(0, 0, 0, 0.3);
   margin-bottom: 2rem;
   margin-top: 2rem;
   padding: 1rem;
   text-align: center;
-}
-.info-text {
-  color: white;
   font-family: "Lucida Console", monospace;
 }
 .main-info {
@@ -55,9 +57,6 @@ footer {
   padding: 1rem;
   text-align: center;
 }
-footer p {
-  display: inline;
-}
 
 @media only screen and (min-width: 768px) {
   .main-info {
@@ -70,8 +69,8 @@ footer p {
   }
 }
 @media only screen and (min-width: 1200px) {
-  .info-container {
-    margin-left: 20rem;
-    margin-right: 20rem;
+  main {
+    margin-left: 25%;
+    margin-right: 25%;
   }
 }
