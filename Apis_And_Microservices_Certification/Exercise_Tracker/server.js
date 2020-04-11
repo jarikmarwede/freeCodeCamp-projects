@@ -12,13 +12,12 @@ const userSchema = new Schema({
   }]
 }, {usePushEach: true});
 const User = mongoose.model("User", userSchema);
-mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || "mongodb://localhost/exercise-tracker" );
+mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || "mongodb://localhost/exercise-tracker");
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 app.post("/exercise/new-user", (req, res) => {
-  console.log(req.body);
   const user = new User({username: req.body.username});
   user.save((err, user) => {
     if (err) return res.status(500).json({"error": "Could not add user"});
