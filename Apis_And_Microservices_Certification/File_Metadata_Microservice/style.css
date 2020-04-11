@@ -21,7 +21,7 @@ form > * {
   margin: 1rem;
   text-align: center;
 }
-.submit-btn {
+button, input[type=submit] {
   background-color: #d34a00;
   border: none;
   border-radius: 2px;
@@ -38,9 +38,6 @@ footer {
   background: rgba(0, 0, 0, 0.1);
   padding: 1rem;
   text-align: center;
-}
-footer p {
-  display: inline;
 }
 footer a {
   color: #7a2e04;
