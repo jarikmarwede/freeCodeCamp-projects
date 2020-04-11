@@ -9,37 +9,51 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <main id="main-container">
-    <h1 id="title">Survey Form</h1>
+  <main>
+    <h1>Survey Form</h1>
     <p id="description">This is a short description of the survey</p>
     <form id="survey-form">
-      <label for="name" id="name-label">Name</label>
+      <label for="name">Name</label>
       <input type="text" id="name" placeholder="Enter your name" required>
-      <label for="email" id="email-label">Email</label>
+      <label for="email">Email</label>
       <input type="email" id="email" placeholder="Enter your email" required>
-      <label for="number" id="number-label">Age</label>
+      <label for="number">Age</label>
       <input type="number" id="number" min="0" max="150" placeholder="Enter your age">
+      <label for="dropdown">Dropdown</label>
       <select name="" id="dropdown">
         <option value="1">Option 1</option>
         <option value="2">Option 2</option>
         <option value="3">Option 3</option>
       </select>
       <div id="radiobuttons">
-        <input type="radio" name="radiobutton" value="1"> Option 1<br>
-        <input type="radio" name="radiobutton" value="2"> Option 2<br>
-        <input type="radio" name="radiobutton" value="3"> Option 3<br>
+        <label>
+          <input type="radio" name="radiobutton" value="1"> Option 1
+        </label>
+        <label>
+          <input type="radio" name="radiobutton" value="2"> Option 2
+        </label>
+        <label>
+          <input type="radio" name="radiobutton" value="3"> Option 3
+        </label>
       </div>
       <div id="checkboxes">
-        <input type="checkbox" value="1"> Option 1<br>
-        <input type="checkbox" value="2"> Option 2<br>
-        <input type="checkbox" value="3"> Option 3<br>
+        <label>
+          <input type="checkbox" value="1"> Option 1
+        </label>
+        <label>
+          <input type="checkbox" value="2"> Option 2
+        </label>
+        <label>
+          <input type="checkbox" value="3"> Option 3
+        </label>
       </div>
-      <textarea name="" id="comment" cols="30" rows="10" placeholder="Additional comments"></textarea>
+      <label for="comment">Additional comments</label>
+      <textarea name="" id="comment" cols="30" rows="10" placeholder="Do you have any additional comments?"></textarea>
       <button id="submit">Submit Form</button>
     </form>
   </main>
   <footer>
-    <p>By <a href="https://jarikmarwe.de">Jarik Marwede</a>.</p>
+    <p>By <a href="https://jarikmarwede.com">Jarik Marwede</a>.</p>
     <p>See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.</p>
   </footer>
 </body>

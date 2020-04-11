@@ -63,34 +63,6 @@ main {
 .total-matches {
   text-align: center;
 }
-.search-result {
-  background-color: #1aa53d;
-  border-left: 0.5em solid transparent;
-}
-.search-result:hover {
-  border-left: 0.5em solid #0a4709;
-  color: #0a4709;
-}
-.search-result:focus {
-  outline-color: #0a4709;
-  outline-width: 0.25rem;
-}
-.search-result-link, .search-result-link:link {
-  color: inherit;
-  display: inline-block;
-  height: 100%;
-  padding: 2rem;
-  width: 85%;
-}
-.search-result-link:link {
-  text-decoration: none;
-}
-.search-result-title {
-  font-size: 1.5rem;
-}
-.search-result-snippet {
-  font-size: 1.2rem;
-}
 .load-more-btn {
   margin-bottom: 2rem;
   margin-top: 1rem;
@@ -100,9 +72,6 @@ footer {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem;
   text-align: center;
-}
-footer p {
-  display: inline;
 }
 
 @media only screen and (max-width: 576px) {

@@ -1,11 +1,17 @@
 .fas {
+  font-size: 4rem;
   color: #b57c01;
 }
+:root {
+  --primary-color: #f7dc13;
+  --secondary-color: #b57c01
+}
 body {
-  background-color: #b57c01;
+  background-color: var(--secondary-color);
   background-image: url("https://ibin.co/4LTZb6lv6GIH.jpg");
   background-repeat: no-repeat;
   margin: 0;
+  font-family: "Lucida Console", Monaco, monospace;
 }
 header {
   align-items: stretch;
@@ -29,13 +35,13 @@ header {
   height: 50px;
   width: 50px;
 }
-#header-title {
+h1 {
   font-family: Georgia, serif;
 }
-#nav-bar {
+nav {
   display: flex;
 }
-#nav-bar > * {
+nav > a {
   border-left: 1px solid rgba(0, 0, 0, 0.1);
   border-right: 1px solid rgba(0, 0, 0, 0.1);
   color: black;
@@ -44,11 +50,16 @@ header {
   padding: 0 1rem;
   text-decoration: none;
 }
-#nav-bar > *:hover {
+nav > a:hover {
   background-color: rgba(0, 0, 0, 0.2);
 }
 h2, h3 {
   font-family: Verdana, Geneva, sans-serif;
+  text-align: center;
+}
+label {
+  font-size: 1.2rem;
+  padding-left: 1rem;
   text-align: center;
 }
 input[type=email] {
@@ -59,48 +70,34 @@ input[type=email] {
   text-align: center;
 }
 input[type=submit] {
-  background-color: #f7dc13;
+  background-color: var(--primary-color);
   border: none;
   border-radius: 3px;
   cursor: pointer;
   padding: 0.5rem;
 }
 input[type=submit]:hover {
-  background-color: #c4b121;
+  background-color: var(--secondary-color);
   color: white;
 }
-.main-content {
+main {
   background-color: white;
   box-shadow: 0 1px 5px 3px rgba(0, 0, 0, 0.3);
-  margin: 0 2rem;
+  margin: 0 1rem;
   padding: 1rem;
   position: relative;
   top: 200px;
 }
-.main-content > * {
+main > * {
   margin: 5rem 0;
 }
-#form {
+#email-form {
   display: flex;
   flex-flow: column nowrap;
   margin: 0 10%;
 }
-#form > * {
+#email-form > * {
   margin: 0.25rem 0;
-}
-.embed-container {
-  height: 0;
-  max-width: 100%;
-  overflow: hidden;
-  padding-bottom: 56.25%;
-  position: relative;
-}
-.embed-container iframe, .embed-container object, .embed-container embed {
-  height: 100%;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 100%;
 }
 .product-information {
   align-items: center;
@@ -112,37 +109,58 @@ input[type=submit]:hover {
   font-size: 1.5rem;
   margin-left: 25%;
 }
+.embed-container {
+  padding-bottom: 56.25%;
+  position: relative;
+}
+.embed-container iframe, .embed-container object, .embed-container embed {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
 #video {
   margin: 2rem 0;
+  border: none;
 }
 #pricing {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-evenly;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 .price-container {
   align-items: center;
   border-radius: 3px;
   box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
-  display: flex;
-  flex-flow: column nowrap;
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  justify-items: center;
   padding: 2rem 1rem;
-  width: 25%;
+  text-align: center;
 }
 .price-button {
-  background-color: #f7dc13;
+  background-color: var(--primary-color);
   border-radius: 3px;
   color: black;
-  display: inline-block;
-  font-family: "Lucida Console", Monaco, monospace;
   padding: 0.5rem;
-  text-align: center;
   text-decoration: none;
   width: 75%;
 }
 
+@media only screen and (min-width: 576px) {
+  .fas {
+    font-size: 8rem;
+  }
+  #pricing {
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  main {
+    margin: 0 2rem;
+  }
+}
+
 @media only screen and (min-width: 992px) {
-  .main-content {
+  main {
     margin: 0 25%;
   }
 }

@@ -1,0 +1,31 @@
+@import "../style.css";
+
+:host {
+  background-color: #1aa53d;
+  border-left: 0.5em solid transparent;
+  display: block;
+}
+:host(:hover) {
+  border-left: 0.5em solid #0a4709;
+  color: #0a4709;
+}
+:host(:focus) {
+  outline-color: #0a4709;
+  outline-width: 0.25rem;
+}
+a, a:link {
+  color: inherit;
+  display: inline-block;
+  height: 100%;
+  padding: 2rem;
+  width: 85%;
+}
+a:link {
+  text-decoration: none;
+}
+h3 {
+  font-size: 1.5rem;
+}
+#snippet {
+  font-size: 1.2rem;
+}

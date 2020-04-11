@@ -1,38 +1,40 @@
 body {
   display: grid;
   margin: 0;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
-header {
+h1, h2 {
   font-family: Georgia, serif;
-  font-size: 1.6rem;
+}
+#main-header {
+  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
 }
 nav {
-  border-bottom: 2px solid rgba(0, 0, 0, 0.7);
   display: flex;
   flex-flow: column nowrap;
   overflow: auto;
 }
-nav a {
+header a {
   color: black;
   text-decoration: none;
 }
-nav header {
-  padding: 1rem;
+h1 {
+  margin: 0;
+  padding: 2rem;
   text-align: center;
 }
-.nav-link {
+nav a {
   border-top: 1px solid rgba(0, 0, 0, 0.7);
   color: rgba(0, 0, 0, 0.7);
   font-family: Georgia, serif;
   padding: 1rem 2rem;
 }
-.nav-link:hover {
+nav a:hover {
   background-color: rgba(0, 0, 0, 0.3);
   color: rgba(0, 0, 0, 1);
 }
 main {
   color: rgba(0, 0, 0, 0.9);
-  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
   line-height: 1.7;
   overflow: auto;
   padding: 1rem;
@@ -49,7 +51,7 @@ pre {
   body {
     grid-template-columns: 20% auto;
   }
-  nav {
+  #main-header {
     border-bottom: none;
     border-right: 2px solid rgba(0, 0, 0, 0.7);
     height: 100vh;

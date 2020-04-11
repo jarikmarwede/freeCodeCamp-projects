@@ -18,7 +18,7 @@ main > * {
   margin: 3rem;
   text-align: center;
 }
-#title {
+h1 {
   text-align: center;
 }
 #description {
@@ -35,21 +35,19 @@ main > * {
 #number {
   margin: 0.5rem auto;
 }
-#dropdown {
-  margin: 2rem 0;
-}
 #radiobuttons {
-  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
 }
 #radiobuttons > * {
   margin: 0.3rem 0;
 }
 #checkboxes {
-  margin: 1rem auto;
+  display: flex;
+  flex-direction: column;
 }
 #checkboxes > * {
   margin: 0.3rem 0;
-  border-color: #fcea2a;
 }
 #submit {
   padding: 0.5rem;
@@ -69,7 +67,7 @@ footer p {
   display: inline;
 }
 footer a {
-  color: #4f5428;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 @media only screen and (min-width: 768px) {

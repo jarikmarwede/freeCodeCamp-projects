@@ -1,11 +1,33 @@
-const regularGreen = "#1d8424";
-const regularRed = "#8e2b22";
-const regularYellow = "#adab34";
-const regularBlue = "#2777a3";
-const flashingGreen = "#2ffc3d";
-const flashingRed = "#fc2714";
-const flashingYellow = "#fcf800";
-const flashingBlue = "#0ca8fc";
+const buttons = [
+  {
+    regular: "#1d8424",
+    flashing: "#2ffc3d",
+    id: "green-btn",
+    soundId: "green-sound",
+    eventHandler: clickGreenBtn
+  },
+  {
+    regular: "#8e2b22",
+    flashing: "#fc2714",
+    id: "red-btn",
+    soundId: "red-sound",
+    eventHandler: clickRedBtn
+  },
+  {
+    regular: "#adab34",
+    flashing: "#fcf800",
+    id: "yellow-btn",
+    soundId: "yellow-sound",
+    eventHandler: clickYellowBtn
+  },
+  {
+    regular: "#2777a3",
+    flashing: "#0ca8fc",
+    id: "blue-btn",
+    soundId: "blue-sound",
+    eventHandler: clickBlueBtn
+  }
+];
 let currentSteps = [];
 let fullSteps = [];
 
@@ -18,13 +40,13 @@ function newStep() {
     const buttonChoice = Math.round(Math.random() * 3);
     fullSteps.push(buttonChoice);
     currentSteps = fullSteps.slice(0);
-    countElement.textContent = parseInt(countElement.textContent) + 1;
+    countElement.textContent = (parseInt(countElement.textContent) + 1).toString();
     setTimeout(() => {flashColors(0)}, 800);
   }
 }
 
 function flashColors(index) {
-  if (index == 0) {
+  if (index === 0) {
     deactivateBtns();
   }
   flashColor(fullSteps[index]);
@@ -37,54 +59,44 @@ function flashColors(index) {
   }
 }
 
-function flashColor(id) {
-  if (id == 0) {
-    document.getElementById("green-btn").style.backgroundColor = flashingGreen;
-  } else if (id == 1) {
-    document.getElementById("red-btn").style.backgroundColor = flashingRed;
-  } else if (id == 2) {
-    document.getElementById("yellow-btn").style.backgroundColor = flashingYellow;
-  } else if (id == 3) {
-    document.getElementById("blue-btn").style.backgroundColor = flashingBlue;
-  }
+function flashColor(index) {
+  document.getElementById(buttons[index]["id"]).style.backgroundColor = buttons[index]["flashing"];
   setTimeout(resetColors, 800);
 }
 
 function deactivateBtns() {
-  document.getElementById("green-btn").removeEventListener("click", clickGreenBtn);
-  document.getElementById("red-btn").removeEventListener("click", clickRedBtn);
-  document.getElementById("yellow-btn").removeEventListener("click", clickYellowBtn);
-  document.getElementById("blue-btn").removeEventListener("click", clickBlueBtn);
+  for (const button of buttons) {
+    document.getElementById(button.id).removeEventListener("click", button.eventHandler);
+  }
 }
 
 function activateBtns() {
-  document.getElementById("green-btn").addEventListener("click", clickGreenBtn);
-  document.getElementById("red-btn").addEventListener("click", clickRedBtn);
-  document.getElementById("yellow-btn").addEventListener("click", clickYellowBtn);
-  document.getElementById("blue-btn").addEventListener("click", clickBlueBtn);
+  for (const button of buttons) {
+    document.getElementById(button.id).addEventListener("click", button.eventHandler);
+  }
 }
 
 function resetColors() {
-  document.getElementById("green-btn").style.backgroundColor = regularGreen;
-  document.getElementById("red-btn").style.backgroundColor = regularRed;
-  document.getElementById("yellow-btn").style.backgroundColor = regularYellow;
-  document.getElementById("blue-btn").style.backgroundColor = regularBlue;
+  for (const button of buttons) {
+    document.getElementById(button.id).style.backgroundColor = button.regular;
+  }
 }
 
 function clickedBtn(id) {
-  if (currentSteps[0] == id) {
+  if (currentSteps[0] === id) {
     playSound(id);
     flashColor(id);
     currentSteps.shift();
-    if (currentSteps.length == 0) {
+    if (currentSteps.length === 0) {
       newStep();
     }
-  } else if (document.getElementById("strict-mode").checked == true) {
-    mistake();
-    restartGame();
   } else {
     mistake();
-    setTimeout(() => {flashColors(0)}, 1000);
+    if (document.getElementById("strict-mode").checked) {
+      restartGame();
+    } else {
+      setTimeout(() => {flashColors(0)}, 1000);
+    }
   }
 }
 
@@ -102,32 +114,20 @@ function clickBlueBtn() {
 }
 
 function mistake() {
-  flashColor(0);
-  flashColor(1);
-  flashColor(2);
-  flashColor(3);
-  playSound(0);
-  playSound(1);
-  playSound(2);
-  playSound(3);
+  for (let index = 0; index < 4; index++) {
+    flashColor(index);
+    playSound(index);
+  }
 }
 
 function playSound(index) {
-  if (index == 0) {
-    document.getElementById("green-sound").play();
-  } else if (index == 1) {
-    document.getElementById("red-sound").play();
-  } else if (index == 2) {
-    document.getElementById("yellow-sound").play();
-  } else if (index == 3) {
-    document.getElementById("blue-sound").play();
-  }
+  document.getElementById(buttons[index].soundId).play();
 }
 
 function restartGame() {
   currentSteps = [];
   fullSteps = [];
-  document.getElementById("count").textContent = 0;
+  document.getElementById("count").textContent = "0";
   newStep();
 }
 
@@ -135,18 +135,15 @@ function restartGame() {
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("start-btn").addEventListener("click", () => {
     const startBtnElement = document.getElementById("start-btn");
-    if (startBtnElement.textContent == "Start") {
+    if (startBtnElement.textContent === "Start") {
       document.getElementById("start-btn").classList.remove("btn-primary");
       document.getElementById("start-btn").classList.add("btn-danger");
       startBtnElement.textContent = "Restart";
     }
     restartGame();
   });
-  document.getElementById("green-btn").addEventListener("click", clickGreenBtn);
-  document.getElementById("red-btn").addEventListener("click", clickRedBtn);
-  document.getElementById("yellow-btn").addEventListener("click", clickYellowBtn);
-  document.getElementById("blue-btn").addEventListener("click", clickBlueBtn);
-  for (let element of document.getElementsByClassName("new-game-btn")) {
+  activateBtns();
+  for (const element of document.getElementsByClassName("new-game-btn")) {
     element.addEventListener("click", restartGame);
   }
 })
