@@ -1,55 +1,56 @@
-const unirest = require("unirest");
 const express = require('express');
 const app = express();
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL || "mongodb://localhost/image-search-abstraction-layer";
-const RapidAPI = new require('rapidapi-connect');
-const rapid = new RapidAPI(process.env.RAPID_API_KEY, '/connect/auth/' + process.env.RAPID_API_KEY);
 
-app.get("/imagesearch/*?", (req, res) => {
+app.get("/imagesearch/*?", async (req, res) => {
   const searchString = req.params[0];
   const offset = req.query.offset || 1;
   const APICallString = "https://contextualwebsearch-websearch-v1.p.mashape.com/api/Search/ImageSearchAPI?count=" + offset * 10 + "&q=" + searchString + "&autocorrect=false";
-  unirest.get(APICallString).header("X-Mashape-Key", process.env.X_MASHAPE_KEY).header("X-Mashape-Host", "contextualwebsearch-websearch-v1.p.mashape.com").end(function (result) {
-    const images = result.body.value.slice(offset * 10 - 10, offset * 10);
-    res.status(200).json(images);
-  });
-  MongoClient.connect(databasePath, async (err, client) => {
-    if (err) {
-      console.log("Error connecting to database: " + err);
-      res.sendStatus(500);
-    } else {
-      const db = client.db("image-search-abstraction-layer");
-      const recentSearchesCollection = db.collection("latest-image-searches");
-      const date = new Date();
-      recentSearchesCollection.insert({"term": searchString, "when": date.toISOString()});
-
-      let recentSearches = await recentSearchesCollection.find({}).toArray();
-      if (recentSearches.length > 10) {
-        recentSearches = recentSearches.slice(1, 11);
-        recentSearchesCollection.remove();
-        recentSearchesCollection.insert(recentSearches);
-      }
+  const apiPromise = fetch(APICallString, {
+    headers: {
+      "X-RapidAPI-Key": process.env.RAPID_API_KEY
     }
-    client.close();
   });
+
+  const dbClient = new MongoClient(databasePath);
+  try {
+    await dbClient.connect();
+  } catch (error) {
+    console.log("Error connecting to database: " + error);
+    res.sendStatus(500);
+  }
+  const db = dbClient.db("image-search-abstraction-layer");
+  const recentSearchesCollection = db.collection("latest-image-searches");
+  const date = new Date();
+  recentSearchesCollection.insert({"term": searchString, "when": date.toISOString()});
+
+  let recentSearches = await recentSearchesCollection.find({}).toArray();
+  if (recentSearches.length > 10) {
+    recentSearches = recentSearches.slice(1, 11);
+    recentSearchesCollection.remove();
+    recentSearchesCollection.insert(recentSearches);
+  }
+  dbClient.close().then();
+  await apiPromise;
+  const images = await apiPromise.json().slice(offset * 10 - 10, offset * 10);
+  res.status(200).json(images).then();
 });
 
-app.get("/latest/imagesearch/", (req, res) => {
-  MongoClient.connect(databasePath, async function(err, client) {
-    if (err) {
-      console.log("Error connecting to database: " + err);
-      res.sendStatus(500);
-    } else {
-      const db = client.db("image-search-abstraction-layer");
-      const recentSearchesCollection = db.collection("latest-image-searches");
-      const recentSearches = await recentSearchesCollection.find({}).project({"_id": 0}).toArray();
-
-      client.close();
-      res.status(200).json(recentSearches);
-    }
-  });
+app.get("/latest/imagesearch/", async (req, res) => {
+  const dbClient = new MongoClient(databasePath);
+  try {
+    await dbClient.connect();
+  } catch (error) {
+    console.log("Error connecting to database: " + error);
+    res.sendStatus(500);
+  }
+  const db = dbClient.db("image-search-abstraction-layer");
+  const recentSearchesCollection = db.collection("latest-image-searches");
+  const recentSearches = await recentSearchesCollection.find({}).project({"_id": 0}).toArray();
+  dbClient.close().then();
+  res.status(200).json(recentSearches).then();
 });
 
 module.exports = app;
