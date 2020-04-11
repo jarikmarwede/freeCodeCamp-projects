@@ -9,7 +9,7 @@ const upload = multer();
 const MongoClient = mongodb.MongoClient;
 const databaseUrl = process.env.URL_SHORTENER_DATABASE_URL || "mongodb://localhost/url-shortener-microservice";
 const app = express();
-const lookup = util.promisify(dns.lookup);
+const dnsLookup = util.promisify(dns.lookup);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -18,23 +18,23 @@ app.get("/:id", async (req, res) => {
   if (!isNaN(parseInt(req.params.id)) && Number.isInteger(parseInt(req.params.id))) {
     const urlId = parseInt(req.params.id);
 
-    MongoClient.connect(databaseUrl, async (err, client) => {
-      if (err) {
-        console.log("Error connecting to database: " + err);
-      } else {
-        const db = client.db("url-shortener-microservice");
-        const collection = db.collection("shortened-urls");
-        const idResult = await collection.find({"id": urlId}).toArray();
-
-        if (idResult.length > 0) {
-          res.redirect(idResult[0]["original_url"]);
-          client.close();
-        } else {
-          client.close();
-          invalidUrl(res);
-        }
-      }
-    });
+    const dbClient = new MongoClient(databaseUrl);
+    try {
+      await dbClient.connect();
+    } catch (error) {
+      console.log("Error connecting to database: " + error);
+      res.sendStatus(500);
+      return;
+    }
+    const db = dbClient.db("url-shortener-microservice");
+    const collection = db.collection("shortened-urls");
+    const idResult = await collection.find({"id": urlId}).toArray();
+    dbClient.close().then();
+    if (idResult.length > 0) {
+      res.redirect(idResult[0]["original_url"]);
+    } else {
+      invalidUrl(res);
+    }
   } else {
     invalidUrl(res);
   }
@@ -43,41 +43,44 @@ app.get("/:id", async (req, res) => {
 app.post("/shorturl/new", upload.none(), async (req, res) => {
   const inputUrl = req.body.url;
   if (inputUrl === undefined) {
-    res.status(400).json({"error": "No url was specified"});
+    await res.status(400).json({"error": "No url was specified"});
+    return;
   }
 
   if (inputUrl.search(/^http(s)?:\/\/(.)+(\.)(.)+/gi) !== -1) {
     try {
-      await lookup(inputUrl.split("://")[-1]);
-    } catch(err) {
+      await dnsLookup(inputUrl.split("://")[-1]);
+    } catch {
       invalidUrl(res);
     }
     let shortUrl = req.protocol + '://' + req.get('host') + "/url-shortener-microservice/";
 
-    MongoClient.connect(databaseUrl, async (err, client) => {
-      if (err) {
-        console.log("Error connecting to database: " + err);
-      } else {
-        const db = client.db("url-shortener-microservice");
-        const collection = db.collection("shortened-urls");
+    const dbClient = new MongoClient(databaseUrl);
+    try {
+      await dbClient.connect();
+    } catch (error) {
+      console.log("Error connecting to database: " + error);
+      res.sendStatus(500);
+      return;
+    }
+    const db = dbClient.db("url-shortener-microservice");
+    const collection = db.collection("shortened-urls");
 
-        const urlResult = await collection.find({"original_url": inputUrl}).toArray();
-        if (urlResult.length > 0) {
-          shortUrl += urlResult[0]["id"];
-        } else {
-          const allDocuments = await collection.find({}).toArray();
-          collection.insert({"original_url": inputUrl, "id": allDocuments.length});
-          shortUrl += allDocuments.length;
-        }
-        client.close();
+    const urlResult = await collection.find({"original_url": inputUrl}).toArray();
+    if (urlResult.length > 0) {
+      shortUrl += urlResult[0]["id"];
+    } else {
+      const allDocuments = await collection.find({}).toArray();
+      collection.insert({"original_url": inputUrl, "id": allDocuments.length});
+      shortUrl += allDocuments.length;
+    }
+    dbClient.close().then();
 
-        const responseJSON = {
-          "original_url": inputUrl,
-          "short_url": shortUrl
-        };
-        res.status(200).json(responseJSON);
-      }
-    });
+    const responseJSON = {
+      "original_url": inputUrl,
+      "short_url": shortUrl
+    };
+    await res.status(200).json(responseJSON);
   } else {
     invalidUrl(res);
   }
