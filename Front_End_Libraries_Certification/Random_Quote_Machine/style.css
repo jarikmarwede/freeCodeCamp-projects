@@ -47,31 +47,31 @@ main {
 main > * {
   animation: fade-in 1s;
 }
-.quote-text {
+#quote-text {
   color: #2c99a3;
   font-size: 1.125rem;
   margin-left: 2rem;
   margin-right: 2rem;
   text-align: justify;
 }
-.quote-author {
+#quote-author {
   color: #2c99a3;
   margin-left: 4rem;
   margin-right: 4rem;
   text-align: right;
 
 }
-.quote-source {
+#quote-source {
   color: #2c99a3;
   font-size: 0.75rem;
   margin-left: 4rem;
   margin-right: 4rem;
   text-align: right;
 }
-.buttons {
+#buttons {
   text-align: center;
 }
-.twitter-btn {
+#twitter-btn {
   background-color: inherit;
   border: 1px solid #45b1c6;
   border-radius: 3px;
@@ -81,25 +81,22 @@ main > * {
   padding: 0.4rem 1rem;
   text-decoration: none;
 }
-.twitter-btn:hover {
+#twitter-btn:hover {
   background-color: #45b1c6;
   color: white;
 }
 footer {
+  color: white;
   background: rgba(0, 0, 0, 0.5);
   padding: 1rem;
   text-align: center;
-}
-footer p {
-  color: white;
-  display: inline;
 }
 
 @media only screen and (min-width: 768px) {
   main {
     margin: 10rem;
   }
-  .quote-text {
+  #quote-text {
     font-size: 1.25rem;
     margin-left: 4rem;
     margin-right: 4rem;
