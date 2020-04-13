@@ -9,9 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy to Github Pages
+    - name: Build frontend
+      run: |
+        mkdir dist
+        cp index.html ./dist/index.html
+        cp -r ./Apis_And_Microservices_Certification ./dist/Apis_And_Microservices_Certification
+        cp -r ./Back_End_Development_Certification ./dist/Back_End_Development_Certification
+        cp -r ./Front_End_Development_Certification ./dist/Front_End_Development_Certification
+        cp -r ./Front_End_Libraries_Certification ./dist/Front_End_Libraries_Certification
+        cp -r ./Projects_Website ./dist/Projects_Website
+        cp -r ./Responsive_Web_Design_Certification ./dist/Responsive_Web_Design_Certification
+    - name: Deploy Frontend to Github Pages
       uses: crazy-max/ghaction-github-pages@v1.4.0
       with:
-        build_dir: .
+        build_dir: dist
       env:
         GITHUB_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
