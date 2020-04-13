@@ -5,60 +5,21 @@
   <title>Drum Machine</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link
-    rel="stylesheet"
-    href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer type="module" src="./script.js"></script>
 </head>
 
 <body>
-<main class="container" id="drum-machine">
-  <div class="drum-pads">
-    <button id="Heater-1" class="drum-pad">
-      Q
-      <audio id="Q" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"></audio>
-    </button>
-    <button id="Heater-2" class="drum-pad">
-      W
-      <audio id="W" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"></audio>
-    </button>
-    <button id="Heater-3" class="drum-pad">
-      E
-      <audio id="E" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"></audio>
-    </button>
-    <button id="Heater-4" class="drum-pad">
-      A
-      <audio id="A" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"></audio>
-    </button>
-    <button id="Clap" class="drum-pad">
-      S
-      <audio id="S" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"></audio>
-    </button>
-    <button id="Open-HH" class="drum-pad">
-      D
-      <audio id="D" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"></audio>
-    </button>
-    <button id="Kick-n-Hat" class="drum-pad">
-      Z
-      <audio id="Z" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"></audio>
-    </button>
-    <button id="Kick" class="drum-pad">
-      X
-      <audio id="X" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"></audio>
-    </button>
-    <button id="Closed-HH" class="drum-pad">
-      C
-      <audio id="C" class="clip" src="https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"></audio>
-    </button>
-  </div>
-  <div class="pad-name-display">
+<main>
+  <div id="drum-pads"></div>
+  <div id="pad-name-display">
     <p id="display"><i>Sound Name</i></p>
   </div>
 </main>
 <footer>
-  <p>By <a href="https://jarikmarwede.com">Jarik Marwede</a>.</p>
-  <p>See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.</p>
+  <p>By <a href="https://jarikmarwede.com">Jarik Marwede</a>.
+    See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.
+  </p>
 </footer>
-
-<script src="script.js"></script>
 </body>
 </html>

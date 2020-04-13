@@ -2,8 +2,9 @@ class ProjectCard extends HTMLElement {
   constructor() {
     super();
 
-    const shadow = this.attachShadow({mode: "open"});
-    shadow.innerHTML = `
+    this.attachShadow({mode: "open"});
+
+    this.shadowRoot.innerHTML = `
       <link rel="stylesheet" href="./Projects_Website/project-card/project-card.css">
       <h3>${this.name}</h3>
       <div class='buttons'>

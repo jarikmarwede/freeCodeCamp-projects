@@ -5,9 +5,8 @@
   <title>Markdown Previewer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <link
-    rel="stylesheet"
-    href="style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" defer src="script.js"></script>
 </head>
 <body>
   <div class="container">
@@ -29,9 +28,9 @@ Here's some code, `<div></div>`, between 2 backticks.
 // this is multi-line code:
 
 function anotherExample(firstLine, lastLine) {
-if (firstLine == "```" && lastLine == "```") {
-  return multiLineCode;
-}
+  if (firstLine == "```" && lastLine == "```") {
+    return multiLineCode;
+  }
 }
 ```
 
@@ -75,11 +74,10 @@ And here. | Okay. | I think we get it.
     <div id="code"></div>
   </div>
   <footer>
-    <p>By <a href="https://jarikmarwede.com">Jarik Marwede</a>.</p>
-    <p>See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.</p>
+    <p>
+      By <a href="https://jarikmarwede.com">Jarik Marwede</a>.
+      See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.
+    </p>
   </footer>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="script.js"></script>
 </body>
 </html>

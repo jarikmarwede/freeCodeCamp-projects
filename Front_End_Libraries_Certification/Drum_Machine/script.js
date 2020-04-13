@@ -1,78 +1,75 @@
-const drumPadButtons = {
-  "Q": {
-    buttonId: "Heater-1",
-    timerId: 0
+import "./drum-pad/drum-pad.js";
+
+const drumPadButtons = [
+  {
+    key: "q",
+    soundName: "Heater-1",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"
   },
-  "W": {
-    buttonId: "Heater-2",
-    timerId: 0
+  {
+    key: "w",
+    soundName: "Heater-2",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"
   },
-  "E": {
-    buttonId: "Heater-3",
-    timerId: 0
+  {
+    key: "e",
+    soundName: "Heater-3",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"
   },
-  "A": {
-    buttonId: "Heater-4",
-    timerId: 0
+  {
+    key: "a",
+    soundName: "Heater-4",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"
   },
-  "S": {
-    buttonId: "Clap",
-    timerId: 0
+  {
+    key: "s",
+    soundName: "Clap",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"
   },
-  "D": {
-    buttonId: "Open-HH",
-    timerId: 0
+  {
+    key: "d",
+    soundName: "Open-HH",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"
   },
-  "Z": {
-    buttonId: "Kick-n-Hat",
-    timerId: 0
+  {
+    key: "z",
+    soundName: "Kick-n-Hat",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"
   },
-  "X": {
-    buttonId: "Kick",
-    timerId: 0
+  {
+    key: "x",
+    soundName: "Kick",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"
   },
-  "C": {
-    buttonId: "Closed-HH",
-    timerId: 0
+  {
+    key: "c",
+    soundName: "Closed-HH",
+    sound: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"
   }
-};
+];
 
-
-function changePadLook(buttonKey) {
-  clearTimeout(drumPadButtons[buttonKey].timerId);
-  const padElement = document.getElementById(drumPadButtons[buttonKey].buttonId);
-  padElement.classList.add("activated");
-  drumPadButtons[buttonKey].timerId = setTimeout(() => {
-    padElement.classList.remove("activated");
-  }, 1000);
-}
-
-function playSound(audioId) {
-  const audioElement = document.getElementById(audioId);
-  if (audioElement.currentTime >= 0.01 || audioElement.paused) {
-    audioElement.currentTime = 0;
-    audioElement.play();
+function loadDrumPads() {
+  for (let index = 0; index < drumPadButtons.length; index++) {
+    const buttonData = drumPadButtons[index];
+    document.getElementById("drum-pads").innerHTML += `
+      <drum-pad sound-src="${buttonData.sound}">${buttonData.key.toUpperCase()}</drum-pad>
+    `;
   }
-}
-
-function padTriggered(audioId) {
-  audioId = audioId.toUpperCase();
-  changePadLook(audioId);
-  document.getElementById("display").innerText = drumPadButtons[audioId].buttonId.replace(/-/g, " ");
-  playSound(audioId);
+  for (const element of document.getElementsByTagName("drum-pad")) {
+    element.addEventListener("activated", event => {
+      const index = Array.from(document.querySelectorAll("drum-pad")).findIndex(element => element === event.target);
+      document.getElementById("display").innerText = drumPadButtons[index].soundName;
+    });
+  }
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  Object.keys(drumPadButtons).forEach((audioId) => {
-    document
-        .getElementById(drumPadButtons[audioId].buttonId)
-        .addEventListener("click", () => padTriggered(audioId));
-  });
+  loadDrumPads();
   document.addEventListener("keydown", event => {
-    const pressedKey = event.key.toUpperCase();
-    if (Object.keys(drumPadButtons).includes(pressedKey)) {
-      event.preventDefault();
-      padTriggered(pressedKey);
+    for (let index = 0; index < drumPadButtons.length; index++) {
+      if (drumPadButtons[index].key === event.key) {
+        document.getElementsByTagName("drum-pad")[index].activateDrumPad().then();
+      }
     }
   });
 });

@@ -1,3 +1,5 @@
+import "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
+
 const renderer = new marked.Renderer();
 renderer.link = function(href, title, text) {
   return `<a href="${href}" target="_blank">${text}</a>`;

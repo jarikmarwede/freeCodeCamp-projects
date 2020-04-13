@@ -2,8 +2,9 @@ class AppNav extends HTMLElement {
   constructor() {
     super();
 
-    const shadow = this.attachShadow({mode: "open"});
-    shadow.innerHTML = `
+    this.attachShadow({mode: "open"});
+
+    this.shadowRoot.innerHTML = `
       <link rel="stylesheet" href="./Projects_Website/app-nav/app-nav.css">
       <nav>
         <h1><a id="title-link" href="#"><i class="fa fa-free-code-camp"></i> freeCodeCamp-Projects</a></h1>
