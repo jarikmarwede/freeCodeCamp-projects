@@ -13,6 +13,5 @@ jobs:
       uses: crazy-max/ghaction-github-pages@v1.4.0
       with:
         build_dir: .
-        allow_empty_commit: false
       env:
         GITHUB_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
