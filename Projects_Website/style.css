@@ -2,6 +2,9 @@
   --primary-color: #1c6b2c;
 }
 
+html {
+  scroll-behavior: smooth;
+}
 body {
   margin: 0;
   font-family: Trebuchet MS, Lucida Grande, Lucida Sans Unicode, Lucida Sans, Tahoma, sans-serif;
@@ -71,5 +74,11 @@ certification-section {
   }
   .home-btn {
     display: none;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
