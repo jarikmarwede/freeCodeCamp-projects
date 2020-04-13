@@ -8,26 +8,31 @@ function clearLast() {
   const mainOutput = document.getElementById("main-output");
 
   if (fullOutput.innerText.length <= 1) {
-    return null;
+    clearOutput();
+  } else {
+    fullOutput.innerText = fullOutput.innerText.slice(0, fullOutput.innerText.length - 1);
+    mainOutput.innerText = fullOutput.innerText[fullOutput.innerText.length - 1];
   }
-  fullOutput.innerText = fullOutput.innerText.slice(0, fullOutput.innerText.length - 1);
-  mainOutput.innerText = fullOutput.innerText[fullOutput.innerText.length - 1];
 }
 
 function addNumber(number) {
   const fullOutput = document.getElementById("full-output");
   const mainOutput = document.getElementById("main-output");
 
-  if (number == "." && mainOutput.innerText.indexOf(".") != -1) {
-    return null;
-  } else if (fullOutput.innerText.indexOf("=") != -1) {
+  if (number === "." && mainOutput.innerText.indexOf(".") !== -1) {
+    return;
+  } else if (fullOutput.innerText.indexOf("=") !== -1) {
     clearOutput();
   }
   const numbers = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
-  if (numbers.indexOf(mainOutput.innerText[mainOutput.children.length - 1]) != -1 || mainOutput.innerText[mainOutput.children.length - 1] == "." || (mainOutput.innerText.length == 1 && numbers.indexOf(mainOutput.innerText[0]) != - 1)) {
+  if (
+      numbers.indexOf(mainOutput.innerText[mainOutput.children.length - 1]) !== -1 ||
+      mainOutput.innerText[mainOutput.children.length - 1] === "." ||
+      (mainOutput.innerText.length === 1 && numbers.indexOf(mainOutput.innerText[0]) !== - 1)
+  ) {
     let newText = mainOutput.innerText + number;
-    while (newText[0] == "0" && newText.length > 1 && newText[1] != ".") {
+    while (newText[0] === "0" && newText.length > 1 && newText[1] !== ".") {
       newText = newText.slice(1);
     }
     mainOutput.innerText = newText;
@@ -35,7 +40,7 @@ function addNumber(number) {
     mainOutput.innerText = number;
   }
   fullOutput.innerText += number;
-  while (fullOutput.innerText[0] == "0" && fullOutput.innerText.length > 1 && numbers.indexOf(fullOutput.innerText[1]) != -1) {
+  while (fullOutput.innerText[0] === "0" && fullOutput.innerText.length > 1 && numbers.indexOf(fullOutput.innerText[1]) !== -1) {
     fullOutput.innerText = fullOutput.innerText.slice(1);
   }
 }
@@ -45,9 +50,9 @@ function addSymbol(symbol) {
   const mainOutput = document.getElementById("main-output");
   const operations = ["+", "-", "*", "/"];
 
-  if (operations.indexOf(mainOutput.innerText[0]) != -1) {
-    return null;
-  } else if (fullOutput.innerText.indexOf("=") != -1) {
+  if (operations.indexOf(mainOutput.innerText[0]) !== -1) {
+    return;
+  } else if (fullOutput.innerText.indexOf("=") !== -1) {
     clearOutput();
   }
   mainOutput.innerText = symbol;
@@ -58,37 +63,29 @@ function evaluate() {
   const fullOutput = document.getElementById("full-output");
   const mainOutput = document.getElementById("main-output");
 
-  var result = eval(fullOutput.innerText);
+  const result = eval(fullOutput.innerText);
   mainOutput.innerText = result;
   fullOutput.innerText += "=" + result;
 }
 
-document.addEventListener("DOMContentLoaded", function() {
-  document.getElementById("ac-btn").addEventListener("click", function() {
-    clearOutput();
-  });
-  document.getElementById("delete-btn").addEventListener("click", function() {
-    clearLast();
-  });
-  for (const current of document.getElementsByClassName("number-btn")) {
-    current.addEventListener("click", function() {
-      var number = this.innerText;
-      addNumber(number);
-    })
-  }
-  for (const current of document.getElementsByClassName("operation-btn")) {
-    current.addEventListener("click", function() {
-      let operationSymbol = this.innerText;
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("ac-btn").addEventListener("click", clearOutput);
+  document.getElementById("delete-btn").addEventListener("click", clearLast);
 
-      if (operationSymbol == "÷") {
-        operationSymbol = "/";
-      } else if (operationSymbol == "X") {
-        operationSymbol = "*";
-      }
-      addSymbol(operationSymbol);
+  for (const button of document.getElementsByClassName("number-btn")) {
+    button.addEventListener("click", event => {
+      addNumber(event.target.innerText);
     });
   }
-  document.getElementById("equal-btn").addEventListener("click", function() {
-    evaluate();
-  })
+  for (const button of document.getElementsByClassName("operation-btn")) {
+    button.addEventListener("click", event => {
+      if (event.target.innerText === "÷")
+        addSymbol("/");
+      else if (event.target.innerText === "X")
+        addSymbol("*");
+      else
+        addSymbol(event.target.innerText);
+    });
+  }
+  document.getElementById("equal-btn").addEventListener("click", evaluate);
 })
