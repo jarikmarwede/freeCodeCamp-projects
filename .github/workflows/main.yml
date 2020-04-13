@@ -20,6 +20,7 @@ jobs:
         cp -r ./Projects_Website ./dist/Projects_Website
         cp -r ./Responsive_Web_Design_Certification ./dist/Responsive_Web_Design_Certification
     - name: Deploy Frontend to Github Pages
+      if: success()
       uses: crazy-max/ghaction-github-pages@v1.4.0
       with:
         build_dir: dist
