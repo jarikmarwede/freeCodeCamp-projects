@@ -7,10 +7,10 @@ function updateTime() {
   let minutes = parseInt(oldTime.split(":")[0]);
   let seconds = parseInt(oldTime.split(":")[1]);
 
-  if (seconds == 0) {
+  if (seconds === 0) {
     if (minutes < 1) {
       changeStatus();
-      return null;
+      return;
     } else {
       minutes -= 1;
       seconds = 59;
@@ -29,7 +29,7 @@ function updateTime() {
 }
 
 function updateProgressBar(minutes, seconds) {
-  const maxTime = document.getElementById("status").textContent == "Session" ? parseInt(document.getElementById("session-length").textContent) * 60 : parseInt(document.getElementById("break-length").textContent) * 60;
+  const maxTime = document.getElementById("status").textContent === "Session" ? parseInt(document.getElementById("session-length").textContent) * 60 : parseInt(document.getElementById("break-length").textContent) * 60;
   const timePassed = maxTime - (minutes * 60 + seconds);
   const percentage = timePassed / maxTime * 100;
 
@@ -37,21 +37,17 @@ function updateProgressBar(minutes, seconds) {
 }
 
 function changeStatus() {
-  const oldStatus = document.getElementById("status").textContent;
   const statusElement = document.getElementById("status");
-  const timeElement = document.getElementById("time");
 
-  if (oldStatus == "Session") {
+  deactivateCounting();
+  if (statusElement.textContent === "Session") {
     statusElement.textContent = "Break";
-    deactivateCounting();
-    timeElement.textContent = document.getElementById("break-length").textContent + ":00";
-    activateCounting();
+    document.getElementById("time").textContent = document.getElementById("break-length").textContent + ":00";
   } else {
     statusElement.textContent = "Session";
-    deactivateCounting();
     document.getElementById("time").textContent = document.getElementById("session-length").textContent + ":00";
-    activateCounting();
   }
+  activateCounting();
 }
 
 function toggleCounting() {
@@ -84,32 +80,28 @@ document.addEventListener("DOMContentLoaded", () => {
     const sessionLengthElement = document.getElementById("session-length");
     const sessionLength = parseInt(sessionLengthElement.textContent);
 
-    if (sessionLength >= 2) {
-      sessionLengthElement.textContent = sessionLength - 1;
+    if (sessionLength > 1) {
+      sessionLengthElement.textContent = (sessionLength - 1).toString();
       reset();
     }
   });
   document.getElementById("plus-session").addEventListener("click", () => {
     const sessionLengthElement = document.getElementById("session-length");
-    sessionLengthElement.textContent(parseInt(sessionLengthElement.textContent) + 1);
+    sessionLengthElement.textContent = (parseInt(sessionLengthElement.textContent) + 1).toString();
     reset();
   });
   document.getElementById("minus-break").addEventListener("click", () => {
     const breakLengthElement = document.getElementById("break-length");
     if (parseInt(breakLengthElement.textContent) >= 2) {
-      breakLengthElement.textContent = parseInt(breakLengthElement.textContent) - 1;
+      breakLengthElement.textContent = (parseInt(breakLengthElement.textContent) - 1).toString();
       reset();
     }
   });
   document.getElementById("plus-break").addEventListener("click", () => {
     const breakLengthElement = document.getElementById("break-length");
-    breakLengthElement.textContent = parseInt(breakLengthElement.textContent) + 1;
+    breakLengthElement.textContent = (parseInt(breakLengthElement.textContent) + 1).toString();
     reset();
   });
-  document.getElementById("progress-bar-container").addEventListener("click", () => {
-    toggleCounting();
-  });
-  document.getElementById("reset-btn").addEventListener("click", () => {
-    reset();
-  });
+  document.getElementById("progress-bar-container").addEventListener("click", toggleCounting);
+  document.getElementById("reset-btn").addEventListener("click", reset);
 })
