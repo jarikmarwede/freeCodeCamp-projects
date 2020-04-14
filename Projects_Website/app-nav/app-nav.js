@@ -1,3 +1,5 @@
+import CERTIFICATIONS from "../certifications.js";
+
 const template = document.createElement("template");
 template.innerHTML = `
   <link rel="stylesheet" href="./Projects_Website/app-nav/app-nav.css">
@@ -13,24 +15,11 @@ class AppNav extends HTMLElement {
 
     this.attachShadow({mode: "open"});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
-  }
 
-  static get observedAttributes() {
-    return ["certifications"];
-  }
-
-  get certifications() {
-    return JSON.parse(this.getAttribute("certifications").replace(/'/g, "\""));
-  }
-
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "certifications") {
-      this.shadowRoot.getElementById("links").innerHTML = "";
-      for (const certification of this.certifications) {
-        this.shadowRoot.getElementById("links").innerHTML += `
+    for (const certification of CERTIFICATIONS) {
+      this.shadowRoot.getElementById("links").innerHTML += `
           <a href="#${certification.container_id}">${certification.name}</a>
         `;
-      }
     }
   }
 }
