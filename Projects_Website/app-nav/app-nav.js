@@ -1,16 +1,18 @@
+const template = document.createElement("template");
+template.innerHTML = `
+  <link rel="stylesheet" href="./Projects_Website/app-nav/app-nav.css">
+  <nav>
+    <h1><a id="title-link" href="#"><i class="fa fa-free-code-camp"></i> freeCodeCamp-Projects</a></h1>
+    <div id="links"></div>
+  </nav>
+`;
+
 class AppNav extends HTMLElement {
   constructor() {
     super();
 
     this.attachShadow({mode: "open"});
-
-    this.shadowRoot.innerHTML = `
-      <link rel="stylesheet" href="./Projects_Website/app-nav/app-nav.css">
-      <nav>
-        <h1><a id="title-link" href="#"><i class="fa fa-free-code-camp"></i> freeCodeCamp-Projects</a></h1>
-        <div id="links"></div>
-      </nav>
-     `;
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
   }
 
   static get observedAttributes() {
