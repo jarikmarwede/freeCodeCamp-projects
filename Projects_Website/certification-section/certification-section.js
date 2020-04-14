@@ -1,23 +1,28 @@
 import "../project-card/project-card.js";
 
+const template = document.createElement("template");
+template.innerHTML = `
+  <link rel="stylesheet" href="./Projects_Website/certification-section/certification-section.css">
+  <h2 id="name"></h2>
+  <p id="description">
+    <slot name="description"></slot>
+  </p>
+  <div id="projects"></div>
+`;
+
 class CertificationSection extends HTMLElement {
   constructor() {
     super();
 
     this.attachShadow({mode: "open"});
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.shadowRoot.innerHTML = `
-      <link rel="stylesheet" href="./Projects_Website/certification-section/certification-section.css">
-      <h2>${this.name}</h2>
-      <p id="description">
-        <slot name="description"></slot>
-      </p>
-      <div id="projects">
-        ${this.projects.map(project => `
-          <project-card name="${project.name}" link="${project.link}" sourcecode="${project.sourcecode}"></project-card>
-        `).join("")}
-      </div>
-    `;
+    this.shadowRoot.getElementById("name").innerText = this.name;
+    for (const project of this.projects) {
+      this.shadowRoot.getElementById("projects").innerHTML += `
+        <project-card name="${project.name}" link="${project.link}" sourcecode="${project.src}"></project-card>
+      `;
+    }
   }
 
   get name() {
