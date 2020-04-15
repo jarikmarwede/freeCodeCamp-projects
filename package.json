@@ -26,15 +26,5 @@
     "multer": "^1.4.1",
     "node-fetch": "^2.6.0"
   },
-  "config": {
-    "pre-git": {
-      "allow-untracked-files": true,
-      "pre-push": [
-        "git subtree push --prefix=Back_End_Development_Certification/Voting_App heroku master"
-      ]
-    }
-  },
-  "devDependencies": {
-    "pre-git": "^3.17.1"
-  }
+  "devDependencies": {}
 }
