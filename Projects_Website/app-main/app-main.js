@@ -18,14 +18,16 @@ class AppMain extends HTMLElement {
 
     this.appendChild(template.content.cloneNode(true));
 
-    for (const certification of CERTIFICATIONS) {
-      const projectsString = JSON.stringify(certification.projects).replace(/"/g, "'");
-      document.getElementById("certifications").innerHTML += `
-      <certification-section id="${certification.container_id}" projects="${projectsString}">
-        <span slot="title">${certification.name}</span>
-        <span slot="description">${certification.description}</span>
-      </certification-section>
+    document.getElementById("certifications").innerHTML = `
+      ${CERTIFICATIONS.map(certification => `
+        <certification-section id="${certification.container_id}">
+          <span slot="title">${certification.name}</span>
+          <span slot="description">${certification.description}</span>
+        </certification-section>
+      `).join("")}
     `;
+    for (const certification of CERTIFICATIONS) {
+      document.getElementById(certification["container_id"]).projects = certification.projects;
     }
   }
 }
