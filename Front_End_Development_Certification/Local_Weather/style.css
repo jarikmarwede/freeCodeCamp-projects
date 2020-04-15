@@ -25,6 +25,12 @@ button:focus {
 a {
   color: var(--primary-light);
 }
+details {
+  margin: 1rem 0;
+}
+details summary {
+  cursor: pointer;
+}
 
 html, body {
   height: 100%;
