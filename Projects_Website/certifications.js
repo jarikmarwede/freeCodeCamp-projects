@@ -2,7 +2,7 @@ const CERTIFICATIONS = [
   {
     container_id: "responsive-web-design-certification",
     name: "Responsive Web Design Certification",
-    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on Github Pages.",
+    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on Github Pages. Older versions of the projects can be found on <a href=\"https://codepen.io/collection/XdWbBq\" target=\"_blank\"><i class=\"fab fa-codepen\"></i> CodePen</a>.",
     projects: [
       {
         name: "Personal Portfolio Webpage",
@@ -126,7 +126,7 @@ const CERTIFICATIONS = [
   {
     container_id: "front-end-certification",
     name: "Front End Certification",
-    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Github Pages. Some of the projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-libraries-certification\">Front End Libraries Certification</a> and can only be found over there.",
+    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Github Pages. Some of the projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-libraries-certification\">Front End Libraries Certification</a> and can only be found over there. Older versions of the projects can be found on <a href=\"https://codepen.io/collection/Doeyvj/\" target=\"_blank\"><i class=\"fab fa-codepen\"></i> CodePen</a>.",
     projects: [
       {
         name: "Local Wheather",
