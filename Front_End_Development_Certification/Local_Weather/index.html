@@ -8,6 +8,7 @@
   <meta name="author" content="Jarik Marwede">
 
   <link rel="stylesheet" href="style.css">
+  <script defer src="script.js"></script>
 </head>
 
 <body>
@@ -16,17 +17,16 @@
     <p class="main-info" id="weather-text"></p>
     <img id="weather-icon" src="" alt="" />
     <p class="main-info" id="temperature"></p>
-    <p class="extra-info" id="weather-description"></p>
-    <p class="extra-info" id="humidity"></p>
-    <p class="extra-info" id="pressure"></p>
-    <p class="extra-info" id="temperature-max"></p>
-    <p class="extra-info" id="temperature-min"></p>
-    <p class="extra-info" id="wind-degrees"></p>
-    <p class="extra-info" id="wind-speed"></p>
-    <div class="btn-group btn-group-justified">
-       <button id="more-info-btn">Show less</button>
-       <button id="switch-unit-btn">°F</button>
-    </div>
+    <details>
+      <summary>Show more</summary>
+      <p class="extra-info" id="humidity"></p>
+      <p class="extra-info" id="pressure"></p>
+      <p class="extra-info" id="temperature-max"></p>
+      <p class="extra-info" id="temperature-min"></p>
+      <p class="extra-info" id="wind-degrees"></p>
+      <p class="extra-info" id="wind-speed"></p>
+    </details>
+    <button id="switch-unit-btn">°F</button>
   </main>
   <footer>
     <p>
@@ -34,7 +34,5 @@
       See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.
     </p>
   </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>

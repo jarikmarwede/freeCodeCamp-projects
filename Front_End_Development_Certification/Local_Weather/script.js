@@ -13,10 +13,8 @@ async function getWeather(position) {
 }
 
 function displayWeather(json) {
-  console.log(json["weather"][0]["icon"]);
   document.getElementById("location").textContent = `${json["name"]}, ${json["sys"]["country"]}`;
   document.getElementById("weather-text").textContent = json["weather"][0]["main"];
-  document.getElementById("weather-description").textContent = json["weather"][0]["description"];
   document.getElementById("weather-icon").setAttribute("src", json["weather"][0]["icon"]);
   document.getElementById("weather-icon").setAttribute("alt", json["weather"][0]["description"]);
   document.getElementById("humidity").textContent = `Humidity: ${json["main"]["humidity"]}`;
@@ -81,19 +79,7 @@ function switchTempUnit() {
   switchUnitButton.textContent = switchUnitButton.textContent === "°C" ? "°F" : "°C";
 }
 
-function toggleMoreInfo() {
-  const moreInfoButton = document.getElementById("more-info-btn");
-  const extraInfoElements = document.getElementsByClassName("extra-info");
-
-  for (const element of extraInfoElements) {
-    element.style.display = moreInfoButton.textContent === "Show less" ? "none" : "block";
-  }
-  moreInfoButton.textContent = moreInfoButton.textContent === "Show less" ? "Show more" : "Show less";
-}
-
 document.addEventListener("DOMContentLoaded", () => {
   getLocation();
-  toggleMoreInfo();
-  document.getElementById("more-info-btn").addEventListener("click", toggleMoreInfo);
   document.getElementById("switch-unit-btn").addEventListener("click", switchTempUnit);
 });
