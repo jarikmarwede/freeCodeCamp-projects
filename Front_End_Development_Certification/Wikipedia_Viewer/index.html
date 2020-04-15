@@ -5,6 +5,7 @@
 
   <title>Wikipedia Viewer</title>
   <meta name="author" content="Jarik Marwede">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
@@ -15,8 +16,8 @@
   <main>
     <div class="search-row">
       <button id="search-btn"><i class="fas fa-search"></i></button>
-      <input type="text" id="search-input" placeholder="Search term">
-      <a class="link-btn" href="https://en.wikipedia.org/wiki/Special:Random"><i class="fas fa-random"></i></a>
+      <input type="text" id="search-input" placeholder="Search term" size="1">
+      <a id="random-btn" class="link-btn" href="https://en.wikipedia.org/wiki/Special:Random"><i class="fas fa-random"></i></a>
     </div>
     <div id="search-results-container"></div>
   </main>

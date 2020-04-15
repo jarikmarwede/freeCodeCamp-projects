@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 html, body {
   height: 100%;
 }
@@ -41,12 +44,12 @@ main {
 .search-row {
   align-items: center;
   display: flex;
-  flex-flow: column nowrap;
+  flex-flow: row nowrap;
   justify-content: center;
-  padding: 2rem;
+  padding: 2rem 0;
 }
 .search-row > * {
-  margin: 0.5rem;
+  margin: 0 0.25rem;
 }
 .link-btn {
   background-color: #1e8e16;
@@ -74,14 +77,9 @@ footer {
   text-align: center;
 }
 
-@media only screen and (max-width: 576px) {
-  .search-row > * {
-    width: 100%;
-  }
-}
 @media only screen and (min-width: 576px) {
-  .search-row {
-    flex-flow: row nowrap;
+  .search-row > * {
+    margin: 0 0.5rem;
   }
 }
 @media only screen and (min-width: 992px) {
