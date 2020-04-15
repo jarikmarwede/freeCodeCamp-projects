@@ -5,13 +5,13 @@ class ChannelCard extends HTMLElement {
     const shadow = this.attachShadow({mode: "open"});
     shadow.innerHTML = `
       <link rel="stylesheet" href="./channel-card/channel-card.css">
-      <div id="main-channel-row">
-        <img src="${this.logo}"  alt="Channel logo"/>
-        <p id="channel-name">
-          <a id="channel-link" href="${this.url}">${this.name}</a>
-        </p>
-      </div>
-      <p id="stream-status">${ this.online ? this.game + ": " + this.status : ""}</p>
+      <a href="${this.url}">
+        <div id="main-channel-row">
+          <img src="${this.logo}"  alt="Channel logo"/>
+          <p id="channel-name">${this.name}</p>
+        </div>
+        <p id="stream-status">${ this.online ? this.game + ": " + this.status : ""}</p>
+      </a>
     `;
   }
 

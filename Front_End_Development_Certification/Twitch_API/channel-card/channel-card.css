@@ -20,9 +20,6 @@ img {
   color: white;
   font-size: 2rem;
 }
-#channel-link:link, #channel-link:visited, #channel-link:hover, #channel-link:active {
-  color: white;
-}
 #stream-status {
   color: white;
   margin-left: 1rem;
