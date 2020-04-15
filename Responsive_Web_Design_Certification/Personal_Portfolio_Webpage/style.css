@@ -1,6 +1,8 @@
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: #d2e0e0;
-  
 }
 a, a:hover {
   color: #396363;
@@ -35,16 +37,23 @@ a, a:hover {
   margin-bottom: 1rem;
   padding: 1rem 2rem;
 }
-#footer {
+footer {
   background-color: #c3d5d5;
   padding: 1rem;
   margin-top: 0.5rem;
 }
+
 @media only screen and (min-width: 992px) {
   #introduction-text {
     font-size: 1.5rem;
   }
   .contact-btn {
     margin: 1.25rem;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
