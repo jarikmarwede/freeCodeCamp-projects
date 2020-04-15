@@ -1,11 +1,11 @@
-name: CI
+name: Deploy
 
 on:
   push:
     branches: [ master ]
 
 jobs:
-  deploy:
+  frontend:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -26,3 +26,27 @@ jobs:
         build_dir: dist
       env:
         GITHUB_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+  backend:
+    runs-on: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Heroku CLI
+        run: npm install -g heroku
+      - name: Login to Heroku CLI
+        run: |
+          cat >~/.netrc <<EOF
+          machine api.heroku.com
+              login ${HEROKU_EMAIL}
+              password ${HEROKU_API_TOKEN}
+          machine git.heroku.com
+              login ${HEROKU_EMAIL}
+              password ${HEROKU_API_TOKEN}
+          EOF
+          heroku login
+        env:
+          HEROKU_API_TOKEN: ${{secrets.HEROKU_API_TOKEN}}
+          HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
+      - name: Deploy to Heroku
+        run: |
+          heroku git::remote -a jm-voting-app
+          git subtree push --prefix=Back_End_Development_Certification/Voting_App heroku master
