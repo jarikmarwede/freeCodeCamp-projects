@@ -6,6 +6,9 @@
   --primary-color: #f7dc13;
   --secondary-color: #b57c01
 }
+html {
+  scroll-behavior: smooth;
+}
 body {
   background-color: var(--secondary-color);
   background-image: url("https://ibin.co/4LTZb6lv6GIH.jpg");
@@ -37,6 +40,10 @@ header {
 }
 h1 {
   font-family: Georgia, serif;
+}
+h1 > a {
+  color: black;
+  text-decoration: none;
 }
 nav {
   display: flex;
@@ -162,5 +169,11 @@ main > * {
 @media only screen and (min-width: 992px) {
   main {
     margin: 0 25%;
+  }
+}
+
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
