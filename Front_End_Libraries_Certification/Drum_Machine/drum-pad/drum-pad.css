@@ -1,4 +1,4 @@
-#drum-pad {
+:host {
   background: rgba(0, 0, 0, 0.5);
   border: 4px solid #868686;
   border-radius: 5px;
@@ -8,6 +8,6 @@
   padding: 2rem;
   margin: 1rem;
 }
-#drum-pad.activated {
+:host([active]) {
   border-color: #1ed5ed;
 }

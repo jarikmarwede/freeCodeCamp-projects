@@ -6,30 +6,45 @@ class DrumPad extends HTMLElement {
 
     this.shadowRoot.innerHTML = `
       <link rel="stylesheet" href="./drum-pad/drum-pad.css">
-      <button id="drum-pad"><slot></slot></button>
+      <slot></slot>
       <audio src="${this.soundSrc}"></audio>
     `;
   }
 
   connectedCallback() {
-    this.shadowRoot.querySelector("button").addEventListener("click", this.activateDrumPad.bind(this));
+    if (!this.hasAttribute("role"))
+      this.setAttribute("role", "button")
+    if (!this.hasAttribute("tabindex"))
+      this.setAttribute("tabindex", "0");
+    this.addEventListener("click", this.activateDrumPad.bind(this));
   }
 
   disconnectedCallback() {
-    this.shadowRoot.querySelector("button").removeEventListener("click", this.activateDrumPad.bind(this));
+    this.removeEventListener("click", this.activateDrumPad.bind(this));
   }
 
   get soundSrc() {
     return this.getAttribute("sound-src");
   }
 
+  get active() {
+    return this.hasAttribute("active");
+  }
+
+  set active(value) {
+    if (value)
+      this.setAttribute("active", "");
+    else
+      this.removeAttribute("active");
+  }
+
   async activateDrumPad() {
     this.shadowRoot.dispatchEvent(new Event("activated", {composed: true}));
-    this.shadowRoot.getElementById("drum-pad").classList.add("activated");
+    this.active = true;
     const audioElement = this.shadowRoot.querySelector("audio");
     audioElement.currentTime = 0;
     audioElement.addEventListener("ended", () => {
-      this.shadowRoot.querySelector("button").classList.remove("activated");
+      this.active = false;
     });
     await audioElement.play();
   }
