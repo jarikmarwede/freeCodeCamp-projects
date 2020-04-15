@@ -18,18 +18,16 @@ class CertificationSection extends HTMLElement {
 
     this.attachShadow({mode: "open"});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
+  }
 
-    for (const project of this.projects) {
-      this.shadowRoot.getElementById("projects").innerHTML += `
+  set projects(projects) {
+    this.shadowRoot.getElementById("projects").innerHTML = `
+      ${projects.map(project => `
         <project-card link="${project.link}" sourcecode="${project.src}">
           <span slot="title">${project.name}</span>
         </project-card>
-      `;
-    }
-  }
-
-  get projects() {
-    return JSON.parse(this.getAttribute("projects").replace(/'/g, "\""));
+      `).join("")}
+    `;
   }
 }
 
