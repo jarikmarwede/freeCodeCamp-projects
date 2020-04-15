@@ -50,4 +50,4 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku git:remote -a jm-voting-app
-          git subtree push --prefix=Back_End_Development_Certification/Voting_App heroku master --force
+          git push heroku `git subtree split --prefix Back_End_Development_Certification/Voting_App master`:master --force
