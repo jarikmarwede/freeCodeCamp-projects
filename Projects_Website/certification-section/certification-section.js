@@ -3,7 +3,9 @@ import "../project-card/project-card.js";
 const template = document.createElement("template");
 template.innerHTML = `
   <link rel="stylesheet" href="./Projects_Website/certification-section/certification-section.css">
-  <h2 id="name"></h2>
+  <h2>
+    <slot name="title"></slot>
+  </h2>
   <p id="description">
     <slot name="description"></slot>
   </p>
@@ -17,16 +19,13 @@ class CertificationSection extends HTMLElement {
     this.attachShadow({mode: "open"});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.shadowRoot.getElementById("name").innerText = this.name;
     for (const project of this.projects) {
       this.shadowRoot.getElementById("projects").innerHTML += `
-        <project-card name="${project.name}" link="${project.link}" sourcecode="${project.src}"></project-card>
+        <project-card link="${project.link}" sourcecode="${project.src}">
+          <span slot="title">${project.name}</span>
+        </project-card>
       `;
     }
-  }
-
-  get name() {
-    return this.getAttribute("name");
   }
 
   get projects() {

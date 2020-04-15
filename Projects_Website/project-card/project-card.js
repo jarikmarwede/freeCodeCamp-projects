@@ -1,7 +1,9 @@
 const template = document.createElement("template");
 template.innerHTML = `
   <link rel="stylesheet" href="./Projects_Website/project-card/project-card.css">
-  <h3 id="title"></h3>
+  <h3>
+    <slot name="title"></slot>
+  </h3>
   <div class='buttons'>
     <a id="project-link" class="link-btn" href='#'><p><i class='fa fa-desktop'></i> View</p></a>
     <a id="sourcecode-link" class="link-btn" href='#' target='_blank'><p><i class='fa fa-code'></i> Source</p></a>
@@ -15,12 +17,8 @@ class ProjectCard extends HTMLElement {
     this.attachShadow({mode: "open"});
     this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.shadowRoot.getElementById("title").innerText = this.name;
     this.shadowRoot.getElementById("project-link").href = this.link;
     this.shadowRoot.getElementById("sourcecode-link").href = this.sourcecode;
-  }
-  get name() {
-    return this.getAttribute("name");
   }
 
   get link() {
