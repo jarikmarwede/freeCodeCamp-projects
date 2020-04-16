@@ -94,6 +94,7 @@ body {
 #code {
   font-family: monaco, Consolas, Lucida Console, monospace;
   grid-area: code;
+  overflow: auto;
 }
 footer {
   background: rgba(0, 0, 0, 0.4);

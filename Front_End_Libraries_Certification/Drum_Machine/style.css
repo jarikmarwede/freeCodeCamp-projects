@@ -26,6 +26,7 @@ main {
   background: rgba(0, 0, 0, 0.5);
   text-align: center;
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 footer {
   background: rgba(0, 0, 0, 0.3);
