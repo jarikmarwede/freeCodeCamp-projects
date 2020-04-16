@@ -8,7 +8,9 @@ async function submitForm(event) {
     }
   };
 
+  document.querySelector(".code-wrapper img").hidden = false;
   const response = await fetch(API_URL, requestOptions);
+  document.querySelector(".code-wrapper img").hidden = true;
   document.getElementById("api-response").innerText = JSON.stringify(await response.json());
 }
 
