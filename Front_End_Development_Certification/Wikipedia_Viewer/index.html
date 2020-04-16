@@ -16,10 +16,12 @@
   <main>
     <div class="search-row">
       <button id="search-btn"><i class="fas fa-search"></i></button>
-      <input type="text" id="search-input" placeholder="Search term" size="1">
+      <input aria-label="Search term" type="text" id="search-input" placeholder="Search term" size="1">
       <a id="random-btn" class="link-btn" href="https://en.wikipedia.org/wiki/Special:Random"><i class="fas fa-random"></i></a>
     </div>
+    <p id="total-matches"></p>
     <div id="search-results-container"></div>
+    <button id="load-more-btn" hidden>Load more</button>
   </main>
   <footer>
     <p>

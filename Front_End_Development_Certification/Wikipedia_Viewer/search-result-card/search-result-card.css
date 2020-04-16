@@ -2,6 +2,7 @@
 
 :host {
   background-color: #1aa53d;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   border-left: 0.5em solid transparent;
   display: block;
 }

@@ -1,3 +1,12 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 * {
   box-sizing: border-box;
 }
@@ -63,10 +72,14 @@ main {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
   color: white;
 }
-.total-matches {
+#total-matches {
   text-align: center;
 }
-.load-more-btn {
+#search-results-container > search-result-card {
+  animation-name: fade-in;
+  animation-duration: 1s;
+}
+#load-more-btn {
   margin-bottom: 2rem;
   margin-top: 1rem;
   width: 100%;
