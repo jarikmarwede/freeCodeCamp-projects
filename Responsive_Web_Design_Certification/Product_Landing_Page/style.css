@@ -1,5 +1,5 @@
 .fas {
-  font-size: 4rem;
+  font-size: 15vw;
   color: #b57c01;
 }
 :root {
@@ -113,7 +113,7 @@ main > * {
 }
 .info-text {
   display: inline;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   margin-left: 25%;
 }
 .embed-container {
@@ -156,6 +156,9 @@ main > * {
 @media only screen and (min-width: 576px) {
   .fas {
     font-size: 8rem;
+  }
+  .info-text {
+    font-size: 1.5rem;
   }
   #pricing {
     grid-template-rows: 1fr;
