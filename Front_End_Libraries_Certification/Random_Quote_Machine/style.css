@@ -52,7 +52,7 @@ main > * {
   font-size: 1.125rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  text-align: justify;
+  text-align: left;
 }
 #quote-author {
   color: #2c99a3;
@@ -69,6 +69,7 @@ main > * {
   text-align: right;
 }
 #buttons {
+  display: flex;
   text-align: center;
 }
 #twitter-btn {
@@ -80,6 +81,7 @@ main > * {
   font-size: 1.1rem;
   padding: 0.4rem 1rem;
   text-decoration: none;
+  margin-left: 0.5rem;
 }
 #twitter-btn:hover {
   background-color: #45b1c6;
