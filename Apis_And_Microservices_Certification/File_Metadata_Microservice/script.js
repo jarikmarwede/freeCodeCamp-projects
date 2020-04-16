@@ -7,7 +7,9 @@ async function submitForm(event) {
     body: formData
   };
 
+  document.querySelector(".code-wrapper img").hidden = false;
   const response = await fetch(event.target.action, requestOptions);
+  document.querySelector(".code-wrapper img").hidden = true;
   document.getElementById("api-response").innerText = JSON.stringify(await response.json());
 }
 
