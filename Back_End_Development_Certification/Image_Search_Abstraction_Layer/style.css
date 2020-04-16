@@ -20,6 +20,7 @@ p {
 }
 li {
   font-family: "Lucida Console", Monaco, monospace;
+  word-break: break-word;
 }
 input {
   border: none;
