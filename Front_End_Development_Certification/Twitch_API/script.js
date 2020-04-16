@@ -10,16 +10,17 @@ async function loadChannels() {
     const streamAPIURL = "https://wind-bow.glitch.me/twitch-api/streams/" + channelJSON["display_name"];
     const streamResponse = await fetch(streamAPIURL);
     const streamJSON = await streamResponse.json();
-    document.getElementById("twitch-channels").innerHTML += `
-      <channel-card 
-        ${streamJSON["stream"] ? "online" : ""}
-        logo="${channelJSON["logo"]}" 
-        url="${channelJSON["url"]}" 
-        name="${channelJSON["display_name"]}" 
-        game="${channelJSON["game"]}" 
-        status="${channelJSON["status"]}">
-       </channel-card>
+    const channelCard = document.createElement("channel-card");
+    if (streamJSON["stream"])
+      channelCard.setAttribute("online", "");
+    channelCard.logo = channelJSON["logo"];
+    channelCard.url = channelJSON["url"];
+    channelCard.game = channelJSON["game"];
+    channelCard.status = channelJSON["status"];
+    channelCard.innerHTML = `
+      <span slot="name">${channelJSON["display_name"]}</span>
     `;
+    document.getElementById("twitch-channels").appendChild(channelCard);
   }
 }
 
