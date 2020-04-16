@@ -72,6 +72,10 @@ input[type=submit]:hover {
     margin: 0;
     word-break: break-word;
 }
+.img-container {
+    display: flex;
+    justify-content: center;
+}
 #api-response {
     font-family: monospace;
     width: 100%;

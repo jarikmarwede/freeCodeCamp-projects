@@ -1,5 +1,6 @@
 async function submitForm(event) {
   event.preventDefault();
+  document.querySelector(".code-wrapper img").hidden = false;
 
   let API_URL = event.target.action;
   let formData = {};
@@ -24,6 +25,7 @@ async function submitForm(event) {
     requestOptions.body = JSON.stringify(formData);
   }
   const response = await fetch(API_URL, requestOptions);
+  document.querySelector(".code-wrapper img").hidden = true;
   document.getElementById("api-response").innerText = JSON.stringify(await response.json());
 }
 
