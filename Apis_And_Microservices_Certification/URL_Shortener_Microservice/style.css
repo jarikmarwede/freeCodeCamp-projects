@@ -36,6 +36,9 @@ main {
   margin: 1rem;
   padding: 1rem;
 }
+.code-wrapper {
+  word-break: break-word;
+}
 footer {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem;
