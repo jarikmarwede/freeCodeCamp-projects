@@ -39,6 +39,7 @@ input[type=submit] {
 .code-wrapper {
   background: #313131;
   padding: 1rem;
+  word-break: break-word;
 }
 footer {
   background: rgba(0, 0, 0, 0.2);
