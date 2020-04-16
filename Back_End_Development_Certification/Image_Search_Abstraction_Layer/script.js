@@ -1,5 +1,7 @@
 async function getAPIResponse(url) {
+  document.querySelector(".code-wrapper img").hidden = false;
   const response = await fetch(url);
+  document.querySelector(".code-wrapper img").hidden = true;
   document.getElementById("api-response").innerText = JSON.stringify(await response.json());
 }
 
