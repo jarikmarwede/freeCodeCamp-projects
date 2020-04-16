@@ -23,6 +23,7 @@ header a {
 }
 h1 {
   margin: 0;
+  font-size: 10vw;
   padding: 2rem;
   text-align: center;
 }
@@ -48,6 +49,7 @@ pre {
   font-family: "Lucida Console", Monaco, monospace;
   font-size: 0.9rem;
   padding: 1rem;
+  overflow: scroll;
 }
 .home-btn {
   background-color: white;
@@ -67,9 +69,15 @@ pre {
   text-decoration: none;
 }
 
+@media only screen and (min-width: 576px) {
+  h1 {
+    font-size: 2rem;
+  }
+}
+
 @media only screen and (min-width: 992px) {
   body {
-    grid-template-columns: 20% auto;
+    grid-template-columns: 20rem auto;
   }
   #main-header {
     border-bottom: none;
