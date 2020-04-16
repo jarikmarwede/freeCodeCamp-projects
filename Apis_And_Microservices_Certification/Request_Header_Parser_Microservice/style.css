@@ -40,6 +40,10 @@ main > * {
   padding: 1rem;
   word-break: break-word;
 }
+.img-container {
+  display: flex;
+  justify-content: center;
+}
 footer {
   background: rgba(0, 0, 0, 0.2);
   padding: 1rem;
