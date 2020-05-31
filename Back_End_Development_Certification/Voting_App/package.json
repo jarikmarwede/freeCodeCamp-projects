@@ -22,7 +22,7 @@
     "npm": "*"
   },
   "dependencies": {
-    "express": "^4.16.4",
+    "express": "^4.17.1",
     "mongodb": "^3.1.10",
     "express-handlebars": "^4.0.4",
     "cookie-parser": "^1.4.5"
