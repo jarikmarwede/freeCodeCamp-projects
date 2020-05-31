@@ -12,7 +12,7 @@ jobs:
     - name: Build frontend
       run: |
         mkdir dist
-        cp CNAME ./CNAME
+        cp CNAME ./dist/CNAME
         cp index.html ./dist/index.html
         cp -r ./Apis_And_Microservices_Certification ./dist/Apis_And_Microservices_Certification
         cp -r ./Back_End_Development_Certification ./dist/Back_End_Development_Certification
