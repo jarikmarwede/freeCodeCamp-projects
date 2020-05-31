@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "express": "^4.17.1",
-    "mongodb": "^3.1.10",
+    "mongodb": "^3.5.8",
     "express-handlebars": "^4.0.4",
     "cookie-parser": "^1.4.5"
   }
