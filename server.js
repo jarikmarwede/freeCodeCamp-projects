@@ -10,7 +10,7 @@ const urlShortenerMicroservice = require("./Apis_And_Microservices_Certification
 const imageSearchAbstractionLayer = require("./Back_End_Development_Certification/Image_Search_Abstraction_Layer/server.js");
 
 const corsOptions = {
-  origin: "https://jarikmarwede.github.io"
+  origin: "https://freecodecamp.jarikmarwede.com"
 };
 if (process.env.NODE_ENV === "development") {
   console.log("Starting in development mode");
