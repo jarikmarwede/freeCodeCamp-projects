@@ -24,7 +24,7 @@
   "dependencies": {
     "express": "^4.17.1",
     "mongodb": "^3.5.9",
-    "express-handlebars": "^4.0.4",
+    "express-handlebars": "^4.0.5",
     "cookie-parser": "^1.4.5"
   }
 }
