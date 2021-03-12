@@ -1,0 +1,42 @@
+img {
+  margin: 0 0.5rem;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+p {
+  font-family: monospace;
+}
+
+h1 {
+  font-weight: bold;
+  margin: 1.25rem;
+  text-align: center;
+}
+h2 {
+  font-style: italic;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+.columns-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-around;
+}
+.big-headshot {
+  width: 100%;
+}
+.main-list-wrapper {
+  margin-left: 2rem;
+}
+.main-list-wrapper li {
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+}
+footer {
+  margin: 2rem;
+  text-align: center;
+}

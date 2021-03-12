@@ -1,0 +1,73 @@
+a, a:hover {
+  color: #4e310e;
+}
+
+html, body {
+  height: 100%;
+}
+body {
+  background-color: #ddaa61;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+main {
+  background-color: #7c5012;
+  box-shadow: 5px 5px 20px #000;
+  margin: 2rem;
+}
+.settings-container {
+  background-color: #8c7d69;
+  margin: 0 auto;
+  padding: 1rem;
+  text-align: center;
+  width: 50%;
+}
+.settings-container > * {
+  margin: 0.5rem 0;
+}
+.checkbox-part {
+  cursor: pointer;
+}
+.game-btn-wrapper {
+  display: flex;
+}
+.game-btn {
+  box-shadow: 2px 2px 5px #000;
+  cursor: pointer;
+  height: 5rem;
+  margin: 2rem 1rem;
+  width: 100%;
+}
+.green-btn {
+  background-color: #1d8424;
+}
+.red-btn {
+  background-color: #8e2b22;
+}
+.yellow-btn {
+  background-color: #adab34;
+}
+.blue-btn {
+  background-color: #2777a3;
+}
+footer {
+  background: rgba(0, 0, 0, 0.2);
+  padding: 1rem;
+  text-align: center;
+}
+footer p {
+  display: inline;
+}
+
+@media only screen and (min-width: 576px) {
+  .game-btn {
+    margin: 2rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  main {
+    margin: 2rem 25%;
+  }
+}

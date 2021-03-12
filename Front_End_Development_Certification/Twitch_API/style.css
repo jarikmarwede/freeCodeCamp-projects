@@ -1,0 +1,97 @@
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+html, body {
+  height: 100%;
+}
+a {
+  color: #89229b;
+  text-decoration: none;
+}
+p {
+  font-family: fantasy;
+}
+button {
+  background-color: #89229b;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 0.8rem 1.5rem;
+}
+button:active {
+  background-color: #9e2ab2;
+  border-color: transparent;
+  box-shadow: 0 0 0 0 #731f82;
+}
+button:focus {
+  box-shadow: 0 0 0 1px #b63bcc;
+}
+button:hover {
+  background-color: #731f82;
+  border-color: #731f82;
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+body {
+  background-color: #280838;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  margin: 0;
+}
+
+.category-btns {
+  display: flex;
+  justify-content: center;
+}
+.category-btns > button {
+  font-size: 1rem;
+}
+#all-btn {
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+#offline-btn {
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.active {
+  background-color: #6f207c;
+  border-color: #6f207c;
+}
+main {
+  background-color: #481363;
+  padding: 2rem;
+}
+#twitch-channels > channel-card {
+  animation-name: fade-in;
+  animation-duration: 1s;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+footer {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 1rem;
+  text-align: center;
+}
+
+@media only screen and (min-width: 567px) {
+  main {
+    padding: 4rem;
+  }
+  .category-btns > button {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  main {
+    margin: 0 25%;
+  }
+}

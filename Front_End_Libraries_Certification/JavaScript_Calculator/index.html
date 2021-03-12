@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JavaScript Calculator</title>
+  <meta name="author" content="Jarik Marwede">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main>
+    <div class="calculator-output">
+      <h4 id="main-output">0</h4>
+      <h6 id="full-output">0</h6>
+    </div>
+    <div class="calculator-buttons">
+      <div class="calculator-button-row">
+          <button class="calculator-button danger-btn" id="ac-btn">AC</button>
+          <button class="calculator-button danger-btn" id="delete-btn">⌫</button>
+          <button class="calculator-button operation-btn">÷</button>
+          <button class="calculator-button operation-btn">X</button>
+      </div>
+      <div class="calculator-button-row">
+          <button class="calculator-button number-btn">7</button>
+          <button class="calculator-button number-btn">8</button>
+          <button class="calculator-button number-btn">9</button>
+          <button class="calculator-button operation-btn">-</button>
+      </div>
+      <div class="calculator-button-row">
+          <button class="calculator-button number-btn">4</button>
+          <button class="calculator-button number-btn">5</button>
+          <button class="calculator-button number-btn">6</button>
+          <button class="calculator-button operation-btn">+</button>
+      </div>
+      <div class="calculator-button-row">
+          <button class="calculator-button number-btn">1</button>
+          <button class="calculator-button number-btn">2</button>
+          <button class="calculator-button number-btn">3</button>
+          <button class="calculator-button" id="equal-btn">=</button>
+      </div>
+      <div class="calculator-button-row">
+          <button class="calculator-button number-btn">0</button>
+          <button class="calculator-button number-btn">.</button>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <p>
+      By <a href="https://jarikmarwede.com">Jarik Marwede</a>.
+      See the other <a href="https://jarikmarwede.github.io/freeCodeCamp-projects">freeCodeCamp projects</a>.
+    </p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
