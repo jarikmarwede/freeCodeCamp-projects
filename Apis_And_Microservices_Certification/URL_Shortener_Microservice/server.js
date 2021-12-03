@@ -1,9 +1,9 @@
-const util = require("util");
-const dns = require("dns");
-const mongodb = require("mongodb");
-const express = require("express");
-const bodyParser = require("body-parser");
-const multer = require("multer");
+import util from "util";
+import dns from "dns";
+import mongodb from "mongodb";
+import express from "express";
+import bodyParser from "body-parser";
+import multer from "multer";
 const upload = multer();
 
 const MongoClient = mongodb.MongoClient;
@@ -91,4 +91,4 @@ function invalidUrl(res) {
   res.status(400).json({"error": "URL invalid"});
 }
 
-module.exports = app;
+export default app;

@@ -1,4 +1,4 @@
-const express = require('express');
+import express from "express";
 const app = express();
 
 app.get("/whoami", (req, res) => {
@@ -18,4 +18,4 @@ app.get("/whoami", (req, res) => {
   res.status(200).json(responseJSON);
 });
 
-module.exports = app;
+export default app;

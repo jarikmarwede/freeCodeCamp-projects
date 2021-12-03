@@ -1,4 +1,4 @@
-const express = require('express');
+import express from "express";
 const app = express();
 
 app.get("/timestamp/:date?", (req, res) => {
@@ -22,4 +22,4 @@ app.get("/timestamp/:date?", (req, res) => {
   }
 });
 
-module.exports = app;
+export default app;
