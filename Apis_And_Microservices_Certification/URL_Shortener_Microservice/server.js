@@ -49,7 +49,7 @@ app.post("/shorturl/new", upload.none(), async (req, res) => {
 
   if (inputUrl.search(/^http(s)?:\/\/(.)+(\.)(.)+/gi) !== -1) {
     try {
-      await dnsLookup(inputUrl.split("://")[-1]);
+      await dnsLookup(inputUrl.split("://")[1]);
     } catch {
       invalidUrl(res);
     }
@@ -71,7 +71,7 @@ app.post("/shorturl/new", upload.none(), async (req, res) => {
       shortUrl += urlResult[0]["id"];
     } else {
       const allDocuments = await collection.find({}).toArray();
-      collection.insert({"original_url": inputUrl, "id": allDocuments.length});
+      await collection.insertOne({"original_url": inputUrl, "id": allDocuments.length});
       shortUrl += allDocuments.length;
     }
     dbClient.close().then();
