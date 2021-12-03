@@ -1,7 +1,7 @@
-const express = require("express");
+import express from "express";
 const app = express();
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+import bodyParser from "body-parser";
+import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
   username: String,
@@ -90,4 +90,4 @@ app.use((err, req, res) => {
     .send(errMessage)
 });
 
-module.exports = app;
+export default app;

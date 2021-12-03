@@ -1,7 +1,7 @@
-const fs = require("fs");
-const multer = require("multer");
+import fs from "fs";
+import multer from "multer";
 const upload = multer({ dest: "uploads/" });
-const express = require("express");
+import express from "express";
 const app = express();
 
 app.post("/upload", upload.single("upfile"), (req, res) => {
@@ -18,4 +18,4 @@ app.post("/upload", upload.single("upfile"), (req, res) => {
   }
 });
 
-module.exports = app;
+export default app;

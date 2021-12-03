@@ -1,7 +1,7 @@
-const express = require('express');
+import express from "express";
 const app = express();
-const mongodb = require("mongodb");
-const fetch = require("node-fetch");
+import mongodb from "mongodb";
+import fetch from "node-fetch";
 const MongoClient = mongodb.MongoClient;
 const databasePath = process.env.IMAGE_SEARCH_ABSTRACTION_LAYER_DATABASE_URL || "mongodb://localhost/image-search-abstraction-layer";
 
@@ -55,4 +55,4 @@ app.get("/latest/imagesearch/", async (req, res) => {
   await res.status(200).json(recentSearches);
 });
 
-module.exports = app;
+export default app;
