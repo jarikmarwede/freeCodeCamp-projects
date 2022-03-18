@@ -48,7 +48,7 @@ const CERTIFICATIONS = [
   {
     container_id: "front-end-libraries-certification",
     name: "Front End Libraries Certification",
-    description: "The projects for <a href=\"https://github.com/jarikmarwede/freeCodeCamp-projects/blob/master/Front End Libraries Certification/Drum Machine/index.html\">this certification</a> are hosted on Github Pages.",
+    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/front-end-development-libraries\">this certification</a> are hosted on Github Pages.",
     projects: [
       {
         name: "Random Quote Machine",
