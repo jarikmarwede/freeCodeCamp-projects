@@ -48,7 +48,11 @@ jobs:
         env:
           HEROKU_API_TOKEN: ${{secrets.HEROKU_API_TOKEN}}
           HEROKU_EMAIL: ${{secrets.HEROKU_EMAIL}}
-      - name: Deploy to Heroku
+      - name: Deploy voting app to Heroku
         run: |
           heroku git:remote -a jm-voting-app
           git push heroku `git subtree split --prefix Back_End_Development_Certification/Voting_App master`:master --force
+      - name: Deploy to Heroku
+        run: |
+          heroku git:remote -a jm-freecodecamp-projects
+          git push heroku main
