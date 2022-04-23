@@ -55,4 +55,4 @@ jobs:
       - name: Deploy to Heroku
         run: |
           heroku git:remote -a jm-freecodecamp-projects
-          git push heroku main
+          git push heroku master
