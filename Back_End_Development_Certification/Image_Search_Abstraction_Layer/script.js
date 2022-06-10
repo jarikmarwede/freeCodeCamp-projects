@@ -1,8 +1,13 @@
 async function getAPIResponse(url) {
   document.querySelector(".code-wrapper img").hidden = false;
-  const response = await fetch(url);
+  try {
+    const response = await fetch(url);
+    document.getElementById("api-response").innerText = JSON.stringify(await response.json());
+  } catch (error) {
+    document.getElementById("api-response").innerText = "Error while fetching API data";
+    console.log(error);
+  }
   document.querySelector(".code-wrapper img").hidden = true;
-  document.getElementById("api-response").innerText = JSON.stringify(await response.json());
 }
 
 document.addEventListener("DOMContentLoaded", () => {
