@@ -8,6 +8,7 @@ router.use((request, response, next) => {
   if (formValid || request.method === "GET" || request.method === "HEAD") {
     next();
   } else {
+    console.log("XSRF check false");
     response.sendStatus(401);
   }
 });

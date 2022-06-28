@@ -3,11 +3,11 @@ const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 
 const DATABASE_PATH = process.env.DATABASE_PATH || "mongodb://localhost/voting-app";
-const ALPHANUMERIC_REGEXP = /^[\w]+$/;
+const ALPHANUMERIC_REGEXP = /^\w+$/;
 const USERNAME_REGEXP = ALPHANUMERIC_REGEXP;
 const EMAIL_REGEXP = /^.+@.+\..+$/i;
 const PASSWORD_REGEXP = /^.{8}.*$/i;
-const SESSION_ID_REGEXP = /^[a-zA-z0-9]{128}$/;
+const SESSION_ID_REGEXP = /^[a-zA-z\d]{128}$/;
 const POLL_NAME_REGEXP = ALPHANUMERIC_REGEXP;
 const ANSWER_REGEXP = ALPHANUMERIC_REGEXP;
 const ONE_MEGABYTE = 1048576;
@@ -29,7 +29,7 @@ function generatePasswordHash(salt, password) {
 }
 
 function generateSalt() {
-  crypto.randomBytes(KEY_LENGTH).toString("hex");
+  return crypto.randomBytes(KEY_LENGTH).toString("hex");
 }
 
 module.exports = {
@@ -63,7 +63,7 @@ module.exports = {
       return false;
     }
 
-    const poll = await getPoll(pollName);
+    const poll = await this.getPoll(pollName);
     return poll && poll["creator"] === username;
   },
   getSessionId: async function(username, password) {
@@ -114,7 +114,7 @@ module.exports = {
 
     const salt = generateSalt();
     const hash = generatePasswordHash(salt, password);
-    userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
+    await userCollection.insertOne({"username": username, "email": email, "hash": hash, "salt": salt});
     client.close();
     return true;
   },
@@ -146,7 +146,7 @@ module.exports = {
     for (let answer of answers) {
       answerJSON[answer] = 0;
     }
-    pollsCollection.insertOne({"poll-name": pollName, "creator": username, "answers": answerJSON});
+    await pollsCollection.insertOne({"poll-name": pollName, "creator": username, "answers": answerJSON});
     client.close();
     return true;
   },
@@ -221,10 +221,10 @@ module.exports = {
     }
 
     const userUpdateResult = await userCollection.updateOne({username}, {$set: newUserData});
-    let result = userUpdateResult.result.ok;
+    let result = userUpdateResult.acknowledged;
     if (newUserData.username) {
       const pollsUpdateResult = await pollsCollection.updateMany({creator: username}, {$set: {creator: newUserData.username}});
-      result &= pollsUpdateResult.result.ok;
+      result &= pollsUpdateResult.acknowledged;
     }
     client.close();
     return result;
@@ -241,7 +241,7 @@ module.exports = {
 
     const updateResult = await userCollection.updateOne({username}, {$set: {hash: generatePasswordHash(userData.salt, newPassword)}});
     client.close();
-    return updateResult.result.ok;
+    return updateResult.acknowledged;
   },
   deletePoll: async function(pollName) {
     if (!POLL_NAME_REGEXP.test(pollName)) {
@@ -253,7 +253,7 @@ module.exports = {
     const pollsCollection = db.collection("polls");
     const deleteResult = await pollsCollection.deleteOne({"poll-name": pollName});
     client.close();
-    return deleteResult.result.ok;
+    return deleteResult.acknowledged;
   },
   voteFor: async function(pollName, answer) {
     if (!POLL_NAME_REGEXP.test(pollName) || !ANSWER_REGEXP.test(answer)) {
@@ -272,7 +272,7 @@ module.exports = {
 
     const updateResult = await pollsCollection.updateOne({"poll-name": pollName}, {$inc: {[`answers.${answer}`]: 1}});
     client.close();
-    return updateResult.result.ok;
+    return updateResult.acknowledged;
   },
   changePollAnswers: async function(pollName, answers, username) {
     if (!POLL_NAME_REGEXP.test(pollName) || !answers || !USERNAME_REGEXP.test(username)) {
@@ -301,7 +301,7 @@ module.exports = {
     }
     const updateResult = await pollCollection.updateOne({"poll-name": pollName}, {$set: {"answers": newPollAnswers}});
     client.close();
-    return updateResult.result.ok;
+    return updateResult.acknowledged;
   },
   deleteUser: async function(username) {
     if (!USERNAME_REGEXP.test(username)) {
@@ -315,6 +315,6 @@ module.exports = {
     const userDeletionResult = await userCollection.deleteOne({username});
     const pollsDeletionResult = await pollsCollection.deleteMany({creator: username});
     client.close();
-    return userDeletionResult.result.ok && pollsDeletionResult.result.ok;
+    return userDeletionResult.acknowledged && pollsDeletionResult.acknowledged;
   },
 };
