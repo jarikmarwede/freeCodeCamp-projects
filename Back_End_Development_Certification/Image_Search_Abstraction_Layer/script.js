@@ -1,13 +1,22 @@
+const API_BASE_URL = "http://localhost:3000/image-search-abstraction-layer";
+
 async function getAPIResponse(url) {
-  document.querySelector(".code-wrapper img").hidden = false;
+  const apiResponseField = document.getElementById("api-response");
+  const loadingIndicator = document.querySelector(".code-wrapper img")
+
+  loadingIndicator.hidden = false;
   try {
     const response = await fetch(url);
-    document.getElementById("api-response").innerText = JSON.stringify(await response.json());
+    if (response.status === 502) {
+      apiResponseField.innerText = "The Server is experiencing problems with the Image Search API. Maybe it has been taken down. Browsing the latest searches should still work as expected";
+    } else {
+      apiResponseField.innerText = JSON.stringify(await response.json());
+    }
   } catch (error) {
-    document.getElementById("api-response").innerText = "Error while fetching API data";
+    apiResponseField.innerText = "Error while fetching API data.";
     console.log(error);
   }
-  document.querySelector(".code-wrapper img").hidden = true;
+  loadingIndicator.hidden = true;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -16,14 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchTerm = document.getElementById("search-term").value;
     const offset = document.getElementById("offset").value || 1;
     if (searchTerm) {
-      const APIURL = `https://jm-freecodecamp-projects.herokuapp.com/image-search-abstraction-layer/imagesearch/${searchTerm}?offset=${offset}`;
-      await getAPIResponse(APIURL);
+      await getAPIResponse(`${API_BASE_URL}/imagesearch/${searchTerm}?offset=${offset}`);
     }
   });
 
   document.getElementById("latest-image-searches-button")
       .addEventListener("click", async () => {
-    await getAPIResponse("https://jm-freecodecamp-projects.herokuapp.com" +
-        "/image-search-abstraction-layer/latest/imagesearch");
+    await getAPIResponse(API_BASE_URL + "/latest/imagesearch");
   });
 });
