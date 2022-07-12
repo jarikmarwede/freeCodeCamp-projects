@@ -13,7 +13,7 @@ app.get("/imagesearch/*?", async (req, res) => {
     headers: {
       "X-RapidAPI-Key": process.env.RAPID_API_KEY
     }
-  });
+  }).catch(() => {});
 
   const dbClient = new MongoClient(databasePath);
   try {
@@ -25,16 +25,21 @@ app.get("/imagesearch/*?", async (req, res) => {
   const db = dbClient.db("image-search-abstraction-layer");
   const recentSearchesCollection = db.collection("latest-image-searches");
   const date = new Date();
-  recentSearchesCollection.insert({"term": searchString, "when": date.toISOString()});
+  const timestampInsertion = recentSearchesCollection.insertOne({"term": searchString, "when": date.toISOString()});
 
   let recentSearches = await recentSearchesCollection.find({}).toArray();
   if (recentSearches.length > 10) {
     recentSearches = recentSearches.slice(1, 11);
-    recentSearchesCollection.remove();
-    recentSearchesCollection.insert(recentSearches);
+    await recentSearchesCollection.deleteMany({});
+    await recentSearchesCollection.insertMany(recentSearches);
   }
+  await timestampInsertion;
   dbClient.close().then();
+
   const apiResponse = await apiPromise;
+  if (apiResponse === undefined) {
+    return res.sendStatus(502);
+  }
   const responseData = await apiResponse.json();
   const images = responseData.value.slice(offset * 10 - 10, offset * 10);
   await res.status(200).json(images);
