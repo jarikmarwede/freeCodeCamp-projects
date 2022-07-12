@@ -1,4 +1,4 @@
-const API_BASE_URL = "http://localhost:3000/image-search-abstraction-layer";
+const API_BASE_URL = "https://jm-freecodecamp-projects.herokuapp.com/image-search-abstraction-layer";
 
 async function getAPIResponse(url) {
   const apiResponseField = document.getElementById("api-response");
