@@ -27,7 +27,6 @@ jobs:
         build_dir: dist
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        GITHUB_PAT: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
   backend:
     runs-on: [ubuntu-latest]
     steps:
