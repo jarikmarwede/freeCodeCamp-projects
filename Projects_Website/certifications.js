@@ -1,8 +1,10 @@
+const CODEPEN_LINK = "<a href=\"https://codepen.io/collection/Doeyvj/\" target=\"_blank\"><i class=\"fab fa-codepen\"></i> CodePen</a>";
+
 const CERTIFICATIONS = [
   {
     container_id: "responsive-web-design-certification",
     name: "Responsive Web Design Certification",
-    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on Github Pages. Older versions of the projects can be found on <a href=\"https://codepen.io/collection/XdWbBq\" target=\"_blank\"><i class=\"fab fa-codepen\"></i> CodePen</a>.",
+    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on GitHub Pages. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
     projects: [
       {
         name: "Personal Portfolio Webpage",
@@ -46,9 +48,9 @@ const CERTIFICATIONS = [
     projects: []
   },
   {
-    container_id: "front-end-libraries-certification",
-    name: "Front End Libraries Certification",
-    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/front-end-development-libraries\">this certification</a> are hosted on Github Pages.",
+    container_id: "front-end-development-libraries-certification",
+    name: "Front End Development Libraries Certification",
+    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/front-end-development-libraries\">this certification</a> are hosted on GitHub Pages.",
     projects: [
       {
         name: "Random Quote Machine",
@@ -83,41 +85,41 @@ const CERTIFICATIONS = [
     ]
   },
   {
-    container_id: "apis-and-microservices-certification",
-    name: "APIs and Microservices Certification",
-    description: "Github Pages only supports front-end. Because of that the APIs of the projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/apis-and-microservices\">this certification</a> are hosted on Heroku.",
+    container_id: "back-end-development-and-apis-certification",
+    name: "Back End Development and APIs Certification",
+    description: "GitHub Pages only supports front-end. Because of that the APIs of the projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/back-end-development-and-apis\">this certification</a> are hosted on Heroku.",
     projects: [
       {
         name: "File Metadata Microservice",
         link:
-            "./Apis_And_Microservices_Certification/File_Metadata_Microservice/index.html",
+            "./Back_End_Development_and_APIs_Certification/File_Metadata_Microservice/index.html",
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/File_Metadata_Microservice"
       },
       {
         name: "Request Header Parser Microservice",
         link:
-            "./Apis_And_Microservices_Certification/Request_Header_Parser_Microservice/index.html",
+            "./Back_End_Development_and_APIs_Certification/Request_Header_Parser_Microservice/index.html",
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Request_Header_Parser_Microservice"
       },
       {
         name: "Timestamp Microservice",
         link:
-            "./Apis_And_Microservices_Certification/Timestamp_Microservice/index.html",
+            "./Back_End_Development_and_APIs_Certification/Timestamp_Microservice/index.html",
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Timestamp_Microservice"
       },
       {
         name: "URL Shortener Microservice",
         link:
-            "./Apis_And_Microservices_Certification/URL_Shortener_Microservice/index.html",
+            "./Back_End_Development_and_APIs_Certification/URL_Shortener_Microservice/index.html",
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/URL_Shortener_Microservice"
       },
       {
         name: "Exercise Tracker",
-        link: "./Apis_And_Microservices_Certification/Exercise_Tracker/index.html",
+        link: "./Back_End_Development_and_APIs_Certification/Exercise_Tracker/index.html",
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Apis_And_Microservices_Certification/Exercise_Tracker"
       }
@@ -125,11 +127,11 @@ const CERTIFICATIONS = [
   },
   {
     container_id: "front-end-certification",
-    name: "Front End Certification",
-    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Github Pages. Some of the projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-libraries-certification\">Front End Libraries Certification</a> and can only be found over there. Older versions of the projects can be found on <a href=\"https://codepen.io/collection/Doeyvj/\" target=\"_blank\"><i class=\"fab fa-codepen\"></i> CodePen</a>.",
+    name: "Legacy Front End Certification",
+    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on GitHub Pages. Some projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-development-libraries-certification\">Front End Libraries Certification</a> and can only be found over there. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
     projects: [
       {
-        name: "Local Wheather",
+        name: "Local Weather",
         link: "./Front_End_Development_Certification/Local_Weather/index.html",
         src:
             "https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/Front_End_Development_Certification/Local_Weather"
@@ -162,8 +164,8 @@ const CERTIFICATIONS = [
   },
   {
     container_id: "back-end-certification",
-    name: "Back End Certification",
-    description: "Github Pages only supports front-end. Because of that the APIs of the projects for this certification are hosted on Heroku. Some of the projects for this certification are also part of the <a href=\"#apis-and-microservices-certification\">APIs and Microservices Certification</a> and can only be found over there.",
+    name: "Legacy Back End Certification",
+    description: "GitHub Pages only supports front-end. Because of that the APIs of the projects for this certification are hosted on Heroku. Some projects for this certification are also part of the <a href=\"#back-end-development-and-apis-certification\">Back End Development and APIs Certification</a> and can only be found over there.",
     projects: [
       {
         name: "Image Search Abstraction Layer",
