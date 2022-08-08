@@ -16,7 +16,7 @@ jobs:
         mkdir dist
         cp CNAME ./dist/CNAME
         cp index.html ./dist/index.html
-        cp -r ./Apis_And_Microservices_Certification ./dist/Apis_And_Microservices_Certification
+        cp -r ./Back_End_Development_and_APIs_Certification ./dist/Back_End_Development_and_APIs_Certification
         cp -r ./Back_End_Development_Certification ./dist/Back_End_Development_Certification
         cp -r ./Front_End_Development_Certification ./dist/Front_End_Development_Certification
         cp -r ./Front_End_Libraries_Certification ./dist/Front_End_Libraries_Certification
