@@ -1,7 +1,7 @@
 async function submitForm(event) {
   event.preventDefault();
 
-  const API_URL = event.target.action + "/" + event.target[0].value;
+  const API_URL = event.target.action + "?date=" + event.target[0].value;
   const requestOptions = {
     headers: {
       "Content-Type": "application/json"
