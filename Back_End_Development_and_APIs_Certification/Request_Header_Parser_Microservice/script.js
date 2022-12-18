@@ -1,5 +1,5 @@
 async function getAPIResponse() {
-  const API_URL = "https://jm-freecodecamp-projects.herokuapp.com/request-header-parser-microservice/whoami";
+  const API_URL = "/.netlify/functions/Request_Header_Parser_Microservice";
   document.querySelector(".code-wrapper img").hidden = false;
   const response = await fetch(API_URL);
   document.querySelector(".code-wrapper img").hidden = true;
