@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "All of my freeCodeCamp projects",
   "license": "UNLICENSED",
+  "private": true,
   "main": "server.js",
   "type": "module",
   "engines": {
@@ -10,7 +11,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "netlify dev"
   },
   "repository": {
     "type": "git",
@@ -30,5 +32,7 @@
     "multer": "^1.4.5-lts.1",
     "node-fetch": "^3.3.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "netlify-cli": "^12.4.0"
+  }
 }
