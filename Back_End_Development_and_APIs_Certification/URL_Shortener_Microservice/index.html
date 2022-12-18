@@ -21,7 +21,7 @@
         <li>"original_url" set to your URL and "short_url" set to the shortened version</li>
         <li>Or with an "error" argument set to the corresponding error message</li>
       </ul>
-      <form id="create-shortened-url-form" action="https://jm-freecodecamp-projects.herokuapp.com/url-shortener-microservice/shorturl/new" method="post">
+      <form id="create-shortened-url-form" action="/.netlify/functions/URL_Shortener_new" method="post">
         <label for="url">URL:</label>
         <input id="url" type="url" name="url" placeholder="Enter the URL to be shortened" required>
         <button type="submit">Create shortened URL</button>

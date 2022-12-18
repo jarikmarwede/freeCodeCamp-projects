@@ -2,11 +2,12 @@ async function submitForm(event) {
   event.preventDefault();
   document.querySelector(".code-wrapper img").hidden = false;
 
-  const formData = new FormData(event.target);
   const requestOptions = {
     method: event.target.method,
-    body: formData
-  };
+    body: JSON.stringify({
+      url: event.target[0].value
+    })
+  }
 
   const response = await fetch(event.target.action, requestOptions);
   document.querySelector(".code-wrapper img").hidden = true;
