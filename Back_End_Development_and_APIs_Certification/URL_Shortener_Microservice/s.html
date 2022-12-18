@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Redirecting...</title>
+</head>
+<body>
+  <script type="module">
+      const params = new URLSearchParams(document.location.search);
+      const response = await fetch("/.netlify/functions/URL_Shortener_get?i=" + params.get("i"));
+      const responseData = await response.json();
+      window.location = responseData["url"];
+  </script>
+</body>
+</html>
