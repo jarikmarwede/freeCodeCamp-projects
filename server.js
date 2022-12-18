@@ -5,7 +5,7 @@ import cors from "cors";
 import exerciseTracker from "./Back_End_Development_and_APIs_Certification/Exercise_Tracker/server.js";
 import fileMetadataMicroservice from "./Back_End_Development_and_APIs_Certification/File_Metadata_Microservice/server.js";
 import requestHeaderParserMicroservice from "./Back_End_Development_and_APIs_Certification/Request_Header_Parser_Microservice/server.js";
-import timestampMicroservice from "./Back_End_Development_and_APIs_Certification/Timestamp_Microservice/server.js";
+import timestampMicroservice from "./serverless_functions/Timestamp_Microservice/index.js";
 import urlShortenerMicroservice from "./Back_End_Development_and_APIs_Certification/URL_Shortener_Microservice/server.js";
 import imageSearchAbstractionLayer from "./Back_End_Development_Certification/Image_Search_Abstraction_Layer/server.js";
 
