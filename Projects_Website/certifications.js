@@ -1,4 +1,5 @@
 const CODEPEN_LINK = "<a href=\"https://codepen.io/collection/Doeyvj/\" target=\"_blank\"><i class=\"fab fa-codepen\"></i> CodePen</a>";
+const SERVERLESS_FUNCTIONS_DIRECTORY = "<a href=\"https://github.com/jarikmarwede/freeCodeCamp-projects/tree/master/serverless_functions\" target=\"_blank\">serverless_functions directory</a>";
 
 const CERTIFICATIONS = [
   {
@@ -87,7 +88,7 @@ const CERTIFICATIONS = [
   {
     container_id: "back-end-development-and-apis-certification",
     name: "Back End Development and APIs Certification",
-    description: "The APIs of the projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/back-end-development-and-apis\">this certification</a> are implemented as serverless functions and hosted on Netlify. Their code can be found in the serverless_functions directory.",
+    description: `The APIs of the projects for <a href="https://www.freecodecamp.org/certification/jarikmarwede/back-end-development-and-apis">this certification</a> are implemented as serverless functions and hosted on Netlify. Their code can be found in the ${SERVERLESS_FUNCTIONS_DIRECTORY}.`,
     projects: [
       {
         name: "File Metadata Microservice",
@@ -128,7 +129,7 @@ const CERTIFICATIONS = [
   {
     container_id: "front-end-certification",
     name: "Legacy Front End Certification",
-    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Netlify. Some projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-development-libraries-certification\">Front End Libraries Certification</a> and can only be found over there. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
+    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Netlify. Some projects for this certification are now also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-development-libraries-certification\">Front End Libraries Certification</a> and have been moved over there. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
     projects: [
       {
         name: "Local Weather",
@@ -165,7 +166,7 @@ const CERTIFICATIONS = [
   {
     container_id: "back-end-certification",
     name: "Legacy Back End Certification",
-    description: "The APIs of the projects for this certification are implemented as serverless functions and hosted on Netlify. Their code can be found in the serverless_functions directory. Some projects for this certification are also part of the <a href=\"#back-end-development-and-apis-certification\">Back End Development and APIs Certification</a> and can only be found over there.",
+    description: `Unfortunately I was not able to complete this certification in time before it was archived. You can however still check out the projects I did complete in time. Some projects for this certification are now also part of the <a href="#back-end-development-and-apis-certification">Back End Development and APIs Certification</a> and have been moved over there. The APIs of the projects are implemented as serverless functions and hosted on Netlify. Their code can be found in the ${SERVERLESS_FUNCTIONS_DIRECTORY}.`,
     projects: [
       {
         name: "Image Search Abstraction Layer",
