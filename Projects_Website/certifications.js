@@ -4,7 +4,7 @@ const CERTIFICATIONS = [
   {
     container_id: "responsive-web-design-certification",
     name: "Responsive Web Design Certification",
-    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on GitHub Pages. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
+    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/responsive-web-design\">this certification</a> are hosted on Netlify. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
     projects: [
       {
         name: "Personal Portfolio Webpage",
@@ -50,7 +50,7 @@ const CERTIFICATIONS = [
   {
     container_id: "front-end-development-libraries-certification",
     name: "Front End Development Libraries Certification",
-    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/front-end-development-libraries\">this certification</a> are hosted on GitHub Pages.",
+    description: "The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/front-end-development-libraries\">this certification</a> are hosted on Netlify.",
     projects: [
       {
         name: "Random Quote Machine",
@@ -87,7 +87,7 @@ const CERTIFICATIONS = [
   {
     container_id: "back-end-development-and-apis-certification",
     name: "Back End Development and APIs Certification",
-    description: "GitHub Pages only supports front-end. Because of that the APIs of the projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/back-end-development-and-apis\">this certification</a> are hosted on Heroku.",
+    description: "The APIs of the projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/back-end-development-and-apis\">this certification</a> are implemented as serverless functions and hosted on Netlify. Their code can be found in the serverless_functions directory.",
     projects: [
       {
         name: "File Metadata Microservice",
@@ -128,7 +128,7 @@ const CERTIFICATIONS = [
   {
     container_id: "front-end-certification",
     name: "Legacy Front End Certification",
-    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on GitHub Pages. Some projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-development-libraries-certification\">Front End Libraries Certification</a> and can only be found over there. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
+    description: `The projects for <a href=\"https://www.freecodecamp.org/certification/jarikmarwede/legacy-front-end\">this certification</a> are hosted on Netlify. Some projects for this certification are also a part of the <a href=\"#responsive-web-design-certification\">Responsive Web Design Certification</a> and the <a href=\"#front-end-development-libraries-certification\">Front End Libraries Certification</a> and can only be found over there. Older versions of the projects can be found on ${CODEPEN_LINK}.`,
     projects: [
       {
         name: "Local Weather",
@@ -165,7 +165,7 @@ const CERTIFICATIONS = [
   {
     container_id: "back-end-certification",
     name: "Legacy Back End Certification",
-    description: "GitHub Pages only supports front-end. Because of that the APIs of the projects for this certification are hosted on Heroku. Some projects for this certification are also part of the <a href=\"#back-end-development-and-apis-certification\">Back End Development and APIs Certification</a> and can only be found over there.",
+    description: "The APIs of the projects for this certification are implemented as serverless functions and hosted on Netlify. Their code can be found in the serverless_functions directory. Some projects for this certification are also part of the <a href=\"#back-end-development-and-apis-certification\">Back End Development and APIs Certification</a> and can only be found over there.",
     projects: [
       {
         name: "Image Search Abstraction Layer",
