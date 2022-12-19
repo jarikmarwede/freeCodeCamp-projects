@@ -31,9 +31,9 @@
           <input id="add-exercise-date" type="date" name="date" placeholder="Date">
           <input type="submit" value="Add">
         </form>
-        <form id="get-exercise-log-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log">
+        <form id="get-exercise-log-form" action="/.netlify/functions/Exercise_Tracker_get-log">
           <h3>Get users's exercise log:</h3>
-          <p class="action-description"><code>GET jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/log</code></p>
+          <p class="action-description"><code>GET /.netlify/functions/Exercise_Tracker_get-log</code></p>
           <label for="get-exercise-log-userId">User ID:</label>
           <input id="get-exercise-log-userId" type="text" name="userId" placeholder="User ID" required>
           <label for="get-exercise-log-from">From:</label>
