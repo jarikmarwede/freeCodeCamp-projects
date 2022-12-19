@@ -18,9 +18,9 @@
           <input id="create-user-username" type="text" name="username" placeholder="Username" required>
           <input type="submit" value="Create">
         </form>
-        <form id="add-exercise-form" action="https://jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add" method="post">
+        <form id="add-exercise-form" action="/.netlify/functions/Exercise_Tracker_add-exercise" method="post">
           <h3>Add exercises</h3>
-          <p class="action-description"><code>POST jm-freecodecamp-projects.herokuapp.com/exercise-tracker/exercise/add</code></p>
+          <p class="action-description"><code>POST /.netlify/functions/Exercise_Tracker_add-exercise</code></p>
           <label for="add-exercise-userId">User ID:</label>
           <input id="add-exercise-userId" type="text" name="userId" placeholder="User ID" required>
           <label for="add-exercise-description">Description:</label>
