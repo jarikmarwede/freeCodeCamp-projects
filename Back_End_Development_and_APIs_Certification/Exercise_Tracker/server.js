@@ -6,13 +6,6 @@ import User from "./user.js";
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.get("/exercise/users", (req, res) => {
-  User.find({}, "username _id", (err, users) => {
-    if (err) return res.status(500).json("Could not find any user");
-    res.status(200).send(users);
-  });
-});
-
 app.post("/exercise/add", (req, res) => {
   User.findOne({_id: req.body.userId}, "_id username exercises", (err, user) => {
     if (err) return res.status(500).json({"error": "Could not find user"});
