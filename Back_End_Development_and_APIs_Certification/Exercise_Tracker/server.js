@@ -6,21 +6,6 @@ import User from "./user.js";
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
-app.post("/exercise/add", (req, res) => {
-  User.findOne({_id: req.body.userId}, "_id username exercises", (err, user) => {
-    if (err) return res.status(500).json({"error": "Could not find user"});
-    if (user) {
-      user.exercises.push({description: req.body.description, duration: req.body.duration, date: req.body.date ? req.body.date : new Date().toISOString()});
-      user.save((err, user) => {
-        if (err) return res.sendStatus(500);
-        res.status(200).send(user);
-      });
-    } else {
-      return res.sendStatus(404);
-    }
-  });
-});
-
 app.get("/exercise/log", (req, res) => {
   User.findById(req.query.userId, "_id username exercises", (err, user) => {
     if (err) return res.status(500).json({"error": "Could not find user"});
