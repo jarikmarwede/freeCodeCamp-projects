@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://jm-freecodecamp-projects.herokuapp.com/image-search-abstraction-layer";
+const API_BASE_URL = window.location.origin + "/.netlify/functions";
 
 async function getAPIResponse(url) {
   const apiResponseField = document.getElementById("api-response");
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const searchTerm = document.getElementById("search-term").value;
     const offset = document.getElementById("offset").value || 1;
     if (searchTerm) {
-      await getAPIResponse(`${API_BASE_URL}/imagesearch/${searchTerm}?offset=${offset}`);
+      await getAPIResponse(`${API_BASE_URL}/Image_Search_query?query=${searchTerm}&offset=${offset}`);
     }
   });
 
