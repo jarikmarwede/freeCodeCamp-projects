@@ -31,6 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("latest-image-searches-button")
       .addEventListener("click", async () => {
-    await getAPIResponse(API_BASE_URL + "/latest/imagesearch");
+    await getAPIResponse(API_BASE_URL + "/Image_Search_get-latest");
   });
 });
