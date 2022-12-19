@@ -1,29 +1,10 @@
 import express from "express";
 const app = express();
 import bodyParser from "body-parser";
-import mongoose from "mongoose";
-const Schema = mongoose.Schema;
-const userSchema = new Schema({
-  username: String,
-  exercises: [{
-    description: String,
-    duration: Number,
-    date: { type: Date, default: Date.now }
-  }]
-}, {usePushEach: true});
-const User = mongoose.model("User", userSchema);
-mongoose.connect(process.env.EXERCISE_TRACKER_MLAB_URI || "mongodb://localhost/exercise-tracker");
+import User from "./user.js";
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
-
-app.post("/exercise/new-user", (req, res) => {
-  const user = new User({username: req.body.username});
-  user.save((err, user) => {
-    if (err) return res.status(500).json({"error": "Could not add user"});
-    res.status(201).send({username: user.username, _id: user._id});
-  });
-});
 
 app.get("/exercise/users", (req, res) => {
   User.find({}, "username _id", (err, users) => {
