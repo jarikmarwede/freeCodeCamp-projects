@@ -166,7 +166,7 @@ const CERTIFICATIONS = [
   {
     container_id: "back-end-certification",
     name: "Legacy Back End Certification",
-    description: `Unfortunately I was not able to complete this certification in time before it was archived. You can however still check out the projects I did complete in time. Some projects for this certification are now also part of the <a href="#back-end-development-and-apis-certification">Back End Development and APIs Certification</a> and have been moved over there. The APIs of the projects are implemented as serverless functions and hosted on Netlify. Their code can be found in the ${SERVERLESS_FUNCTIONS_DIRECTORY}.`,
+    description: `Unfortunately I was not able to complete this certification in time before it was archived. You can however still check out the projects I did complete in time. Some projects for this certification are now also part of the <a href="#back-end-development-and-apis-certification">Back End Development and APIs Certification</a> and have been moved over there. <br />The API of the Image Search Abstraction Layer is implemented as serverless functions and hosted on Netlify. Its code can be found in the ${SERVERLESS_FUNCTIONS_DIRECTORY}. <br />The Voting App was previously hosted on Heroku and is currently unavailable while I am searching for an alternative to their <a href="https://blog.heroku.com/next-chapter#focus-on-mission-critical">recently cancelled</a> free plan. `,
     projects: [
       {
         name: "Image Search Abstraction Layer",
