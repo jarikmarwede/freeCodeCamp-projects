@@ -28,6 +28,6 @@
     "node-fetch": "^3.3.0"
   },
   "devDependencies": {
-    "netlify-cli": "^12.14.0"
+    "netlify-cli": "^13.0.0"
   }
 }
