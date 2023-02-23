@@ -23,7 +23,7 @@
   "homepage": "https://github.com/jarikmarwede/freeCodeCamp-projects#readme",
   "dependencies": {
     "busboy": "^0.3.1",
-    "mongodb": "^4.13.0",
+    "mongodb": "^5.0.1",
     "mongoose": "^6.10.0",
     "node-fetch": "^3.3.0"
   },
