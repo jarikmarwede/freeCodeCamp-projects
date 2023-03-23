@@ -31,7 +31,6 @@ export async function handler(event) {
                     "error": "Could not find user"
                 })
             }
-            return res.sendStatus(404);
         }
     } catch (e) {
         functionResult = {
