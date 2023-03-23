@@ -45,5 +45,5 @@ app.use(appRoutes);
 app.use("/api", apiRoutes);
 
 const listener = app.listen(process.env.PORT || 8080, () => {
-  console.log("App listening on port " + listener.address().port);
+  console.log("App listening on port " + listener.address()["port"]);
 });

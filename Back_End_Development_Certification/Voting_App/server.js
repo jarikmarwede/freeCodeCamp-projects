@@ -202,7 +202,7 @@ module.exports = {
     const db = client.db("voting-app");
     const userCollection = db.collection("user-data");
     const pollsCollection = db.collection("polls");
-    const oldUserData = await getUserData(username);
+    const oldUserData = await module.exports.getUserData(username);
     const usernameSearch = await userCollection.find({"username": newUserData.username}).toArray();
     const emailSearch = await userCollection.find({"email": newUserData.email}).toArray();
 
