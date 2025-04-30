@@ -34,7 +34,7 @@ router.post("/signup", async (request, response) => {
   if (success) {
     response.redirect("/");
   } else {
-    response.redirect("back");
+    response.redirect(request.get("Referrer") || "/");
   }
 });
 
@@ -50,7 +50,7 @@ router.post("/login", async (request, response) => {
     response.cookie("session", sessionId, cookieSettings);
     response.cookie("username", username, cookieSettings);
   }
-  response.redirect("back");
+  response.redirect(request.get("Referrer") || "/");
 });
 
 router.post("/newpoll", async (request, response) => {
@@ -68,7 +68,7 @@ router.post("/newpoll", async (request, response) => {
     if (success) {
       response.status(201).redirect("/poll/" + pollName);
     } else {
-      response.status(500).redirect("back");
+      response.status(500).redirect(request.get("Referrer") || "/");
     }
   } else {
     response.status(401).redirect("/signup");
@@ -80,7 +80,7 @@ router.post("/poll/:poll/vote", async (request, response) => {
   const answer = request.body.answer;
   await server.voteFor(pollName, answer);
 
-  response.redirect("back");
+  response.redirect(request.get("Referrer") || "/");
 });
 
 router.post("/poll/:poll/changepoll", async (request, response) => {
@@ -100,10 +100,10 @@ router.post("/poll/:poll/changepoll", async (request, response) => {
     if (success) {
       response.redirect("/poll/" + pollName);
     } else {
-      response.redirect("back");
+      response.redirect(request.get("Referrer") || "/");
     }
   } else {
-    response.redirect("back");
+    response.redirect(request.get("Referrer") || "/");
   }
 });
 
@@ -129,9 +129,9 @@ router.post("/user/:username", async (request, response) => {
     const success = await server.updateUserData(request.params.username, {username: request.body.username, email: request.body.email});
     if (success) {
       response.cookie("username", request.body.username);
-      response.status(200).redirect("back");
+      response.status(200).redirect(request.get("Referrer") || "/");
     } else {
-      response.status(500).redirect("back");
+      response.status(500).redirect(request.get("Referrer") || "/");
     }
   } else {
     response.sendStatus(401);
@@ -140,12 +140,12 @@ router.post("/user/:username", async (request, response) => {
 
 router.post("/user/:username/change_password", async (request, response) => {
   if (request.middlewareData.loggedIn && request.params.username === request.cookies.username) {
-    if (request.body["new-password"] === request.body["new-password2"] && await server.passwordRight(request.params.username, request.body["old-password"])) {
+    if (request.body["new-password"] === request.body["new-password2"] && (await server.passwordRight(request.params.username, request.body["old-password"]))) {
       const success = await server.changePassword(request.params.username, request.body["new-password"]);
       if (success) {
-        response.status(200).redirect("back");
+        response.status(200).redirect(request.get("Referrer") || "/");
       } else {
-        response.status(500).redirect("back");
+        response.status(500).redirect(request.get("Referrer") || "/");
       }
     } else {
       response.sendStatus(400);

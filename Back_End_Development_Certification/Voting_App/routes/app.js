@@ -51,7 +51,7 @@ router.get("/poll/:poll", async (request, response) => {
   if (poll) {
     response.render("poll", {poll});
   } else {
-    response.redirect("back");
+    response.redirect(request.get("Referrer") || "/");
   }
 });
 
@@ -64,7 +64,7 @@ router.get("/poll/:poll/changepoll", async (request, response) => {
   if (request.middlewareData.loggedIn && ownsPoll) {
     response.render("changepoll", {poll});
   } else {
-    response.redirect("back");
+    response.redirect(request.get("Referrer") || "/");
   }
 });
 
