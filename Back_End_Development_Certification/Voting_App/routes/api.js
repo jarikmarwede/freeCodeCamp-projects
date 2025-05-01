@@ -4,7 +4,7 @@ const router = express.Router();
 
 // XSRF check
 router.use((request, response, next) => {
-  const formValid = request.body.xsrfFormValue && request.body.xsrfFormValue === request.cookies.xsrfFormValue;
+  const formValid = request.body?.xsrfFormValue && request.body.xsrfFormValue === request.cookies.xsrfFormValue;
   if (formValid || request.method === "GET" || request.method === "HEAD") {
     next();
   } else {
