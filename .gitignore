@@ -3,3 +3,6 @@ node_modules
 
 # Local Netlify folder
 .netlify
+
+# Voting App data volume
+Back_End_Development_Certification/Voting_App/data

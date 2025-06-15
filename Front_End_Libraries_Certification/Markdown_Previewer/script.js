@@ -1,7 +1,8 @@
-import "https://cdn.jsdelivr.net/npm/marked/marked.min.js";
+import { marked } from 'https://cdn.jsdelivr.net/npm/marked@15.0.12/+esm';
+import dompurify from 'https://cdn.jsdelivr.net/npm/dompurify@3.2.6/+esm';
 
 const renderer = new marked.Renderer();
-renderer.link = function(href, title, text) {
+renderer.link = function({href, text}) {
   return `<a href="${href}" target="_blank">${text}</a>`;
 };
 
@@ -10,7 +11,8 @@ function parseMarkdown(markdown) {
     breaks: true,
     renderer: renderer
   });
-  document.getElementById("preview").innerHTML = markdownOutput;
+  const sanitizedOutput = dompurify.sanitize(markdownOutput);
+  document.getElementById("preview").innerHTML = sanitizedOutput;
   document.getElementById("code").innerText = markdownOutput;
 }
 
