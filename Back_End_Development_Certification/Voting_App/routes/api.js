@@ -45,7 +45,8 @@ router.post("/login", async (request, response) => {
 
   if (sessionId) {
     const cookieSettings = {
-      sameSite: "lax"
+      sameSite: "lax",
+      secure: true,
     };
     response.cookie("session", sessionId, cookieSettings);
     response.cookie("username", username, cookieSettings);
