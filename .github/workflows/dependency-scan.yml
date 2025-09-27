@@ -1,9 +1,10 @@
-name: dependency-scan
+name: "Dependency Scan"
 on:
   pull_request:
 
 jobs:
   analyze:
+    name: "Analyze"
     runs-on: ubuntu-latest
     env:
       FOSSA_API_KEY: ${{ secrets.FOSSA_API_KEY }}
